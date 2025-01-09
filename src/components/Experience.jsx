@@ -1,9 +1,14 @@
 import React from 'react';
+import {motion} from 'framer-motion'
 
 const Experience = ({ experiences }) => {
   return (
     <div className="pb-24">
-      <h2 className="my-20 text-center text-4xl text-white">Experience</h2>
+      <motion.h2 
+       whileInView = {{opacity:1,y:0}}
+       initial = {{opacity:0, y:-100}}
+       transition={{duration:0.5}}
+       className="my-20 text-center text-4xl text-white">Experience</motion.h2>
       <div className="flex flex-wrap justify-center gap-6">
         {experiences.map((experience, index) => (
           <div key={index} className="w-full max-w-xl lg:w-3/4 bg-stone-800 p-6 rounded shadow-md">

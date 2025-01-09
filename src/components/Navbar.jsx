@@ -1,6 +1,6 @@
 import React from 'react'
 import {FaGithub, FaInstagram, FaLinkedin} from 'react-icons/fa'
-import logo from "../assets/raviKumarLogo.webp";
+import logo from "../assets/Tejas.png";
 
 const Navbar = () => {
   return (
