@@ -45,6 +45,8 @@ export const PROJECTS = [
     description:
       "Developed E-Commerce website using React, featuring a responsive and interactive interface with distinct sections for men's, women's, and kids' clothing. The application includes secure authentication, dynamic product management, and streamlined cart functionality for an enhanced shopping experience.",
     technologies: ["React","CSS"],
+    liveLink:"https://shoper-ecommerce-app.netlify.app",
+    githubLink:"https://github.com/tejas249/Shoper"
   },
   {
     title: "Tomato: Food Delivery Website",
@@ -52,6 +54,8 @@ export const PROJECTS = [
     description:
       "Developed a responsive food delivery website, Tomato, using React and CSS, featuring intuitive navigation and seamless item management. Enhanced user experience with categorized browsing and secure login/signup functionality.",
     technologies: ["React","CSS"],
+    liveLink:"https://tomato-food-del.netlify.app",
+    githubLink:"https://github.com/tejas249/Tomato"
   },
   {
     title: "Portfolio Website",
@@ -59,6 +63,8 @@ export const PROJECTS = [
     description:
       "A personal portfolio website showcasing projects, skills, and contact information.",
     technologies: [ "React", "Tailwind"],
+    liveLink:"",
+    githubLink:""
   },
   {
     title: "Blogging Platform",
@@ -66,6 +72,8 @@ export const PROJECTS = [
     description:
       "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles.",
     technologies: ["HTML", "CSS", "Vue.js", "Express", "mySQL"],
+    liveLink:"",
+    githubLink:""
   },
 ];
 
