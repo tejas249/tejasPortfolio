@@ -64,7 +64,7 @@ export const PROJECTS = [
       "A personal portfolio website showcasing projects, skills, and contact information.",
     technologies: [ "React", "Tailwind"],
     liveLink:"",
-    githubLink:""
+    githubLink:"https://github.com/tejas249/tejasPortfolio"
   },
 ];
 
