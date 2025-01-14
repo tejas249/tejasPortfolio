@@ -1,7 +1,7 @@
 import project1 from "../assets/projects/project-1.png";
 import project2 from "../assets/projects/project-2.png";
 import project3 from "../assets/projects/project-3.png";
-import project4 from "../assets/projects/project-4.png";
+
 
 export const HERO_CONTENT = `Welcome to my portfolio website! I'm a Final Year Undergraduate and aspiring Full-Stack Developer (MERN), passionate about building dynamic web applications with seamless user experiences. I strive to create innovative, scalable solutions by combining creativity and efficient technology.`;
 
