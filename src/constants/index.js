@@ -47,26 +47,30 @@ export const PROJECTS = [
   {
     title: "InsiderJobs: Full Stack Job Portal",
     image:project6,
-    description:"Built a full stack job portal using MERN with user and admin panel and clerk authentication, tailwind for styling"
+    description:"Built a full stack job portal using MERN with user and admin panel and clerk authentication, tailwind for styling",
+    technologies: ["React","NodeJS", "MongoDB", "Express", "Tailwind", "Clerk"],
+    liveLink:" ",
+    githubLink:"",
+
   },
   {
     title: "AuthSystem: Authentication System Using MERN Stack",
     image: project5,
     description:
       "Developed a Full Stack Authentication System with secure login,signup, OTP verification, forgot password features",
-    technologies: ["React","NodeJS, MongoDB, Express, Clerk, Tailwind"],
-    liveLink:"",
-    githubLink:""
+    technologies: ["React","NodeJS", "MongoDB", "Express", "Tailwind"],
+    liveLink:"https://frontend-cj6x.onrender.com/",
+    githubLink:"https://github.com/tejas249/AuthSystem"
 
   },
   {
-    title: "Shoper: E-Commerce Website",
-    image: project1,
+    title: "Kodebase: FullStack Multi-code IDE ",
+    image: project4,
     description:
-      "Developed E-Commerce website using React, featuring a responsive and interactive interface with distinct sections for men's, women's, and kids' clothing. The application includes secure authentication, dynamic product management, and streamlined cart functionality for an enhanced shopping experience.",
-    technologies: ["React","CSS"],
-    liveLink:"https://shoper-ecommerce-app.netlify.app",
-    githubLink:"https://github.com/tejas249/Shoper"
+      "Developed a full-stack Multi-Code IDE using the MERN stack, featuring multi-language code execution and project management capabilities",
+    technologies: [ "React", "MongoDB","Express","Node"],
+    liveLink:"",
+    githubLink:"https://github.com/tejas249/kodebase"
   },
   {
     title: "Tomato: Food Delivery Website",
@@ -87,14 +91,14 @@ export const PROJECTS = [
     githubLink:"https://github.com/tejas249/tejasPortfolio"
   },
   {
-    title: "Kodebase: FullStack Multi-code IDE ",
-    image: project4,
+    title: "Shoper: E-Commerce Website",
+    image: project1,
     description:
-      "Developed a full-stack Multi-Code IDE using the MERN stack, featuring multi-language code execution and project management capabilities",
-    technologies: [ "React", "MongoDB","Express","Node"],
-    liveLink:"",
-    githubLink:"https://github.com/tejas249/kodebase"
-  },
+      "Developed E-Commerce website using React, featuring a responsive and interactive interface with distinct sections for men's, women's, and kids' clothing. The application includes secure authentication, dynamic product management, and streamlined cart functionality for an enhanced shopping experience.",
+    technologies: ["React","CSS"],
+    liveLink:"https://shoper-ecommerce-app.netlify.app",
+    githubLink:"https://github.com/tejas249/Shoper"
+  }
 
 ];
 
