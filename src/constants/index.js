@@ -1,7 +1,11 @@
+import { image, title } from "framer-motion/client";
 import project1 from "../assets/projects/project-1.png";
 import project2 from "../assets/projects/project-2.png";
 import project3 from "../assets/projects/project-3.png";
 import project4 from "../assets/projects/project-4.png"
+import project5 from "../assets/projects/project5.png"
+import project6 from "../assets/projects/project6.png"
+
 
 
 export const HERO_CONTENT = `Welcome to my portfolio website! I'm a Final Year Undergraduate and aspiring Full-Stack Developer (MERN), passionate about building dynamic web applications with seamless user experiences. I strive to create innovative, scalable solutions by combining creativity and efficient technology.`;
@@ -40,6 +44,21 @@ export const EXPERIENCES = [
 ];
 
 export const PROJECTS = [
+  {
+    title: "InsiderJobs: Full Stack Job Portal",
+    image:project6,
+    description:"Built a full stack job portal using MERN with user and admin panel and clerk authentication, tailwind for styling"
+  },
+  {
+    title: "AuthSystem: Authentication System Using MERN Stack",
+    image: project5,
+    description:
+      "Developed a Full Stack Authentication System with secure login,signup, OTP verification, forgot password features",
+    technologies: ["React","NodeJS, MongoDB, Express, Clerk, Tailwind"],
+    liveLink:"",
+    githubLink:""
+
+  },
   {
     title: "Shoper: E-Commerce Website",
     image: project1,
