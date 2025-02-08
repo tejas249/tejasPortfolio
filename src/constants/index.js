@@ -49,8 +49,8 @@ export const PROJECTS = [
     image:project6,
     description:"Built a full stack job portal using MERN with user and admin panel and clerk authentication, tailwind for styling",
     technologies: ["React","NodeJS", "MongoDB", "Express", "Tailwind", "Clerk"],
-    liveLink:" ",
-    githubLink:"",
+    liveLink:"https://insider-jobs-full-stack-client.vercel.app",
+    githubLink:"https://github.com/tejas249/InsiderJobs",
 
   },
   {
