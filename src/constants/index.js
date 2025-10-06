@@ -5,6 +5,7 @@ import project3 from "../assets/projects/project-3.png";
 import project4 from "../assets/projects/project-4.png"
 import project5 from "../assets/projects/project5.png"
 import project6 from "../assets/projects/project6.png"
+import project7 from '../assets/projects/project7.png'
 
 
 
@@ -44,6 +45,15 @@ export const EXPERIENCES = [
 ];
 
 export const PROJECTS = [
+  {
+    title: "AI Fusion - Multi Model Chat Platform",
+    image:project7,
+    description:"Developed a Next.js-based AI platform integrated with Clerk authentication, Firebase backend, and ShadCN UI. The app allows users to interact with multiple AI models such as ChatGPT, DeepSeek, and Gemini within a single unified interface.",
+    technologies: ["React","NextJS", "Clerk", "ShadCN", "Firebase"],
+    liveLink:"https://ai-fusion-lab-nine.vercel.app",
+    githubLink:"https://github.com/tejas249/ai-fusion-lab",
+
+  },
   {
     title: "InsiderJobs: Full Stack Job Portal",
     image:project6,
