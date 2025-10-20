@@ -8,8 +8,8 @@ import project6 from "../assets/projects/project6.png"
 import project7 from '../assets/projects/project7.png'
 
 
+export const HERO_CONTENT = `Hi there! I'm a final-year student and Full-Stack Developer (MERN), currently interning at KPIT. I love building clean, user-friendly web apps and am now exploring the world of Web3 to push my skills even further.`;
 
-export const HERO_CONTENT = `Welcome to my portfolio website! I'm a Final Year Undergraduate and aspiring Full-Stack Developer (MERN), passionate about building dynamic web applications with seamless user experiences. I strive to create innovative, scalable solutions by combining creativity and efficient technology.`;
 
 export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 5 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.`;
 
