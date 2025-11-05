@@ -6,9 +6,11 @@ import project4 from "../assets/projects/project-4.png"
 import project5 from "../assets/projects/project5.png"
 import project6 from "../assets/projects/project6.png"
 import project7 from '../assets/projects/project7.png'
+import project8 from '../assets/projects/project8.png'
 
 
-export const HERO_CONTENT = `Hi there! I'm a final-year student and Full-Stack Developer (MERN), currently interning at KPIT. I love building clean, user-friendly web apps and am now exploring the world of Web3 to push my skills even further.`;
+
+export const HERO_CONTENT = `Hi there! I'm a  Full-Stack Developer (MERN), currently interning at KPIT. I love building clean, user-friendly web apps and am now exploring the world of Web3 to push my skills even further.`;
 
 
 export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 5 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.`;
@@ -45,6 +47,15 @@ export const EXPERIENCES = [
 ];
 
 export const PROJECTS = [
+   {
+    title: "Reevio - Video editing agency website",
+    image:project8,
+    description:"A sleek video editing agency website built with Next.js, MongoDB, Tailwind, ShadCN, Acertinity UI, and TweakCN .",
+    technologies: ["React","NextJS", "MongoDB", "ShadCN", "Tailarc","TweakCN","Aceternity UI"],
+    liveLink:"https://reevio.netlify.app",
+    githubLink:"https://github.com/tejas249/reevio",
+
+  },
   {
     title: "AI Fusion - Multi Model Chat Platform",
     image:project7,
