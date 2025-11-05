@@ -13,7 +13,10 @@ import {
   SiBootstrap, 
   SiCplusplus, 
   SiMysql, 
-  SiRecoil 
+  SiRecoil,
+  SiSupabase,
+  SiFirebase,
+  SiShadcnui,
 } from 'react-icons/si';
 import {motion} from 'framer-motion'
 
@@ -50,6 +53,7 @@ const Technologies = () => {
           initial="initial"
           animate = "animate"
           variants={iconVariants(2.5)}
+          
         >
           <RiReactjsLine className='text-7xl text-cyan-400' />
           <p className='text-center text-white mt-2'>React</p>
@@ -168,6 +172,44 @@ const Technologies = () => {
           <SiRecoil className='text-7xl text-indigo-500' />
           <p className='text-center text-white mt-2'>Recoil</p>
         </motion.div>
+
+         {/* Supabase */}
+        <motion.div   
+            initial="initial"
+            animate = "animate"
+            variants={iconVariants(2.5)}
+        >
+          <SiSupabase className='text-7xl text-indigo-500' />
+          <p className='text-center text-white mt-2'>Recoil</p>
+        </motion.div>
+
+
+         {/* Firebase */}
+        <motion.div   
+            initial="initial"
+            animate = "animate"
+            variants={iconVariants(2.5)}
+        >
+          <SiFirebase className='text-7xl text-indigo-500' />
+          <p className='text-center text-white mt-2'>Recoil</p>
+        </motion.div>
+
+
+        {/* Shadcn */}
+        <motion.div   
+            initial="initial"
+            animate = "animate"
+            variants={iconVariants(2.5)}
+
+        >
+          <SiShadcnui className='text-7xl text-indigo-500' />
+          <p className='text-center text-white mt-2'>Recoil</p>
+        </motion.div>
+
+
+        
+
+        
       </motion.div>
     </div>
   );
