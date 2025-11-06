@@ -53,6 +53,9 @@ const Technologies = () => {
           initial="initial"
           animate = "animate"
           variants={iconVariants(2.5)}
+          whileHover={{
+               scale: 1.4,
+            }}
           
         >
           <RiReactjsLine className='text-7xl text-cyan-400' />
@@ -63,7 +66,11 @@ const Technologies = () => {
         <motion.div      
           initial="initial"
           animate = "animate"
-          variants={iconVariants(2.5)} >
+          variants={iconVariants(2.5)}
+          whileHover={{
+               scale: 1.4,
+            }}
+          >
           <SiHtml5 className='text-7xl text-orange-500' />
           <p className='text-center text-white mt-2'>HTML</p>
         </motion.div>
@@ -73,6 +80,9 @@ const Technologies = () => {
               initial="initial"
               animate = "animate"
               variants={iconVariants(2.5)}
+              whileHover={{
+               scale: 1.4,
+            }}
         >
           <SiCss3 className='text-7xl text-blue-500' />
           <p className='text-center text-white mt-2'>CSS</p>
@@ -83,6 +93,9 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+            whileHover={{
+               scale: 1.4,
+            }}
         
         >
           <SiJavascript className='text-7xl text-yellow-500' />
@@ -94,6 +107,9 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+            whileHover={{
+               scale: 1.4,
+            }}
         
         >
           <RiNodeTree className='text-7xl text-green-500' />
@@ -105,6 +121,9 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+            whileHover={{
+               scale: 1.4,
+            }}
         >
           <SiExpress className='text-7xl text-gray-400' />
           <p className='text-center text-white mt-2'>Express</p>
@@ -115,6 +134,9 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+            whileHover={{
+               scale: 1.4,
+            }}
         
         >
           <SiMongodb className='text-7xl text-green-600' />
@@ -126,6 +148,9 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+            whileHover={{
+               scale: 1.4,
+            }}
         
         >
           <SiCplusplus className='text-7xl text-blue-700' />
@@ -137,6 +162,9 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+            whileHover={{
+               scale: 1.4,
+            }}
         >
           <SiMysql className='text-7xl text-blue-600' />
           <p className='text-center text-white mt-2'>SQL</p>
@@ -147,6 +175,9 @@ const Technologies = () => {
               initial="initial"
               animate = "animate"
               variants={iconVariants(2.5)}
+              whileHover={{
+               scale: 1.4,
+            }}
         >
           <SiTailwindcss className='text-7xl text-teal-400' />
           <p className='text-center text-white mt-2'>Tailwind</p>
@@ -157,6 +188,9 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+            whileHover={{
+               scale: 1.4,
+            }}
         
         >
           <SiBootstrap className='text-7xl text-purple-600' />
@@ -168,6 +202,9 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+            whileHover={{
+               scale: 1.4,
+            }}
         >
           <SiRecoil className='text-7xl text-indigo-500' />
           <p className='text-center text-white mt-2'>Recoil</p>
@@ -178,9 +215,12 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+            whileHover={{
+               scale: 1.4,
+            }}
         >
           <SiSupabase className='text-7xl text-indigo-500' />
-          <p className='text-center text-white mt-2'>Recoil</p>
+          <p className='text-center text-white mt-2'>Supabase</p>
         </motion.div>
 
 
@@ -191,7 +231,7 @@ const Technologies = () => {
             variants={iconVariants(2.5)}
         >
           <SiFirebase className='text-7xl text-indigo-500' />
-          <p className='text-center text-white mt-2'>Recoil</p>
+          <p className='text-center text-white mt-2'>Firebase</p>
         </motion.div>
 
 
@@ -203,7 +243,7 @@ const Technologies = () => {
 
         >
           <SiShadcnui className='text-7xl text-indigo-500' />
-          <p className='text-center text-white mt-2'>Recoil</p>
+          <p className='text-center text-white mt-2'>Shadcn</p>
         </motion.div>
 
 
