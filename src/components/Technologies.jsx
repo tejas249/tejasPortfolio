@@ -35,11 +35,14 @@ const iconVariants = (duration) => ({
 
 const Technologies = () => {
   return (
-    <div className='pb-24'>
+    <div className='ml-10'>
       <motion.h2 
       whileInView = {{opacity:1,y:0}}
       initial = {{opacity:0, y:-100}}
       transition={{duration:1.5}}
+         whileHover={{
+               scale: 1.4,
+            }}
       className='my-20 text-center text-4xl text-white'>Technologies
       </motion.h2>
       
@@ -229,6 +232,9 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+            whileHover={{
+               scale: 1.4,
+            }}
         >
           <SiFirebase className='text-7xl text-indigo-500' />
           <p className='text-center text-white mt-2'>Firebase</p>
@@ -240,6 +246,9 @@ const Technologies = () => {
             initial="initial"
             animate = "animate"
             variants={iconVariants(2.5)}
+           whileHover={{
+               scale: 1.4,
+            }}
 
         >
           <SiShadcnui className='text-7xl text-indigo-500' />
