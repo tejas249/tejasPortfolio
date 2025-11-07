@@ -1,74 +1,99 @@
-import React from 'react';
-import profilePic from "../assets/tejas2.jpg";
-import { HERO_CONTENT } from "../constants";
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
+import profilePic from "../assets/tejas2.jpg"; // your image
 
-const containerVariants = {
-  hidden: { opacity: 0, x: -100 },
+const container = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.5,
-      staggerChildren: 0.5,
-    },
+    y: 0,
+    transition: { staggerChildren: 0.15, duration: 0.6 },
   },
 };
 
-const childVariants = {
-  hidden: { opacity: 0, x: -100 },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    transition: { duration: 0.5 } 
-  },
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const Hero = () => {
   return (
-    <div className="pb-4 lg:mb-36 relative z-10">
-      <div className="flex flex-wrap lg:flex-row-reverse">
-        <div className="w-full lg:w-1/2">
-          <div className="flex justify-center lg:p-8">
-            <motion.img
-              src={profilePic}
-              alt="Profile"
-              className="border border-x-stone-900 rounded-3xl"
-              width={650}
-              height={650}
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 1.5 }}
-            />
-          </div>
+    <motion.section
+      initial="hidden"
+      animate="visible"
+      variants={container}
+      className="w-full min-h-screen flex flex-col gap-8 pt-32 px-6 md:px-20"
+    >
+      {/* Avatar */}
+      <motion.div variants={item} className="flex items-center gap-3">
+        <div className="h-24 w-24 rounded-full overflow-hidden border shadow-sm">
+          <img
+            src={profilePic}
+            alt="profile"
+            className="h-full w-full object-cover"
+          />
         </div>
-        <div className="w-full lg:w-1/2">
-          <motion.div initial="hidden" animate="visible" variants={containerVariants} className="flex flex-col items-center lg:items-start mt-10">
-            <motion.h2
-             variants={childVariants}
-             className="pb-2 text-4xl tracking-tighter lg:text-8xl">
-              Tejas Kamble
-            </motion.h2>
-            < motion.span variants={childVariants} className="bg-gradient-to-r from-stone-300 to-stone-600 bg-clip-text text-3xl tracking-tight text-transparent">
-              Full Stack Developer
-            </motion.span>
-            <motion.p variants={childVariants}  className="my-2 max-w-lg py-6 text-xl leading-relaxed tracking-tighter">
-              {HERO_CONTENT}
-            </motion.p>
-            <motion.a
-            variants={childVariants}
-              className="bg-white rounded-full p-4 text-sm text-stone-800 mb-10"
-              
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-            >
-              Download Resume
-            </motion.a> 
-          </motion.div>
-        </div>
-      </div>
-    </div>
+        <div className="h-3 w-3 bg-white rounded-full shadow border" />
+      </motion.div>
+
+      {/* Heading */}
+      <motion.h1
+        variants={item}
+        className="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight"
+      >
+        Hi, I'm <span className="text-black font-bold">Tejas</span> — A Full
+        Stack web developer.
+      </motion.h1>
+
+      {/* Subtext */}
+      <motion.p
+        variants={item}
+        className="text-lg text-gray-600 max-w-3xl leading-relaxed"
+      >
+        I build interactive web apps using{" "}
+        <span className="px-2 py-1 rounded-md border bg-gray-100 text-gray-800">
+          Typescript
+        </span>
+        ,{" "}
+        <span className="px-2 py-1 rounded-md border bg-gray-100 text-gray-800">
+          React
+        </span>
+        ,{" "}
+        <span className="px-2 py-1 rounded-md border bg-gray-100 text-gray-800">
+          Next.js
+        </span>{" "}
+        and{" "}
+        <span className="px-2 py-1 rounded-md border bg-gray-100 text-gray-800">
+          PostgreSQL
+        </span>
+        . With a focus on <span className="font-semibold">UI design</span>.
+        Enthusiastic about{" "}
+        <span className="font-semibold">Three.js</span>, driven by a strong eye
+        for design.
+      </motion.p>
+
+      {/* Buttons */}
+      <motion.div variants={item} className="flex gap-4 mt-4">
+        <button className="border px-4 py-2 rounded-lg hover:bg-gray-100 transition">
+          Resume / CV
+        </button>
+        <button className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+          Get in touch
+        </button>
+      </motion.div>
+
+      {/* Social Icons */}
+      <motion.div
+        variants={item}
+        className="flex gap-5 text-gray-600 text-xl mt-4"
+      >
+        {/* Replace with your icons */}
+        <span>🌐</span>
+        <span>💼</span>
+        <span>📷</span>
+        <span>📧</span>
+      </motion.div>
+    </motion.section>
   );
 };
 
