@@ -78,11 +78,11 @@ const Technologies = () => {
             animate="animate"
             variants={iconVariants(2 + index * 0.2)}
             whileHover={{
-              scale: 1.1,
-              rotate: 2,
+              scale: 1.2,
+              rotate: 0.5,
               boxShadow: "0 0 20px rgba(255,255,255,0.2)",
             }}
-            className="flex flex-col items-center justify-center w-32 h-32 border border-gray-700 rounded-2xl shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 bg-[#121212]/70 backdrop-blur-md"
+            className="flex flex-col items-center justify-center w-32 h-32 border border-gray-700 rounded-2xl shadow-lg transition-all duration-300 bg-[#121212]/70 backdrop-blur-md  hover:shadow-white hover:shadow-lg cursor-pointer"
           >
             <Icon className={`text-6xl mb-2 ${color}`} />
             <p className="text-sm font-medium">{name}</p>

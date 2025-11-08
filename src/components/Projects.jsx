@@ -1,11 +1,10 @@
 import React from "react";
 import { PROJECTS } from "../constants";
-import { motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 
 const Projects = () => {
   return (
     <section className="bg-[#0d0d0d] text-white py-16 px-6 sm:px-10">
-      {/* Title */}
       <motion.h2
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -50 }}
@@ -15,35 +14,36 @@ const Projects = () => {
         Projects
       </motion.h2>
 
-      {/* Projects Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto ">
         {PROJECTS.map((project, index) => (
           <motion.div
             key={index}
             whileInView={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: 40 }}
-            transition={{ duration: 0.8, delay: index * 0.2 }}
+            transition={{ duration: 0.3, delay: index * 0.2 }}
             whileHover={{
               scale: 1.03,
               y: -5,
-              boxShadow: "0 0 25px rgba(255,255,255,0.08)",
+              transition:easeInOut
+
             }}
             className="relative rounded-2xl border border-gray-800 bg-[#121212]/80 backdrop-blur-md shadow-lg overflow-hidden transition-all duration-500  hover:shadow-white hover:shadow-lg cursor-pointer"
           >
             {/* Image Container */}
             <motion.div
               className="overflow-hidden"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.4 }}
+              whileHover={{ scale: 1.02 , transition:easeInOut}}
+              transition={{ duration: 0.1 }}
+              
             >
               <motion.img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-56 sm:h-60 object-cover rounded-t-2xl transition-transform duration-500 hover:scale-110"
+                className="w-full h-56 sm:h-60 object-cover rounded-t-2xl transition-transform duration-500 hover:scale-110 lg:hidden"
               />
             </motion.div>
 
-            {/* Content */}
+        
             <div className="p-5 sm:p-6 flex flex-col justify-between">
               {/* Title */}
               <motion.h3
@@ -55,7 +55,7 @@ const Projects = () => {
                 {project.title}
               </motion.h3>
 
-              {/* Description */}
+             
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -65,7 +65,6 @@ const Projects = () => {
                 {project.description}
               </motion.p>
 
-              {/* Tech Stack */}
               <motion.div
                 className="flex flex-wrap gap-2 mb-5"
                 initial="hidden"
@@ -88,11 +87,11 @@ const Projects = () => {
                 ))}
               </motion.div>
 
-              {/* Buttons */}
+        
               <div className="flex flex-col sm:flex-row gap-3">
                 <motion.a
                   whileHover={{
-                    scale: 1.05,
+                    scale: 1.07,
                     backgroundColor: "#ffffff",
                     color: "#000000",
                   }}

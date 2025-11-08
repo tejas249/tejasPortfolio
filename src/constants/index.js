@@ -45,83 +45,73 @@ export const EXPERIENCES = [
   //   technologies: ["Ruby", "Rails", "PHP", "Sqlite"],
   // },
 ];
-
 export const PROJECTS = [
-   {
-    title: "Reevio - Video editing agency website",
-    image:project8,
-    description:"A sleek video editing agency website built with Next.js, MongoDB, Tailwind, ShadCN, Acertinity UI, and TweakCN .",
-    technologies: ["React","NextJS", "MongoDB", "ShadCN", "Tailarc","TweakCN","Aceternity UI"],
-    liveLink:"https://reevio.netlify.app",
-    githubLink:"https://github.com/tejas249/reevio",
-
+  {
+    title: "Reevio - Video Editing Agency",
+    image: project8,
+    description: "A modern agency website built with Next.js, MongoDB, and ShadCN for a sleek video editing experience.",
+    technologies: ["React", "NextJS", "MongoDB", "ShadCN", "Tailarc", "TweakCN", "Aceternity UI"],
+    liveLink: "https://reevio.netlify.app",
+    githubLink: "https://github.com/tejas249/reevio",
   },
   {
-    title: "AI Fusion - Multi Model Chat Platform",
-    image:project7,
-    description:"Developed a Next.js-based AI platform integrated with Clerk authentication, Firebase backend, and ShadCN UI. The app allows users to interact with multiple AI models such as ChatGPT, DeepSeek, and Gemini within a single unified interface.",
-    technologies: ["React","NextJS", "Clerk", "ShadCN", "Firebase"],
-    liveLink:"https://ai-fusion-lab-nine.vercel.app",
-    githubLink:"https://github.com/tejas249/ai-fusion-lab",
-
+    title: "AI Fusion - Multi Model Chat",
+    image: project7,
+    description: "An AI chat platform with Clerk auth, Firebase backend, and multi-model integration like ChatGPT & Gemini.",
+    technologies: ["React", "NextJS", "Clerk", "ShadCN", "Firebase"],
+    liveLink: "https://ai-fusion-lab-nine.vercel.app",
+    githubLink: "https://github.com/tejas249/ai-fusion-lab",
   },
   {
-    title: "InsiderJobs: Full Stack Job Portal",
-    image:project6,
-    description:"Built a full stack job portal using MERN with user and admin panel and clerk authentication, tailwind for styling",
-    technologies: ["React","NodeJS", "MongoDB", "Express", "Tailwind", "Clerk"],
-    liveLink:"https://insider-jobs-full-stack-client.vercel.app",
-    githubLink:"https://github.com/tejas249/InsiderJobs",
-
+    title: "InsiderJobs - Job Portal",
+    image: project6,
+    description: "A MERN-based job portal with user/admin panels, Clerk auth, and responsive Tailwind UI.",
+    technologies: ["React", "NodeJS", "MongoDB", "Express", "Tailwind", "Clerk"],
+    liveLink: "https://insider-jobs-full-stack-client.vercel.app",
+    githubLink: "https://github.com/tejas249/InsiderJobs",
   },
   {
-    title: "AuthSystem: Authentication System Using MERN Stack",
+    title: "AuthSystem - MERN Auth App",
     image: project5,
-    description:
-      "Developed a Full Stack Authentication System with secure login,signup, OTP verification, forgot password features",
-    technologies: ["React","NodeJS", "MongoDB", "Express", "Tailwind"],
-    liveLink:"https://frontend-cj6x.onrender.com/",
-    githubLink:"https://github.com/tejas249/AuthSystem"
-
+    description: "A secure authentication system with signup, OTP, and password recovery features.",
+    technologies: ["React", "NodeJS", "MongoDB", "Express", "Tailwind"],
+    liveLink: "https://frontend-cj6x.onrender.com/",
+    githubLink: "https://github.com/tejas249/AuthSystem",
   },
   {
-    title: "Kodebase: FullStack Multi-code IDE ",
+    title: "Kodebase - Multi-code IDE",
     image: project4,
-    description:
-      "Developed a full-stack Multi-Code IDE using the MERN stack, featuring multi-language code execution and project management capabilities",
-    technologies: [ "React", "MongoDB","Express","Node"],
-    liveLink:"",
-    githubLink:"https://github.com/tejas249/kodebase"
+    description: "A full-stack IDE supporting multiple languages and project management using MERN.",
+    technologies: ["React", "MongoDB", "Express", "Node"],
+    liveLink: "",
+    githubLink: "https://github.com/tejas249/kodebase",
   },
   {
-    title: "Tomato: Food Delivery Website",
+    title: "Tomato - Food Delivery App",
     image: project2,
-    description:
-      "Developed a responsive food delivery website, Tomato, using React and CSS, featuring intuitive navigation and seamless item management. Enhanced user experience with categorized browsing and secure login/signup functionality.",
-    technologies: ["React","CSS"],
-    liveLink:"https://tomato-food-del.netlify.app",
-    githubLink:"https://github.com/tejas249/Tomato"
+    description: "A responsive food delivery web app built with React and CSS for smooth user experience.",
+    technologies: ["React", "CSS"],
+    liveLink: "https://tomato-food-del.netlify.app",
+    githubLink: "https://github.com/tejas249/Tomato",
   },
   {
     title: "Portfolio Website",
     image: project3,
-    description:
-      "A personal portfolio website showcasing projects, skills, and contact information.",
-    technologies: [ "React", "Tailwind"],
-    liveLink:"",
-    githubLink:"https://github.com/tejas249/tejasPortfolio"
+    description: "A personal portfolio built with React and Tailwind showcasing skills and projects.",
+    technologies: ["React", "Tailwind"],
+    liveLink: "",
+    githubLink: "https://github.com/tejas249/tejasPortfolio",
   },
   {
-    title: "Shoper: E-Commerce Website",
+    title: "Shoper - E-Commerce Site",
     image: project1,
-    description:
-      "Developed E-Commerce website using React, featuring a responsive and interactive interface with distinct sections for men's, women's, and kids' clothing. The application includes secure authentication, dynamic product management, and streamlined cart functionality for an enhanced shopping experience.",
-    technologies: ["React","CSS"],
-    liveLink:"https://shoper-ecommerce-app.netlify.app",
-    githubLink:"https://github.com/tejas249/Shoper"
-  }
-
+    description: "An interactive e-commerce site with product management, cart, and authentication.",
+    technologies: ["React", "CSS"],
+    liveLink: "https://shoper-ecommerce-app.netlify.app",
+    githubLink: "https://github.com/tejas249/Shoper",
+  },
 ];
+
 
 export const CONTACT = {
   address: "Pune, India",
