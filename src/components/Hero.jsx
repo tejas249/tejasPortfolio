@@ -32,10 +32,11 @@ const Hero = () => {
         transition={{ duration: 0.6 }}
         className="mb-6"
       >
-        <img
+        <motion.img
           src={profilePic}
           alt="Tejas Kamble"
-          className="w-28 h-28 rounded-full border-4 border-[#1f1f1f] object-cover shadow-lg"
+          className="w-28 h-28 rounded-full border-4 border-[#1f1f1f] object-cover shadow-lg hover:cursor-pointer hover:shadow-md hover:shadow-white"
+          whileHover={{rotate:20}}
         />
       </motion.div>
 
@@ -47,7 +48,7 @@ const Hero = () => {
         className="text-4xl sm:text-5xl font-semibold text-gray-100"
       >
         Hi, I'm <span className="text-white font-bold">Tejas</span>
-        <span className="text-gray-400"> Full Stack Developer.</span>
+        <span className="bg-gradient-to-bl from-stone-50 to-slate-900 bg-clip-text text-transparent hover:text-white"> Full Stack Developer.</span>
       </motion.h1>
 
     
@@ -73,7 +74,7 @@ const Hero = () => {
                 hidden: { opacity: 0, y: 10 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
               }}
-              className="mx-1 mt-5 my-1 inline-flex items-center rounded-md border border-gray-700 bg-[#121212] px-2 py-1 text-sm text-gray-300 shadow-sm hover:bg-[#1a1a1a] transition-all duration-300"
+              className="mx-1 h-10 mt-5 my-1 p-2 inline-flex items-center rounded-md border border-gray-700 bg-[#121212] px-2 py-1 text-sm text-gray-300 shadow-sm hover:bg-[#1a1a1a] transition-all duration-300 hover:border-white border-dotted"
             >
               {tech.icon} {tech.name}
             </motion.span>
@@ -98,14 +99,14 @@ const Hero = () => {
         <motion.a
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
           href="https://drive.google.com/file/d/1a5xESYrI4OzKIsddqK81XmN066BTvaRn/view?usp=share_link"
-          className="border border-gray-600 hover:bg-gray-100 hover:text-black transition-all duration-300 rounded-full px-6 py-2 font-medium text-sm flex items-center gap-2"
+          className="border bg-gray-900 border-gray-600 transition-all duration-300 rounded-full px-6 py-2 font-medium text-sm flex items-center gap-2 hover:shadow-sm hover:shadow-white"
         >
           📄 Resume / CV
         </motion.a>
         <motion.a
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
           href="#contact"
-          className="bg-white text-black hover:bg-gray-200 transition-all duration-300 rounded-full px-6 py-2 font-medium text-sm flex items-center gap-2"
+          className="bg-gray-900 text-white  hover:shadow-sm hover:shadow-white transition-all duration-300 rounded-full px-6 py-2 font-medium text-sm flex items-center gap-2"
         >
           ✉️ Get in touch
         </motion.a>

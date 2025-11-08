@@ -9,7 +9,7 @@ const Projects = () => {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -50 }}
         transition={{ duration: 0.8 }}
-        className="text-center text-4xl font-semibold mb-12"
+        className="text-center text-4xl font-semibold mb-12 bg-gradient-to-bl from-stone-50 to-slate-900 bg-clip-text text-transparent hover:text-white"
       >
         Projects
       </motion.h2>
@@ -17,19 +17,21 @@ const Projects = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto ">
         {PROJECTS.map((project, index) => (
           <motion.div
-            key={index}
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 40 }}
-            transition={{ duration: 0.3, delay: index * 0.2 }}
-            whileHover={{
-              scale: 1.03,
-              y: -5,
-              transition:easeInOut
+  key={index}
+  whileInView={{ opacity: 1, y: 0 }}
+  initial={{ opacity: 0, y: 40 }}
+  transition={{ duration: 0.3, delay: index * 0.2 }}
+  whileHover={{
+    scale: 1.03,
+    y: -5,
+    transition: { ease: "easeInOut", duration: 0.3 },
+  }}
+  className="relative rounded-2xl border border-gray-800 bg-[#121212]/80 backdrop-blur-md 
+             shadow-lg overflow-hidden transition-all duration-500 
+             hover:shadow-white hover:shadow-sm   hover:border-white border-dotted cursor-pointer"
+>
 
-            }}
-            className="relative rounded-2xl border border-gray-800 bg-[#121212]/80 backdrop-blur-md shadow-lg overflow-hidden transition-all duration-500  hover:shadow-white hover:shadow-lg cursor-pointer"
-          >
-            {/* Image Container */}
+          
             <motion.div
               className="overflow-hidden"
               whileHover={{ scale: 1.02 , transition:easeInOut}}
@@ -39,17 +41,17 @@ const Projects = () => {
               <motion.img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-56 sm:h-60 object-cover rounded-t-2xl transition-transform duration-500 hover:scale-110 lg:hidden"
+                className="w-full hidden h-56 sm:h-60 object-cover rounded-t-2xl transition-transform duration-500 hover:scale-110 lg:hidden"
               />
             </motion.div>
 
         
             <div className="p-5 sm:p-6 flex flex-col justify-between">
-              {/* Title */}
+             
               <motion.h3
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.3 }}
                 className="text-xl sm:text-2xl font-semibold mb-2 text-white"
               >
                 {project.title}
@@ -80,7 +82,7 @@ const Projects = () => {
                       hidden: { opacity: 0, y: 10 },
                       visible: { opacity: 1, y: 0 },
                     }}
-                    className="rounded-md border border-gray-700 bg-[#1a1a1a]/80 px-2 py-1 text-xs sm:text-sm text-gray-300 hover:border-gray-500 hover:scale-105 transition-all duration-300"
+                    className="rounded-md border border-gray-700 bg-[#1a1a1a]/80 px-2 py-1 text-xs sm:text-sm text-gray-300 hover:border-gray-500 hover:scale-105 transition-all duration-300 hover:shadow-sm hover:shadow-white"
                   >
                     {tech}
                   </motion.span>

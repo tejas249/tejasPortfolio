@@ -54,12 +54,12 @@ const techStack = [
 const Technologies = () => {
   return (
     <div className="px-6 py-16 bg-[#0d0d0d] text-white">
-      {/* Title */}
+  
       <motion.h2 
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 1 }}
-        className="text-center text-4xl font-semibold mb-12"
+        className="text-center text-4xl font-semibold mb-12 bg-gradient-to-bl from-stone-50 to-slate-900 bg-clip-text text-transparent hover:text-white"
       >
         Technologies
       </motion.h2>

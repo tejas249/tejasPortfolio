@@ -11,7 +11,7 @@ const Contact = () => {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -40 }}
         transition={{ duration: 0.8 }}
-        className="text-center text-4xl font-semibold mb-10"
+        className="text-center text-4xl font-semibold mb-10 bg-gradient-to-bl from-stone-50 to-slate-900 bg-clip-text text-transparent hover:text-white"
       >
         Get In Touch
       </motion.h2>
