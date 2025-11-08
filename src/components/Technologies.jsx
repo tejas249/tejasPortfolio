@@ -18,247 +18,76 @@ import {
   SiFirebase,
   SiShadcnui,
 } from 'react-icons/si';
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion';
 
 const iconVariants = (duration) => ({
-    initial:{y:-10},
-    animate: {
-      y:[10,-10],
-      transition:{
-        duration:duration,
-        ease:"linear",
-        repeat:Infinity,
-        repeatType:"reverse"
-      }
+  initial: { y: -10 },
+  animate: {
+    y: [10, -10],
+    transition: {
+      duration: duration,
+      ease: "linear",
+      repeat: Infinity,
+      repeatType: "reverse"
     }
-})
+  }
+});
+
+const techStack = [
+  { Icon: RiReactjsLine, name: "React", color: "text-cyan-400" },
+  { Icon: SiHtml5, name: "HTML", color: "text-orange-500" },
+  { Icon: SiCss3, name: "CSS", color: "text-blue-500" },
+  { Icon: SiJavascript, name: "JavaScript", color: "text-yellow-400" },
+  { Icon: RiNodeTree, name: "Node.js", color: "text-green-500" },
+  { Icon: SiExpress, name: "Express", color: "text-gray-300" },
+  { Icon: SiMongodb, name: "MongoDB", color: "text-green-600" },
+  { Icon: SiCplusplus, name: "C++", color: "text-blue-600" },
+  { Icon: SiMysql, name: "SQL", color: "text-blue-400" },
+  { Icon: SiTailwindcss, name: "Tailwind", color: "text-teal-400" },
+  { Icon: SiBootstrap, name: "Bootstrap", color: "text-purple-500" },
+  { Icon: SiRecoil, name: "Recoil", color: "text-indigo-400" },
+  { Icon: SiSupabase, name: "Supabase", color: "text-emerald-400" },
+  { Icon: SiFirebase, name: "Firebase", color: "text-yellow-500" },
+  { Icon: SiShadcnui, name: "Shadcn", color: "text-pink-400" },
+];
 
 const Technologies = () => {
   return (
-    <div className='ml-10'>
+    <div className="px-6 py-16 bg-[#0d0d0d] text-white">
+      {/* Title */}
       <motion.h2 
-      whileInView = {{opacity:1,y:0}}
-      initial = {{opacity:0, y:-100}}
-      transition={{duration:1.5}}
-         whileHover={{
-               scale: 1.4,
-            }}
-      className='my-20 text-center text-4xl text-white'>Technologies
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -100 }}
+        transition={{ duration: 1 }}
+        className="text-center text-4xl font-semibold mb-12"
+      >
+        Technologies
       </motion.h2>
-      
+
+      {/* Tech Grid */}
       <motion.div
-       whileInView = {{opacity:1,y:0}}
-       initial = {{opacity:0, y:-100}}
-       transition={{duration:1.5}}
-       className='flex flex-wrap items-center justify-center gap-6'>
-        {/* React */}
-        <motion.div 
-          initial="initial"
-          animate = "animate"
-          variants={iconVariants(2.5)}
-          whileHover={{
-               scale: 1.4,
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 80 }}
+        transition={{ duration: 1.2 }}
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-items-center"
+      >
+        {techStack.map(({ Icon, name, color }, index) => (
+          <motion.div
+            key={index}
+            initial="initial"
+            animate="animate"
+            variants={iconVariants(2 + index * 0.2)}
+            whileHover={{
+              scale: 1.1,
+              rotate: 2,
+              boxShadow: "0 0 20px rgba(255,255,255,0.2)",
             }}
-          
-        >
-          <RiReactjsLine className='text-7xl text-cyan-400' />
-          <p className='text-center text-white mt-2'>React</p>
-        </motion.div>
-        
-        {/* HTML */}
-        <motion.div      
-          initial="initial"
-          animate = "animate"
-          variants={iconVariants(2.5)}
-          whileHover={{
-               scale: 1.4,
-            }}
+            className="flex flex-col items-center justify-center w-32 h-32 border border-gray-700 rounded-2xl shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 bg-[#121212]/70 backdrop-blur-md"
           >
-          <SiHtml5 className='text-7xl text-orange-500' />
-          <p className='text-center text-white mt-2'>HTML</p>
-        </motion.div>
-        
-        {/* CSS */}
-        <motion.div
-              initial="initial"
-              animate = "animate"
-              variants={iconVariants(2.5)}
-              whileHover={{
-               scale: 1.4,
-            }}
-        >
-          <SiCss3 className='text-7xl text-blue-500' />
-          <p className='text-center text-white mt-2'>CSS</p>
-        </motion.div>
-        
-        {/* JavaScript */}
-        <motion.div
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-            whileHover={{
-               scale: 1.4,
-            }}
-        
-        >
-          <SiJavascript className='text-7xl text-yellow-500' />
-          <p className='text-center text-white mt-2'>JavaScript</p>
-        </motion.div>
-        
-        {/* NodeJS */}
-        <motion.div
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-            whileHover={{
-               scale: 1.4,
-            }}
-        
-        >
-          <RiNodeTree className='text-7xl text-green-500' />
-          <p className='text-center text-white mt-2'>Node.js</p>
-        </motion.div>
-        
-        {/* Express */}
-        <motion.div   
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-            whileHover={{
-               scale: 1.4,
-            }}
-        >
-          <SiExpress className='text-7xl text-gray-400' />
-          <p className='text-center text-white mt-2'>Express</p>
-        </motion.div>
-        
-        {/* MongoDB */}
-        <motion.div
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-            whileHover={{
-               scale: 1.4,
-            }}
-        
-        >
-          <SiMongodb className='text-7xl text-green-600' />
-          <p className='text-center text-white mt-2'>MongoDB</p>
-        </motion.div>
-        
-        {/* C++ */}
-        <motion.div   
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-            whileHover={{
-               scale: 1.4,
-            }}
-        
-        >
-          <SiCplusplus className='text-7xl text-blue-700' />
-          <p className='text-center text-white mt-2'>C++</p>
-        </motion.div>
-        
-        {/* SQL */}
-        <motion.div   
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-            whileHover={{
-               scale: 1.4,
-            }}
-        >
-          <SiMysql className='text-7xl text-blue-600' />
-          <p className='text-center text-white mt-2'>SQL</p>
-        </motion.div>
-        
-        {/* Tailwind */}
-        <motion.div   
-              initial="initial"
-              animate = "animate"
-              variants={iconVariants(2.5)}
-              whileHover={{
-               scale: 1.4,
-            }}
-        >
-          <SiTailwindcss className='text-7xl text-teal-400' />
-          <p className='text-center text-white mt-2'>Tailwind</p>
-        </motion.div>
-        
-        {/* Bootstrap */}
-        <motion.div   
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-            whileHover={{
-               scale: 1.4,
-            }}
-        
-        >
-          <SiBootstrap className='text-7xl text-purple-600' />
-          <p className='text-center text-white mt-2'>Bootstrap</p>
-        </motion.div>
-        
-        {/* Recoil */}
-        <motion.div   
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-            whileHover={{
-               scale: 1.4,
-            }}
-        >
-          <SiRecoil className='text-7xl text-indigo-500' />
-          <p className='text-center text-white mt-2'>Recoil</p>
-        </motion.div>
-
-         {/* Supabase */}
-        <motion.div   
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-            whileHover={{
-               scale: 1.4,
-            }}
-        >
-          <SiSupabase className='text-7xl text-indigo-500' />
-          <p className='text-center text-white mt-2'>Supabase</p>
-        </motion.div>
-
-
-         {/* Firebase */}
-        <motion.div   
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-            whileHover={{
-               scale: 1.4,
-            }}
-        >
-          <SiFirebase className='text-7xl text-indigo-500' />
-          <p className='text-center text-white mt-2'>Firebase</p>
-        </motion.div>
-
-
-        {/* Shadcn */}
-        <motion.div   
-            initial="initial"
-            animate = "animate"
-            variants={iconVariants(2.5)}
-           whileHover={{
-               scale: 1.4,
-            }}
-
-        >
-          <SiShadcnui className='text-7xl text-indigo-500' />
-          <p className='text-center text-white mt-2'>Shadcn</p>
-        </motion.div>
-
-
-        
-
-        
+            <Icon className={`text-6xl mb-2 ${color}`} />
+            <p className="text-sm font-medium">{name}</p>
+          </motion.div>
+        ))}
       </motion.div>
     </div>
   );
