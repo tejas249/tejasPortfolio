@@ -47,8 +47,8 @@ const Hero = () => {
         transition={{ duration: 0.8 }}
         className="text-4xl sm:text-5xl font-semibold text-gray-100"
       >
-        Hi, I'm <span className="text-white font-bold">Tejas</span> — A{" "}
-        <span className="text-gray-300">Full Stack Web Developer.</span>
+        Hi, I'm <span className="text-white font-bold">Tejas</span>
+        <span className="text-gray-400"> Full Stack Developer.</span>
       </motion.h1>
 
       {/* Description with staggered badges */}
@@ -83,8 +83,7 @@ const Hero = () => {
         . <br />
         With a focus on{" "}
         <span className="font-semibold text-gray-200">UI design</span>, enthusiastic about{" "}
-        <span className="font-semibold text-gray-200">Three.js</span>, driven by a keen eye for{" "}
-        <span className="font-semibold text-gray-200">aesthetics & performance.</span>
+        <span className="font-semibold text-gray-200">Web3</span>
       </motion.p>
 
       {/* Buttons */}

@@ -1,75 +1,128 @@
-import React from 'react';
-import { PROJECTS } from '../constants';
-import { motion } from 'framer-motion';
+import React from "react";
+import { PROJECTS } from "../constants";
+import { motion } from "framer-motion";
 
 const Projects = () => {
   return (
-    <div className="pb-4">
+    <section className="bg-[#0d0d0d] text-white py-16 px-6 sm:px-10">
+      {/* Title */}
       <motion.h2
         whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -100 }}
-        transition={{ duration: 1.5 }}
-        className="my-20 text-center text-4xl"
+        initial={{ opacity: 0, y: -50 }}
+        transition={{ duration: 0.8 }}
+        className="text-center text-4xl font-semibold mb-12"
       >
         Projects
       </motion.h2>
-      <div>
+
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto ">
         {PROJECTS.map((project, index) => (
-          <div key={index} className="mb-8 flex flex-wrap lg:justify-center">
+          <motion.div
+            key={index}
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, delay: index * 0.2 }}
+            whileHover={{
+              scale: 1.03,
+              y: -5,
+              boxShadow: "0 0 25px rgba(255,255,255,0.08)",
+            }}
+            className="relative rounded-2xl border border-gray-800 bg-[#121212]/80 backdrop-blur-md shadow-lg overflow-hidden transition-all duration-500  hover:shadow-white hover:shadow-lg cursor-pointer"
+          >
+            {/* Image Container */}
             <motion.div
-              whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: -100 }}
-              transition={{ duration: 1 }}
-              className="w-full lg:w-1/4 lg:mr-8"
+              className="overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.4 }}
             >
-              <img
+              <motion.img
                 src={project.image}
-                width={250}
-                height={250}
                 alt={project.title}
-                className="mb-6 rounded"
+                className="w-full h-56 sm:h-60 object-cover rounded-t-2xl transition-transform duration-500 hover:scale-110"
               />
             </motion.div>
 
-            <motion.div
-              whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 100 }}
-              transition={{ duration: 1 }}
-              className="w-full max-w-xl lg:w-3/4"
-            >
-              <h3 className="mb-2 font-semibold text-2xl">{project.title}</h3>
-              <p className="mb-4 text-stone-400">{project.description}</p>
-              {project.technologies.map((tech, techIndex) => (
-                <span
-                  key={techIndex}
-                  className="mr-2 rounded bg-stone-900 p-2 text-sm font-medium text-stone-300"
-                >
-                  {tech}
-                </span>
-              ))}
-              <div className="mt-4">
-                <a
+            {/* Content */}
+            <div className="p-5 sm:p-6 flex flex-col justify-between">
+              {/* Title */}
+              <motion.h3
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-xl sm:text-2xl font-semibold mb-2 text-white"
+              >
+                {project.title}
+              </motion.h3>
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="text-gray-400 text-sm sm:text-base mb-4"
+              >
+                {project.description}
+              </motion.p>
+
+              {/* Tech Stack */}
+              <motion.div
+                className="flex flex-wrap gap-2 mb-5"
+                initial="hidden"
+                whileInView="visible"
+                variants={{
+                  visible: { transition: { staggerChildren: 0.1 } },
+                }}
+              >
+                {project.technologies.map((tech, techIndex) => (
+                  <motion.span
+                    key={techIndex}
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                    className="rounded-md border border-gray-700 bg-[#1a1a1a]/80 px-2 py-1 text-xs sm:text-sm text-gray-300 hover:border-gray-500 hover:scale-105 transition-all duration-300"
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
+              </motion.div>
+
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <motion.a
+                  whileHover={{
+                    scale: 1.05,
+                    backgroundColor: "#ffffff",
+                    color: "#000000",
+                  }}
                   href={project.liveLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mr-4 rounded bg-purple-100 px-4 py-2 text-black hover:bg-white transition duration-300 ease-in-out shadow-lg"
+                  className="flex-1 text-center rounded-full border border-gray-400 px-4 py-2 text-sm sm:text-base font-medium text-white hover:shadow-lg transition-all duration-300"
                 >
-                  Live
-                </a>
-                <a
+                  Live Demo
+                </motion.a>
+
+                <motion.a
+                  whileHover={{
+                    scale: 1.05,
+                    backgroundColor: "#1f1f1f",
+                    color: "#ffffff",
+                  }}
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded bg-gray-800 px-4 py-2 text-white hover:bg-gray-700 transition duration-300 ease-in-out shadow-lg"
+                  className="flex-1 text-center rounded-full border border-gray-700 bg-[#111111] px-4 py-2 text-sm sm:text-base font-medium text-gray-300 hover:shadow-lg transition-all duration-300"
                 >
                   GitHub
-                </a>
+                </motion.a>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
