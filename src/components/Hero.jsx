@@ -35,7 +35,7 @@ const Hero = () => {
         <motion.img
           src={profilePic}
           alt="Tejas Kamble"
-          className="w-28 h-28 rounded-full border-4 border-[#1f1f1f] object-cover shadow-lg hover:cursor-pointer hover:shadow-md hover:shadow-white"
+          className="w-28 h-28 rounded-full border-4 border-[#1f1f1f] object-cover shadow-lg hover:cursor-pointer hover:shadow-md hover:shadow-white "
           whileHover={{rotate:20}}
         />
       </motion.div>
@@ -45,7 +45,7 @@ const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-4xl sm:text-5xl font-semibold text-gray-100"
+        className="text-4xl sm:text-5xl font-semibold text-gray-100 "
       >
         Hi, I'm <span className="text-white font-bold">Tejas</span>
         <span className="bg-gradient-to-bl from-stone-50 to-slate-900 bg-clip-text text-transparent hover:text-white"> Full Stack Developer.</span>
@@ -60,7 +60,7 @@ const Hero = () => {
       >
         I build interactive web apps using{" "}
         <motion.span 
-          className="inline-flex flex-wrap justify-center"
+          className="inline-flex flex-wrap justify-center  hover:cursor-pointer"
           initial="hidden"
           animate="visible"
           variants={{
