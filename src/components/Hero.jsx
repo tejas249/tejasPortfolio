@@ -58,7 +58,7 @@ const Hero = () => {
         transition={{ delay: 0.8, duration: 1 }}
         className="max-w-2xl mt-7 text-lg sm:text-xl text-gray-400"
       >
-        I build interactive web apps using{" "}
+      Building smooth, interactive web experiences that feel alive{" "}
         <motion.span 
           className="inline-flex flex-wrap justify-center  hover:cursor-pointer"
           initial="hidden"
