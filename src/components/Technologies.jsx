@@ -64,7 +64,7 @@ const Technologies = () => {
         Technologies
       </motion.h2>
 
-      {/* Tech Grid */}
+ 
       <motion.div
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: 80 }}
@@ -83,7 +83,7 @@ const Technologies = () => {
               rotate: 0.5,
               boxShadow: "0 0 20px rgba(255,255,255,0.2)",
             }}
-            drag whileDrag={{ scale: 1.2, backgroundColor: "#f00", animationDuration:0.2, ease:easeInOut }}
+
             className="flex flex-col items-center justify-center w-32 h-32 border border-gray-700 rounded-2xl shadow-lg transition-all duration-300 bg-[#121212]/70 backdrop-blur-md  hover:shadow-white hover:shadow-lg cursor-pointer"
           >
             <Icon className={`text-6xl mb-2 ${color}`} />

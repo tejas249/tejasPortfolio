@@ -66,7 +66,6 @@ const Hero = () => {
           variants={{
             visible: { transition: { staggerChildren: 0.2 } },
           }}
-          drag whileDrag={{ scale: 1.2, backgroundColor: "#f00" }}
         >
           {techStack.map((tech, index) => (
             <motion.span
