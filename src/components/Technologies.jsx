@@ -83,7 +83,6 @@ const Technologies = () => {
               rotate: 0.5,
               boxShadow: "0 0 20px rgba(255,255,255,0.2)",
             }}
-
             className="flex flex-col items-center justify-center w-32 h-32 border border-gray-700 rounded-2xl shadow-lg transition-all duration-300 bg-[#121212]/70 backdrop-blur-md  hover:shadow-white hover:shadow-lg cursor-pointer"
           >
             <Icon className={`text-6xl mb-2 ${color}`} />
