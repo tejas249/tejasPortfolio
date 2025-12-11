@@ -7,7 +7,7 @@ import project5 from "../assets/projects/project5.png"
 import project6 from "../assets/projects/project6.png"
 import project7 from '../assets/projects/project7.png'
 import project8 from '../assets/projects/project8.png'
-
+import project9 from '../assets/projects/project9.png'
 
 
 export const HERO_CONTENT = `Hi there! I'm a  Full-Stack Developer (MERN), currently interning at KPIT. I love building clean, user-friendly web apps and am now exploring the world of Web3 to push my skills even further.`;
@@ -46,6 +46,14 @@ export const EXPERIENCES = [
   // },
 ];
 export const PROJECTS = [
+  {
+    title: "Dark SAS Landing Page",
+    image: project9,
+    description: "Dark theme SAS Landing page",
+    technologies: [ "NextJS","TailwindCSS"],
+    liveLink: "https://sasdark.vercel.app",
+    githubLink: "https://github.com/tejas249/darks",
+  },
   {
     title: "Reevio - Video Editing Agency",
     image: project8,
