@@ -1,37 +1,23 @@
-import React from 'react';
-import { 
-  RiReactjsLine, 
-  RiNodeTree 
-} from 'react-icons/ri'; 
-import { 
-  SiHtml5, 
-  SiCss3, 
-  SiJavascript, 
-  SiMongodb, 
-  SiExpress, 
-  SiTailwindcss, 
-  SiBootstrap, 
-  SiCplusplus, 
-  SiMysql, 
+import React from "react";
+import {
+  RiReactjsLine,
+  RiNodeTree
+} from "react-icons/ri";
+import {
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiMongodb,
+  SiExpress,
+  SiTailwindcss,
+  SiBootstrap,
+  SiCplusplus,
+  SiMysql,
   SiRecoil,
   SiSupabase,
   SiFirebase,
   SiShadcnui,
-} from 'react-icons/si';
-import { easeInOut, motion } from 'framer-motion';
-
-const iconVariants = (duration) => ({
-  initial: { y: -10 },
-  animate: {
-    y: [10, -10],
-    transition: {
-      duration: duration,
-      ease: "linear",
-      repeat: Infinity,
-      repeatType: "reverse"
-    }
-  }
-});
+} from "react-icons/si";
 
 const techStack = [
   { Icon: RiReactjsLine, name: "React", color: "text-cyan-400" },
@@ -53,44 +39,39 @@ const techStack = [
 
 const Technologies = () => {
   return (
-    <div className="px-6 py-16 bg-[#0d0d0d] text-white">
-  
-      <motion.h2 
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -100 }}
-        transition={{ duration: 1 }}
-        className="text-center text-4xl font-semibold mb-12 bg-gradient-to-bl from-stone-50 to-slate-900 bg-clip-text text-transparent hover:text-white"
-      >
-        Technologies
-      </motion.h2>
+    <section className="px-6 py-16 bg-[#0d0d0d]  text-white">
+      
+      {/* Header */}
+      <h2 className="text-center text-4xl font-bold mb-10 tracking-tight bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
+        Tech Stack
+      </h2>
 
- 
-      <motion.div
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: 80 }}
-        transition={{ duration: 1.2 }}
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-items-center"
-            
-     >
+      {/* Container */}
+      <div className="max-w-4xl mx-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 justify-items-center">
+        
         {techStack.map(({ Icon, name, color }, index) => (
-          <motion.div
+          <div
             key={index}
-            initial="initial"
-            animate="animate"
-            variants={iconVariants(2 + index * 0.2)}
-            whileHover={{
-              scale: 1.2,
-              rotate: 0.5,
-              boxShadow: "0 0 20px rgba(255,255,255,0.2)",
-            }}
-            className="flex flex-col items-center justify-center w-32 h-32 border border-gray-700 rounded-2xl shadow-lg transition-all duration-300 bg-[#121212]/70 backdrop-blur-md  hover:shadow-white hover:shadow-lg cursor-pointer"
+            className="
+              flex flex-col items-center justify-center 
+              w-20 h-20 sm:w-24 sm:h-24 
+              rounded-2xl 
+              backdrop-blur-md bg-white/5 
+              border border-white/10
+              hover:bg-white/10 
+              hover:scale-[1.06]
+              transition-all duration-300
+              shadow-md hover:shadow-white/10
+              cursor-pointer
+            "
           >
-            <Icon className={`text-6xl mb-2 ${color}`} />
-            <p className="text-sm font-medium">{name}</p>
-          </motion.div>
+            <Icon className={`text-2xl sm:text-3xl ${color}`} />
+            <p className="text-[11px] sm:text-xs opacity-80 mt-1">{name}</p>
+          </div>
         ))}
-      </motion.div>
-    </div>
+
+      </div>
+    </section>
   );
 };
 

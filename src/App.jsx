@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Technologies from "./components/Technologies";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import Github from "./components/Github";
 
 const App = () => {
   const { scrollYProgress } = useScroll();
@@ -31,6 +32,7 @@ const App = () => {
         <Technologies />
         <Projects />
         <Contact />
+        
       </div>
     </div>
   );

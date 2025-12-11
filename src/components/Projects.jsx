@@ -1,6 +1,7 @@
 import React from "react";
 import { PROJECTS } from "../constants";
 import { easeInOut, motion } from "framer-motion";
+import project1 from '../assets/projects/project-1'
 
 const Projects = () => {
   return (
@@ -8,7 +9,7 @@ const Projects = () => {
       <motion.h2
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -50 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.3}}
         className="text-center text-4xl font-semibold mb-12 bg-gradient-to-bl from-stone-50 to-slate-900 bg-clip-text text-transparent hover:text-white"
       >
         Projects
@@ -20,11 +21,11 @@ const Projects = () => {
   key={index}
   whileInView={{ opacity: 1, y: 0 }}
   initial={{ opacity: 0, y: 40 }}
-  transition={{ duration: 0.3, delay: index * 0.2 }}
+  transition={{ duration: 0.3 }}
   whileHover={{
     scale: 1.03,
     y: -5,
-    transition: { ease: "easeInOut", duration: 0.3 },
+    transition: { ease: "easeInOut", duration: 0.2},
   }}
   className="relative rounded-2xl border border-gray-800 bg-[#121212]/80 backdrop-blur-md 
              shadow-lg overflow-hidden transition-all duration-500 
@@ -61,7 +62,7 @@ const Projects = () => {
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
+                transition={{  duration: 0.3 }}
                 className="text-gray-400 text-sm sm:text-base mb-4"
               >
                 {project.description}
