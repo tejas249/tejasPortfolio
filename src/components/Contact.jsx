@@ -1,87 +1,140 @@
 import React from "react";
 import { CONTACT } from "../constants";
 import { motion } from "framer-motion";
-import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+import { FiMail, FiPhone, FiMapPin, FiArrowRight } from "react-icons/fi";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 
-const Contact = () => {
-  return (
-    <section className="relative bg-[#0d0d0d] text-white py-20 px-6 sm:px-10 border-t border-gray-800">
-      {/* Heading */}
-      <motion.h2
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -40 }}
-        transition={{ duration: 0.8 }}
-        className="text-center text-4xl font-semibold mb-10 bg-gradient-to-bl from-stone-50 to-slate-900 bg-clip-text text-transparent hover:text-white"
-      >
-        Get In Touch
-      </motion.h2>
+const socials = [
+  { icon: <FaLinkedin size={16} />, href: "https://www.linkedin.com/in/tejas249/", label: "LinkedIn"  },
+  { icon: <FaGithub   size={16} />, href: "https://github.com/tejas249",           label: "GitHub"    },
+  { icon: <FaInstagram size={16}/>, href: "https://www.instagram.com/tejas249/",   label: "Instagram" },
+];
 
-      {/* Contact Card */}
+const details = [
+  { icon: <FiMapPin size={15} />, label: "Location", value: CONTACT.address,  href: null },
+  { icon: <FiPhone  size={15} />, label: "Phone",    value: CONTACT.phoneNo,  href: `tel:${CONTACT.phoneNo}` },
+  { icon: <FiMail   size={15} />, label: "Email",    value: CONTACT.email,    href: `mailto:${CONTACT.email}` },
+];
+
+const Contact = () => (
+  <section id="contact" className="py-24 px-4" style={{ borderTop: "1px solid var(--border)" }}>
+
+    {/* Heading */}
+    <motion.div
+      initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }} transition={{ duration: 0.5 }}
+      className="text-center mb-14"
+    >
+      <p className="text-sm font-semibold tracking-[0.2em] uppercase text-violet-400 mb-3">Say Hello</p>
+      <h2 className="text-4xl font-bold tracking-tight" style={{ color: "var(--text-1)" }}>Get In Touch</h2>
+      <div className="mt-4 mx-auto w-12 h-0.5 rounded-full bg-gradient-to-r from-violet-500 to-transparent" />
+    </motion.div>
+
+    <div className="max-w-4xl mx-auto">
       <motion.div
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: 30 }}
-        transition={{ duration: 0.9 }}
-        className="max-w-xl mx-auto bg-[#121212]/70 backdrop-blur-md border border-gray-800 rounded-2xl shadow-lg p-8 text-center  hover:shadow-white hover:shadow-lg cursor-pointer"
+        initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} transition={{ duration: 0.6 }}
+        className="rounded-2xl overflow-hidden"
+        style={{ background: "var(--surface)", border: "1px solid var(--border)", boxShadow: "var(--card-shadow)", backdropFilter: "blur(14px)" }}
+        onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-h)")}
+        onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
       >
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.2 } },
-          }}
-        >
-          {/* Address */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            className="flex flex-col items-center gap-2 my-4"
-          >
-            <FiMapPin className="text-2xl text-gray-400" />
-            <p className="text-gray-400 text-sm sm:text-base">{CONTACT.address}</p>
-          </motion.div>
+        <div className="grid md:grid-cols-2">
 
-          {/* Phone */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            className="flex flex-col items-center gap-2 my-4"
+          {/* ── Left: CTA ── */}
+          <div className="p-8 md:p-10 flex flex-col justify-between gap-8"
+            style={{ borderRight: "1px solid var(--border)" }}
           >
-            <FiPhone className="text-2xl text-gray-400" />
-            <a
-              href={`tel:${CONTACT.phoneNo}`}
-              className="text-gray-300 hover:text-white transition-all duration-300 text-sm sm:text-base"
-            >
-              {CONTACT.phoneNo}
-            </a>
-          </motion.div>
+            <div>
+              <h3 className="text-2xl font-bold mb-3" style={{ color: "var(--text-1)" }}>
+                Let's build something together
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
+                I'm currently open to new opportunities- whether it's a full-time role,
+                freelance project, or just a chat about tech. My inbox is always open.
+              </p>
+            </div>
 
-          {/* Email */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            className="flex flex-col items-center gap-2 my-4"
-          >
-            <FiMail className="text-2xl text-gray-400" />
+            {/* Email CTA */}
             <a
               href={`mailto:${CONTACT.email}`}
-              className="text-gray-300 border-b border-gray-600 hover:border-white hover:text-white transition-all duration-300 text-sm sm:text-base"
+              className="group inline-flex items-center gap-3 px-5 py-3 rounded-xl text-sm font-semibold w-fit transition-all duration-200"
+              style={{
+                background: "linear-gradient(135deg, #7c3aed, #2563eb)",
+                color: "#fff",
+                boxShadow: "0 0 20px rgba(124,58,237,0.25)",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 28px rgba(124,58,237,0.45)")}
+              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 0 20px rgba(124,58,237,0.25)")}
             >
-              {CONTACT.email}
+              <FiMail size={15} />
+              Say Hello
+              <FiArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-200" />
             </a>
-          </motion.div>
-        </motion.div>
-      </motion.div>
 
-      {/* Subtle background glow */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-black opacity-40" />
-    </section>
-  );
-};
+            {/* Socials */}
+            <div className="flex items-center gap-3">
+              {socials.map(({ icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200"
+                  style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-2)" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-1)"; e.currentTarget.style.borderColor = "var(--border-h)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-2)"; e.currentTarget.style.borderColor = "var(--border)"; }}
+                >
+                  {icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Right: Details ── */}
+          <div className="p-8 md:p-10 flex flex-col justify-center gap-6">
+            {details.map(({ icon, label, value, href }, i) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.45 }}
+                className="flex items-start gap-4"
+              >
+                {/* Icon box */}
+                <div
+                  className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(139,92,246,0.12)", border: "1px solid rgba(139,92,246,0.25)", color: "#a78bfa" }}
+                >
+                  {icon}
+                </div>
+
+                <div>
+                  <p className="text-[11px] font-semibold tracking-widest uppercase mb-0.5" style={{ color: "var(--text-3)" }}>
+                    {label}
+                  </p>
+                  {href
+                    ? <a
+                        href={href}
+                        className="text-sm font-medium transition-colors duration-200"
+                        style={{ color: "var(--text-1)" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#a78bfa")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-1)")}
+                      >
+                        {value}
+                      </a>
+                    : <p className="text-sm font-medium" style={{ color: "var(--text-1)" }}>{value}</p>
+                  }
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </div>
+
+  </section>
+);
 
 export default Contact;

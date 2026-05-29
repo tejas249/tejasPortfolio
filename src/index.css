@@ -1,11 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme tokens ─────────────────────────────────── */
 :root {
   font-family: "Inter", sans-serif;
-  background: #0d0d0d;
+
+  --bg:          #0a0a0a;
+  --surface:     rgba(255, 255, 255, 0.028);
+  --surface-alt: rgba(255, 255, 255, 0.055);
+  --border:      rgba(255, 255, 255, 0.07);
+  --border-h:    rgba(255, 255, 255, 0.14);
+  --text-1:      #f1f5f9;
+  --text-2:      #94a3b8;
+  --text-3:      #64748b;
+  --nav-bg:      rgba(15, 15, 20, 0.75);
+  --nav-border:  rgba(255, 255, 255, 0.07);
+  --shadow:      rgba(0, 0, 0, 0.0);
+  --card-shadow: none;
 }
+
+:root.light {
+  --bg:          #c8d3e0;
+  --surface:     rgba(255, 255, 255, 0.82);
+  --surface-alt: rgba(255, 255, 255, 0.96);
+  --border:      rgba(15, 23, 42, 0.10);
+  --border-h:    rgba(15, 23, 42, 0.24);
+  --text-1:      #0f172a;
+  --text-2:      #334155;
+  --text-3:      #64748b;
+  --nav-bg:      rgba(255, 255, 255, 0.80);
+  --nav-border:  rgba(15, 23, 42, 0.13);
+  --shadow:      rgba(15, 23, 42, 0.12);
+  --card-shadow: 0 2px 12px rgba(15,23,42,0.10), 0 8px 32px rgba(15,23,42,0.08);
+}
+
+/* ── Smooth theme transitions ─────────────────────── */
+*, *::before, *::after {
+  transition:
+    background-color 0.25s ease,
+    border-color     0.25s ease,
+    color            0.25s ease,
+    box-shadow       0.25s ease;
+}
+
+/* Exclude framer-motion transforms from transition interference */
+[style*="transform"], [style*="opacity"] {
+  transition:
+    background-color 0.25s ease,
+    border-color     0.25s ease,
+    color            0.25s ease,
+    box-shadow       0.25s ease !important;
+}
+
+/* ── Gradient text clip ───────────────────────────── */
+.gradient-text {
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block;
+  /* Block ALL transitions on this element so nothing fights the clip */
+  transition: none !important;
+}
+
+/* ── Light-mode Tailwind text overrides ───────────── */
+html.light .t1  { color: var(--text-1); }
+html.light .t2  { color: var(--text-2); }
+html.light .t3  { color: var(--text-3); }
+
+/* violet-400 (#a78bfa) is unreadable on light bg -remap to violet-700 */
+html.light .text-violet-400 { color: #6d28d9; }

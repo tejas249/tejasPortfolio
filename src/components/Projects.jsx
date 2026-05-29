@@ -1,203 +1,257 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { PROJECTS } from "../constants";
-import { motion } from "framer-motion";
+import { useTheme } from "../context/ThemeContext";
 
-const Projects = () => {
-  // Latest projects: Reevio (index 1), AI Fusion (index 2), InsiderJobs (index 3)
-  const latestProjects = [PROJECTS[1], PROJECTS[2], PROJECTS[3]];
-  // Other projects: Everything else
-  const olderProjects = [PROJECTS[0], PROJECTS[4], PROJECTS[5], PROJECTS[6], PROJECTS[7], PROJECTS[8]];
+const featuredProjects = PROJECTS.slice(0, 2);
+const otherProjects    = PROJECTS.slice(2);
 
-  const [showMore, setShowMore] = React.useState(false);
+/* ── Featured card -image-top stacked layout ────── */
+const FeaturedCard = ({ project, index, accentText }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-60px" }}
+    transition={{ duration: 0.55, delay: index * 0.12, ease: "easeOut" }}
+    className="rounded-2xl overflow-hidden group"
+    style={{
+      background:     "var(--surface)",
+      border:         "1px solid var(--border)",
+      boxShadow:      "var(--card-shadow)",
+      backdropFilter: "blur(14px)",
+    }}
+    onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-h)")}
+    onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+  >
+    {/* Image -fixed height, no overflow */}
+    <div className="relative h-56 overflow-hidden">
+      <img
+        src={project.image}
+        alt={project.title}
+        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+      />
+      {/* bottom gradient so content blends in */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-  return (
-    <section className="bg-[#0d0d0d] text-white py-20 px-6 sm:px-10">
-      <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center text-5xl font-bold mb-16 bg-gradient-to-r from-cyan-400 via-white to-purple-400 bg-clip-text text-transparent"
-      >
-        Featured Projects
-      </motion.h2>
+      {/* Title overlaid at bottom of image */}
+      <div className="absolute bottom-0 left-0 right-0 px-6 pb-4">
+        <h3 className="text-xl font-bold text-white leading-tight drop-shadow-md">{project.title}</h3>
+        <p className="text-sm font-medium mt-0.5 drop-shadow-sm" style={{ color: "#d8b4fe" }}>{project.subtitle}</p>
+      </div>
+    </div>
 
-      {/* ========== LATEST PROJECTS SECTION ========== */}
-      <div className="mb-12">
-        <h3 className="text-2xl font-semibold mb-8 text-center text-gray-300">Latest Works</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {latestProjects.map((project) => (
-            <Card key={project.title} project={project} isLatest={true} />
-          ))}
-        </div>
+    {/* Content */}
+    <div className="p-6">
+      <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--text-2)" }}>
+        {project.description}
+      </p>
+
+      {/* Tech badges */}
+      <div className="flex flex-wrap gap-2 mb-5">
+        {project.technologies.map((t) => (
+          <span
+            key={t}
+            className="text-xs px-2.5 py-1 rounded-md font-medium"
+            style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-3)" }}
+          >
+            {t}
+          </span>
+        ))}
       </div>
 
-      {/* ========== SHOW MORE BUTTON ========== */}
-      {!showMore && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-center my-16"
-        >
-          <button
-            onClick={() => setShowMore(true)}
-            className="px-10 py-3 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border-2 border-cyan-500/50 text-white font-semibold hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-400 transition-all duration-300 shadow-lg hover:shadow-cyan-500/30"
-          >
-            View More Projects
-          </button>
-        </motion.div>
-      )}
+      {/* Buttons */}
+      <div className="flex gap-3">
+        <LinkBtn href={project.githubLink} active={!!project.githubLink} icon={<FaGithub size={12} />} label="GitHub" />
+        <LinkBtn href={project.liveLink}   active={!!project.liveLink}   icon={<FaExternalLinkAlt size={10} />} label="Live Demo" primary />
+      </div>
+    </div>
+  </motion.div>
+);
 
-      {/* ========== OLDER PROJECTS SECTION ========== */}
-      {showMore && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h3 className="text-2xl font-semibold mb-8 text-center text-gray-300">More Projects</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {olderProjects.map((project) => (
-              <Card key={project.title} project={project} isLatest={false} />
-            ))}
+/* ── Grid card ───────────────────────────────────── */
+const GridCard = ({ project, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-40px" }}
+    transition={{ duration: 0.45, delay: (index % 3) * 0.08, ease: "easeOut" }}
+    className="flex flex-col rounded-2xl overflow-hidden group"
+    style={{
+      background:     "var(--surface)",
+      border:         "1px solid var(--border)",
+      boxShadow:      "var(--card-shadow)",
+      backdropFilter: "blur(14px)",
+    }}
+    onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-h)")}
+    onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+  >
+    {/* Image */}
+    <div className="relative h-40 overflow-hidden flex-shrink-0">
+      <img
+        src={project.image}
+        alt={project.title}
+        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.05]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+    </div>
+
+    {/* Content */}
+    <div className="flex flex-col flex-1 p-4 gap-3">
+      <div>
+        <h3 className="text-sm font-bold leading-snug" style={{ color: "var(--text-1)" }}>{project.title}</h3>
+        <p className="text-xs font-medium mt-0.5 text-violet-400">{project.subtitle}</p>
+        <p className="text-xs leading-relaxed mt-1.5 line-clamp-2" style={{ color: "var(--text-3)" }}>
+          {project.description}
+        </p>
+      </div>
+
+      <div className="mt-auto">
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {project.technologies.slice(0, 3).map((t) => (
+            <span
+              key={t}
+              className="text-[11px] px-2 py-0.5 rounded font-medium"
+              style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-3)" }}
+            >
+              {t}
+            </span>
+          ))}
+          {project.technologies.length > 3 && (
+            <span className="text-[11px] px-2 py-0.5 rounded font-medium" style={{ color: "var(--text-3)" }}>
+              +{project.technologies.length - 3}
+            </span>
+          )}
+        </div>
+
+        <div className="flex gap-2">
+          <LinkBtn href={project.githubLink} active={!!project.githubLink} icon={<FaGithub size={11} />} label="Code" small />
+          <LinkBtn href={project.liveLink}   active={!!project.liveLink}   icon={<FaExternalLinkAlt size={9} />} label="Live" small primary />
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
+/* ── Reusable link button ────────────────────────── */
+const LinkBtn = ({ href, active, icon, label, primary = false, small = false }) => {
+  const { isDark } = useTheme();
+  const [hovered, setHovered] = useState(false);
+  const px = small ? "10px" : "14px";
+  const py = small ? "5px"  : "7px";
+
+  /* Secondary button -much more visible in dark mode */
+  const secBorder = isDark
+    ? `1px solid rgba(255,255,255,${hovered && active ? "0.28" : "0.18"})`
+    : `1px solid var(${hovered && active ? "--border-h" : "--border"})`;
+  const secBg    = isDark
+    ? (hovered && active ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.06)")
+    : (hovered && active ? "var(--surface-alt)"     : "var(--surface)");
+  const secColor = isDark
+    ? (hovered && active ? "#f1f5f9" : "#cbd5e1")
+    : (hovered && active ? "var(--text-1)" : "var(--text-2)");
+
+  /* Primary button -theme-aware */
+  const primBorder = `1px solid rgba(109,40,217,${hovered && active ? "0.65" : "0.45"})`;
+  const primBg     = isDark
+    ? (hovered && active ? "rgba(139,92,246,0.30)" : "rgba(139,92,246,0.15)")
+    : (hovered && active ? "rgba(109,40,217,0.18)" : "rgba(109,40,217,0.10)");
+  const primColor  = isDark
+    ? (hovered && active ? "#ede9fe" : "#c4b5fd")
+    : (hovered && active ? "#3b0764" : "#5b21b6");
+
+  const style = {
+    display:        "inline-flex",
+    alignItems:     "center",
+    gap:            "5px",
+    fontSize:       small ? "11px" : "12px",
+    fontWeight:     600,
+    padding:        `${py} ${px}`,
+    borderRadius:   "8px",
+    cursor:         active ? "pointer" : "not-allowed",
+    opacity:        active ? 1 : 0.35,
+    textDecoration: "none",
+    transition:     "all 0.18s",
+    border:      primary ? primBorder : secBorder,
+    background:  primary ? primBg     : secBg,
+    color:       primary ? primColor  : secColor,
+  };
+
+  return (
+    <a
+      href={active ? href : "#"}
+      target={active ? "_blank" : undefined}
+      rel="noopener noreferrer"
+      style={style}
+      onClick={(e) => !active && e.preventDefault()}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {icon}{label}
+    </a>
+  );
+};
+
+/* ── Section ─────────────────────────────────────── */
+const Projects = () => {
+  const { isDark } = useTheme();
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? otherProjects : otherProjects.slice(0, 3);
+
+  const accentText = isDark ? "#a78bfa" : "#5b21b6";
+
+  return (
+    <section id="projects" className="py-24 px-4">
+
+      <motion.div
+        initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} transition={{ duration: 0.5 }}
+        className="text-center mb-16"
+      >
+        <p className="text-sm font-semibold tracking-[0.2em] uppercase text-violet-400 mb-3">What I've built</p>
+        <h2 className="text-4xl font-bold tracking-tight" style={{ color: "var(--text-1)" }}>Projects</h2>
+        <div className="mt-4 mx-auto w-12 h-0.5 rounded-full bg-gradient-to-r from-violet-500 to-transparent" />
+      </motion.div>
+
+      <div className="max-w-5xl mx-auto">
+
+        {/* Featured -2-col on md+ */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {featuredProjects.map((p, i) => (
+            <FeaturedCard key={p.title} project={p} index={i} accentText={accentText} />
+          ))}
+        </div>
+
+        {/* Divider */}
+        <div className="text-center mb-10">
+          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "var(--text-3)" }}>
+            More Projects
+          </span>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <AnimatePresence>
+            {visible.map((p, i) => <GridCard key={p.title} project={p} index={i} />)}
+          </AnimatePresence>
+        </div>
+
+        {otherProjects.length > 3 && (
+          <div className="text-center mt-10">
+            <button
+              onClick={() => setShowAll((v) => !v)}
+              className="text-sm font-semibold px-6 py-2.5 rounded-full"
+              style={{ background: "var(--surface)", border: "1px solid var(--border)", color: "var(--text-2)" }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-1)"; e.currentTarget.style.borderColor = "var(--border-h)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-2)"; e.currentTarget.style.borderColor = "var(--border)"; }}
+            >
+              {showAll ? "Show Less" : `Show ${otherProjects.length - 3} More`}
+            </button>
           </div>
-        </motion.div>
-      )}
+        )}
+      </div>
     </section>
   );
 };
 
 export default Projects;
-
-/* ============================
-   REUSABLE CARD COMPONENT
-=============================== */
-
-const Card = ({ project, isLatest }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="group relative h-full flex flex-col"
-    >
-      {/* Gradient Border Background */}
-      <div
-        className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10
-          ${isLatest 
-            ? 'bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500' 
-            : 'bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500'
-          }
-          blur-xl`}
-      />
-
-      <div
-        className={`
-          relative rounded-xl overflow-hidden
-          bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f]
-          transition-all duration-300 
-          group
-          hover:shadow-2xl
-          flex flex-col h-full
-          ${isLatest 
-            ? 'border-2 border-cyan-500/30 hover:border-cyan-400/50' 
-            : 'border-2 border-blue-500/30 hover:border-blue-400/50'
-          }
-        `}
-      >
-        {/* Project Image Container */}
-        <div className="relative overflow-hidden h-64 flex-shrink-0">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          />
-          {/* Image Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        </div>
-
-        {/* Hover Overlay */}
-       <div
-  className="
-    absolute top-0 left-0 w-full h-64 
-    bg-gradient-to-b from-black/80 to-black/90 opacity-0 
-    group-hover:opacity-100 transition-all duration-300 
-    flex flex-col justify-center items-center px-2 text-center
-  "
->
-
-          <h3 className={`text-2xl font-bold mb-3 ${isLatest ? 'text-cyan-300' : 'text-blue-300'}`}>
-            {project.title}
-          </h3>
-
-          <p className="text-gray-200 text-sm mb-4 line-clamp-2">
-            {project.description}
-          </p>
-
-          <div className="flex flex-wrap gap-2 justify-center">
-            {project.technologies.slice(0, 3).map((tech, index) => (
-              <span
-                key={index}
-                className={`rounded-md border px-2 py-1 text-xs font-medium
-                  ${isLatest 
-                    ? 'border-cyan-500/30 bg-cyan-500/5 text-cyan-200' 
-                    : 'border-blue-500/30 bg-blue-500/5 text-blue-200'
-                  }`}
-              >
-                {tech}
-              </span>
-            ))}
-            {project.technologies.length > 3 && (
-              <span className="text-xs text-gray-400">+{project.technologies.length - 3} more</span>
-            )}
-          </div>
-        </div>
-
-        {/* Project Info & Buttons */}
-        <div className={`p-6 border-t border-gray-700/30 bg-[#0a0a0a]/80 backdrop-blur-sm flex-grow flex flex-col justify-between
-          ${isLatest 
-            ? 'border-t-cyan-500/20' 
-            : 'border-t-blue-500/20'
-          }`}
-        >
-          <h3 className="text-lg font-semibold text-white mb-4 truncate">
-            {project.title}
-          </h3>
-          
-          <div className="flex gap-3 mt-auto">
-            <a
-              href={project.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`
-                flex-1 text-center rounded-lg px-4 py-2 
-                text-sm font-semibold transition-all duration-300
-                ${project.liveLink 
-                  ? 'border border-gray-500 text-white hover:bg-white hover:text-black hover:border-white hover:shadow-lg' 
-                  : 'border border-gray-600 text-gray-500 cursor-not-allowed opacity-50'
-                }
-              `}
-              onClick={(e) => !project.liveLink && e.preventDefault()}
-            >
-               Live
-            </a>
-
-            <a
-              href={project.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                flex-1 text-center rounded-lg border border-gray-600 bg-gray-900/50
-                px-4 py-2 text-sm font-semibold text-gray-300 
-                hover:bg-gray-800 hover:border-gray-500 
-                transition-all duration-300
-              "
-            >
-               Github
-            </a>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};

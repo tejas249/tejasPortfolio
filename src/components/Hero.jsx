@@ -1,133 +1,165 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { 
-  FaGithub, 
-  FaLinkedin
-} from "react-icons/fa";
-import { 
-  SiReact, 
-  
-  SiShadcnui,
-  SiSupabase,
-  SiJavascript,
-  SiNextui
-} from "react-icons/si";
+import { FaGithub, FaLinkedin, FaDownload, FaEnvelope } from "react-icons/fa";
+import { SiReact, SiNextdotjs, SiNodedotjs, SiMongodb, SiTailwindcss } from "react-icons/si";
 import profilePic from "../assets/tejas2.jpg";
+import { useTheme } from "../context/ThemeContext";
 
-const techStack = [
-  { name: "Javascript", icon: <SiJavascript className="inline text-blue-500 mr-1" /> },
-  { name: "React", icon: <SiReact className="inline text-cyan-400 mr-1" /> },
-  { name: "Next.js", icon: <SiNextui className="inline text-gray-300 mr-1" /> },
-  { name: "Shadcn", icon: <SiShadcnui className="inline text-gray-200 mr-1" /> },
-  { name: "Supabase", icon: <SiSupabase className="inline text-sky-500 mr-1" /> },
+const stack = [
+  { icon: <SiReact       style={{ color: "#22d3ee" }} />, name: "React"    },
+  { icon: <SiNextdotjs   style={{ color: "#94a3b8" }} />, name: "Next.js"  },
+  { icon: <SiNodedotjs   style={{ color: "#4ade80" }} />, name: "Node.js"  },
+  { icon: <SiMongodb     style={{ color: "#34d399" }} />, name: "MongoDB"  },
+  { icon: <SiTailwindcss style={{ color: "#2dd4bf" }} />, name: "Tailwind" },
 ];
 
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay },
+});
+
 const Hero = () => {
+  const { isDark } = useTheme();
+  const nameGradient = isDark
+    ? "linear-gradient(135deg, #a78bfa 0%, #38bdf8 100%)"
+    : "linear-gradient(135deg, #5b21b6 0%, #0369a1 100%)";
+
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center bg-[#0d0d0d] text-white">
-      {/* Profile Image */}
+  <section id="about" className="min-h-screen flex flex-col items-center justify-center px-6 text-center relative">
+
+    {/* Avatar */}
+    <motion.div {...fadeUp(0)} className="mb-8 relative">
+      <div className="absolute inset-0 rounded-full blur-2xl opacity-40"
+        style={{ background: "radial-gradient(circle, rgba(139,92,246,0.6) 0%, transparent 70%)", transform: "scale(1.4)" }}
+      />
+      <div className="relative w-28 h-28 rounded-full p-[2px]"
+        style={{ background: "linear-gradient(135deg, #8b5cf6, #06b6d4)" }}
+      >
+        <img src={profilePic} alt="Tejas Kamble"
+          className="w-full h-full rounded-full object-cover" />
+      </div>
+
+      {/* Available badge */}
       <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-6"
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.9, duration: 0.4 }}
+        className="absolute -bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap"
+        style={{
+          background: isDark ? "rgba(10,10,10,0.85)" : "rgba(240,253,244,0.95)",
+          border: `1px solid ${isDark ? "rgba(34,197,94,0.35)" : "rgba(22,163,74,0.45)"}`,
+          color: isDark ? "#86efac" : "#15803d",
+        }}
       >
-        <motion.img
-          src={profilePic}
-          alt="Tejas Kamble"
-          className="w-28 h-28 rounded-full border-4 border-[#1f1f1f] object-cover shadow-lg hover:cursor-pointer hover:shadow-md hover:shadow-white "
-          whileHover={{rotate:20}}
-        />
+        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+        Available for work
       </motion.div>
+    </motion.div>
 
+    {/* Location */}
+    <motion.p {...fadeUp(0.1)} style={{ color: "var(--text-3)" }} className="text-xs mb-5 tracking-wide">
+      📍 Pune, India
+    </motion.p>
 
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-4xl sm:text-5xl font-semibold text-gray-100 "
+    {/* Headline */}
+    <motion.div {...fadeUp(0.2)}>
+      <h1
+        className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-5"
+        style={{ color: "var(--text-1)" }}
       >
-        Hi, I'm <span className="text-white font-bold">Tejas</span>
-        <span className="bg-gradient-to-bl from-stone-50 to-slate-900 bg-clip-text text-transparent hover:text-white"> Full Stack Developer.</span>
-      </motion.h1>
+        Hi, I'm{" "}
+        <span className="gradient-text" style={{ background: nameGradient }}>
+          Tejas
+        </span>
+      </h1>
+    </motion.div>
 
-    
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 1 }}
-        className="max-w-2xl mt-7 text-lg sm:text-xl text-gray-400"
-      >
-      Building smooth, interactive web experiences that feel alive{" "}
-        <motion.span 
-          className="inline-flex flex-wrap justify-center  hover:cursor-pointer"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.2 } },
+    {/* Role */}
+    <motion.p {...fadeUp(0.3)} style={{ color: "var(--text-2)" }} className="text-xl sm:text-2xl font-medium mb-4">
+      Full Stack Developer
+    </motion.p>
+
+    {/* Tagline */}
+    <motion.p {...fadeUp(0.4)} style={{ color: "var(--text-3)" }}
+      className="max-w-xl text-sm sm:text-base leading-relaxed mb-10"
+    >
+      Building smooth, production-ready web experiences -from clean frontends
+      to solid backends and AI-powered workflows.
+    </motion.p>
+
+    {/* Tech stack pills */}
+    <motion.div
+      initial="hidden" animate="visible"
+      variants={{ visible: { transition: { staggerChildren: 0.08, delayChildren: 0.5 } } }}
+      className="flex flex-wrap justify-center gap-2 mb-10"
+    >
+      {stack.map(({ icon, name }) => (
+        <motion.span key={name}
+          variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+          className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full cursor-default"
+          style={{
+            background:  "var(--surface)",
+            border:      "1px solid var(--border)",
+            color:       "var(--text-2)",
           }}
         >
-          {techStack.map((tech, index) => (
-            <motion.span
-              key={index}
-              variants={{
-                hidden: { opacity: 0, y: 10 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-              }}
-              className="mx-1 h-10 mt-5 my-1 p-2 inline-flex items-center rounded-md border border-gray-700 bg-[#121212] px-2 py-1 text-sm text-gray-300 shadow-sm hover:bg-[#1a1a1a] transition-all duration-300 hover:border-white border-dotted"
-            >
-              {tech.icon} {tech.name}
-            </motion.span>
-          ))}
+          {icon}{name}
         </motion.span>
-      </motion.p>
+      ))}
+    </motion.div>
 
-      
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0, y: 20 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { delay: 1.5, staggerChildren: 0.2 },
-          },
-        }}
-        className="mt-8 flex flex-wrap justify-center gap-4"
+    {/* CTA */}
+    <motion.div {...fadeUp(0.85)} className="flex flex-wrap justify-center gap-3 mb-10">
+      <a
+        href="/TejasKamble_Resume.pdf"
+        download="TejasKamble_Resume.pdf"
+        className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.03] hover:opacity-90"
+        style={{ background: "linear-gradient(135deg,#7c3aed,#2563eb)", boxShadow: "0 0 20px rgba(124,58,237,0.25)" }}
       >
-        <motion.a
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-          href="https://drive.google.com/file/d/1a5xESYrI4OzKIsddqK81XmN066BTvaRn/view?usp=share_link"
-          className="border bg-gray-900 border-gray-600 transition-all duration-300 rounded-full px-6 py-2 font-medium text-sm flex items-center gap-2 hover:shadow-sm hover:shadow-white"
-        >
-          📄 Resume / CV
-        </motion.a>
-        <motion.a
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-          href="#contact"
-          className="bg-gray-900 text-white  hover:shadow-sm hover:shadow-white transition-all duration-300 rounded-full px-6 py-2 font-medium text-sm flex items-center gap-2"
-        >
-          ✉️ Get in touch
-        </motion.a>
-      </motion.div>
+        <FaDownload size={12} /> Resume / CV
+      </a>
+      <a
+        href="#contact"
+        className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-[1.03]"
+        style={{ background: "var(--surface)", border: "1px solid var(--border)", color: "var(--text-2)" }}
+        onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-1)"; e.currentTarget.style.borderColor = "var(--border-h)"; }}
+        onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-2)"; e.currentTarget.style.borderColor = "var(--border)"; }}
+      >
+        <FaEnvelope size={12} /> Get in touch
+      </a>
+    </motion.div>
 
-  
+    {/* Social */}
+    <motion.div {...fadeUp(1)} className="flex items-center gap-5">
+      {[
+        { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/tejas249/", label: "LinkedIn" },
+        { icon: <FaGithub   size={18} />, href: "https://github.com/tejas249",          label: "GitHub"   },
+      ].map(({ icon, href, label }) => (
+        <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+          style={{ color: "var(--text-3)" }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-1)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-3)")}
+        >
+          {icon}
+        </a>
+      ))}
+    </motion.div>
+
+    {/* Scroll hint */}
+    <motion.div
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2, duration: 1 }}
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+    >
+      <span className="text-[10px] tracking-widest uppercase" style={{ color: "var(--text-3)" }}>Scroll</span>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="mt-8 flex justify-center gap-6 text-2xl text-gray-400"
-      >
-        <a href="https://www.linkedin.com/in/tejas249/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all duration-300">
-          <FaLinkedin />
-        </a>
-        <a href="https://github.com/tejas249" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all duration-300">
-          <FaGithub />
-        </a>
-        
-      </motion.div>
-    </section>
+        animate={{ y: [0, 5, 0] }}
+        transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
+        className="w-px h-6"
+        style={{ background: "linear-gradient(to bottom, var(--text-3), transparent)" }}
+      />
+    </motion.div>
+  </section>
   );
 };
 
