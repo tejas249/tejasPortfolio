@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { HiMenu, HiMoon, HiSun, HiX } from "react-icons/hi2";
+import { HiBars3, HiMoon, HiSun, HiXMark } from "react-icons/hi2";
 import { useTheme } from "../context/ThemeContext";
 
 const NAV_LINKS = [
@@ -49,7 +49,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const fn = () => {
-      if (window.innerWidth >= 1024) setMenuOpen(false);
+      if (window.innerWidth >= 1280) setMenuOpen(false);
     };
     window.addEventListener("resize", fn);
     return () => window.removeEventListener("resize", fn);
@@ -168,10 +168,10 @@ const Navbar = () => {
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-3 sm:pt-5 sm:px-4">
       <nav
         style={navStyle}
-        className="w-full max-w-6xl lg:w-auto flex flex-col lg:flex-row lg:items-center gap-1 rounded-2xl lg:rounded-full px-3 py-2"
+        className="w-full max-w-6xl xl:w-auto flex flex-col xl:flex-row xl:items-center gap-1 rounded-2xl xl:rounded-full px-3 py-2"
       >
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden xl:flex items-center gap-1">
           {NAV_LINKS.map(({ label, href }) => (
             <NavLink key={label} label={label} href={href} />
           ))}
@@ -183,7 +183,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile header bar */}
-        <div className="flex lg:hidden items-center justify-between w-full min-w-0 gap-2">
+        <div className="flex xl:hidden items-center justify-between w-full min-w-0 gap-2">
           <a
             href="#about"
             onClick={() => setMenuOpen(false)}
@@ -205,7 +205,7 @@ const Navbar = () => {
               onMouseEnter={onIconEnter}
               onMouseLeave={(e) => onIconLeave(e, "var(--text-2)")}
             >
-              {menuOpen ? <HiX size={18} /> : <HiMenu size={18} />}
+              {menuOpen ? <HiXMark size={18} /> : <HiBars3 size={18} />}
             </button>
           </div>
         </div>
@@ -219,7 +219,7 @@ const Navbar = () => {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:hidden overflow-hidden w-full"
+              className="xl:hidden overflow-hidden w-full"
             >
               <div
                 className="pt-3 pb-1 flex flex-col gap-0.5 border-t mt-1"

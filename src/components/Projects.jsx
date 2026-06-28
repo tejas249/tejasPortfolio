@@ -20,9 +20,18 @@ const FeaturedCard = ({ project, index, accentText }) => (
       border:         "1px solid var(--border)",
       boxShadow:      "var(--card-shadow)",
       backdropFilter: "blur(14px)",
+      transition:     "border-color 0.25s, box-shadow 0.25s, transform 0.25s",
     }}
-    onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-h)")}
-    onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.borderColor = "rgba(167,139,250,0.55)";
+      e.currentTarget.style.boxShadow   = "var(--card-shadow), 0 0 0 1px rgba(167,139,250,0.25), 0 12px 32px rgba(109,40,217,0.18)";
+      e.currentTarget.style.transform   = "translateY(-2px)";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.borderColor = "var(--border)";
+      e.currentTarget.style.boxShadow   = "var(--card-shadow)";
+      e.currentTarget.style.transform   = "translateY(0)";
+    }}
   >
     {/* Image -fixed height, no overflow */}
     <div className="relative h-56 overflow-hidden">
@@ -82,9 +91,18 @@ const GridCard = ({ project, index }) => (
       border:         "1px solid var(--border)",
       boxShadow:      "var(--card-shadow)",
       backdropFilter: "blur(14px)",
+      transition:     "border-color 0.25s, box-shadow 0.25s, transform 0.25s",
     }}
-    onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-h)")}
-    onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.borderColor = "rgba(167,139,250,0.55)";
+      e.currentTarget.style.boxShadow   = "var(--card-shadow), 0 0 0 1px rgba(167,139,250,0.25), 0 10px 28px rgba(109,40,217,0.16)";
+      e.currentTarget.style.transform   = "translateY(-3px)";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.borderColor = "var(--border)";
+      e.currentTarget.style.boxShadow   = "var(--card-shadow)";
+      e.currentTarget.style.transform   = "translateY(0)";
+    }}
   >
     {/* Image */}
     <div className="relative h-40 overflow-hidden flex-shrink-0">

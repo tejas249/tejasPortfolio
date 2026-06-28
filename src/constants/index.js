@@ -8,6 +8,7 @@ import project6 from "../assets/projects/project6.png"
 import project7 from '../assets/projects/project7.png'
 import project8 from '../assets/projects/project8.png'
 import project9 from '../assets/projects/project9.png'
+import launchlens from '../assets/projects/launchlens.png'
 
 
 export const HERO_CONTENT = `Hi there! I'm a  Full-Stack Developer (MERN), currently interning at KPIT. I love building clean, user-friendly web apps and am now exploring the world of Web3 to push my skills even further.`;
@@ -48,13 +49,13 @@ export const EXPERIENCES = [
 export const PROJECTS = [
   // ── Resume-featured projects first ──
   {
-    title: "AI Fusion",
-    subtitle: "Multi-Model AI Chat Platform",
-    image: project7,
-    description: "A unified AI chat platform that lets users converse with ChatGPT, DeepSeek, and Gemini in a single interface. Built with Clerk for secure auth, Firebase for real-time message history, and a polished ShadCN UI.",
-    technologies: ["Next.js", "React", "Clerk", "Firebase", "ShadCN UI", "Tailwind CSS"],
-    liveLink: "https://ai-fusion-lab-nine.vercel.app",
-    githubLink: "https://github.com/tejas249/ai-fusion-lab",
+    title: "LaunchLens",
+    subtitle: "AI Startup Validation Platform",
+    image: launchlens,
+    description: "An AI-powered platform that validates startup ideas, analyzing market fit, competitors, and growth potential to give founders actionable insights before they build.",
+    technologies: ["Next.js", "React", "Tailwind CSS", "AI/LLM Integration"],
+    liveLink: "https://launchlensai.vercel.app/",
+    githubLink: "https://github.com/tejas249/Launchlens",
   },
   {
     title: "InsiderJobs",
@@ -66,6 +67,15 @@ export const PROJECTS = [
     githubLink: "https://github.com/tejas249/InsiderJobs",
   },
   // ── Other projects ──
+  {
+    title: "AI Fusion",
+    subtitle: "Multi-Model AI Chat Platform",
+    image: project7,
+    description: "A unified AI chat platform that lets users converse with ChatGPT, DeepSeek, and Gemini in a single interface. Built with Clerk for secure auth, Firebase for real-time message history, and a polished ShadCN UI.",
+    technologies: ["Next.js", "React", "Clerk", "Firebase", "ShadCN UI", "Tailwind CSS"],
+    liveLink: "https://ai-fusion-lab-nine.vercel.app",
+    githubLink: "https://github.com/tejas249/ai-fusion-lab",
+  },
   {
     title: "Reevio",
     subtitle: "Video Editing Agency Website",
