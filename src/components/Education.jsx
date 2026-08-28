@@ -7,7 +7,7 @@ import { FiMapPin, FiCalendar, FiAward } from "react-icons/fi";
 const education = {
   institution: "JSPM Rajarshi Shahu College of Engineering",
   location: "Tathwade, Pune, Maharashtra",
-  degree: "B.Tech — Computer Science & Engineering",
+  degree: "B.Tech - Computer Science & Engineering",
   cgpa: "7.5 / 10",
   duration: "2021 – 2025",
   highlights: [
@@ -90,7 +90,7 @@ const Education = () => {
             <div className="flex flex-wrap gap-4 mb-6">
               {[
                 { icon: <FiMapPin size={13} />,  text: education.location },
-                { icon: <FiAward  size={13} />,  text: `CGPA — ${education.cgpa}` },
+                { icon: <FiAward  size={13} />,  text: `CGPA - ${education.cgpa}` },
                 { icon: <FiCalendar size={13} />, text: education.duration },
               ].map(({ icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-xs font-medium"

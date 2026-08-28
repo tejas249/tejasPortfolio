@@ -109,7 +109,7 @@ const Experience = () => {
                   : "var(--border)";
               }}
             >
-              {/* Top accent bar — only on Katonic */}
+              {/* Top accent bar - only on Katonic */}
               {i === 0 && (
                 <div className="h-[3px] w-full" style={{ background: "linear-gradient(to right, #7c3aed, #2563eb, #06b6d4)" }} />
               )}
