@@ -5,11 +5,16 @@ import { useTheme } from "../context/ThemeContext";
 const experiences = [
   {
     company: "Katonic AI",
-    role: "Full Stack Engineer Intern",
-    duration: "Dec 2025 – Present",
+    role: "Full Stack Engineer",
+    duration: "Jun 2026 – Present",
+    roleHistory: [
+      { role: "Full Stack Engineer", duration: "Jun 2026 – Present" },
+      { role: "Full Stack Engineer Intern", duration: "Dec 2025 – Jun 2026" },
+    ],
     location: "Remote",
     dotColor: "#8b5cf6",
     highlights: [
+      "Promoted to Full Stack Engineer in June 2026 after delivering production-ready frontend, backend, and AI integration work.",
       "Owned & maintained the production website serving 2,000+ daily users, built with React.js and Next.js -delivering scalable, responsive, production-ready experiences.",
       "Integrated Claude & LLM APIs to build AI-powered document generation, presentation creation, and enterprise automation workflows.",
       "Developed secure backend services with REST APIs and JWT authentication, enabling seamless frontend-to-AI communication.",
@@ -114,7 +119,22 @@ const Experience = () => {
               <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
                 <div>
                   <h3 className="text-xl font-bold" style={{ color: "var(--text-1)" }}>{exp.company}</h3>
-                  <p className="text-sm font-medium mt-0.5" style={{ color: accentText }}>{exp.role}</p>
+                  {exp.roleHistory ? (
+                    <div className="relative mt-4 ml-1 border-l pl-4 space-y-3" style={{ borderColor: isDark ? "rgba(167,139,250,0.35)" : "rgba(109,40,217,0.28)" }}>
+                      {exp.roleHistory.map((role, j) => (
+                        <div key={role.role} className="relative">
+                          <span
+                            className="absolute -left-[21px] top-1.5 h-2 w-2 rounded-full border-2"
+                            style={{ background: j === 0 ? accentText : "var(--surface)", borderColor: accentText }}
+                          />
+                          <p className={j === 0 ? "text-base font-semibold" : "text-sm font-medium"} style={{ color: j === 0 ? "var(--text-1)" : accentText }}>{role.role}</p>
+                          <p className="text-xs mt-0.5" style={{ color: "var(--text-3)" }}>{role.duration}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm font-medium mt-0.5" style={{ color: accentText }}>{exp.role}</p>
+                  )}
                 </div>
                 <div className="flex flex-col gap-1.5 items-end">
                   <div className="flex items-center gap-2">
@@ -126,11 +146,13 @@ const Experience = () => {
                         Current
                       </span>
                     )}
-                    <span className="text-xs font-semibold px-3 py-1 rounded-full"
-                      style={{ background: pillBg, color: pillText, border: `1px solid ${pillBorder}` }}
-                    >
-                      {exp.duration}
-                    </span>
+                    {!exp.roleHistory && (
+                      <span className="text-xs font-semibold px-3 py-1 rounded-full"
+                        style={{ background: pillBg, color: pillText, border: `1px solid ${pillBorder}` }}
+                      >
+                        {exp.duration}
+                      </span>
+                    )}
                   </div>
                   <span className="text-xs" style={{ color: "var(--text-3)" }}>{exp.location}</span>
                 </div>

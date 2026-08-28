@@ -7,6 +7,7 @@
 /* ── Theme tokens ─────────────────────────────────── */
 :root {
   font-family: "Inter", sans-serif;
+  background: var(--bg);
 
   --bg:          #0a0a0a;
   --surface:     rgba(255, 255, 255, 0.028);
@@ -20,6 +21,13 @@
   --nav-border:  rgba(255, 255, 255, 0.07);
   --shadow:      rgba(0, 0, 0, 0.0);
   --card-shadow: none;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  background: var(--bg);
 }
 
 :root.light {
