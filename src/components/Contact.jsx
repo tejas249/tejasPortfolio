@@ -34,7 +34,7 @@ const Contact = () => (
         initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }} transition={{ duration: 0.6 }}
         className="rounded-2xl overflow-hidden"
-        style={{ background: "var(--surface)", border: "1px solid var(--border)", boxShadow: "var(--card-shadow)", backdropFilter: "blur(14px)" }}
+        style={{ background: "var(--surface)", border: "1px solid var(--border)", boxShadow: "var(--card-shadow)", }}
         onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-h)")}
         onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
       >

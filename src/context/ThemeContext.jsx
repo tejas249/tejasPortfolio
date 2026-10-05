@@ -18,8 +18,15 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem("theme", isDark ? "dark" : "light");
   }, [isDark]);
 
+  const toggle = () => {
+    const root = document.documentElement;
+    root.classList.add("theme-anim");
+    setTimeout(() => root.classList.remove("theme-anim"), 350);
+    setIsDark((v) => !v);
+  };
+
   return (
-    <ThemeContext.Provider value={{ isDark, toggle: () => setIsDark((v) => !v) }}>
+    <ThemeContext.Provider value={{ isDark, toggle }}>
       {children}
     </ThemeContext.Provider>
   );

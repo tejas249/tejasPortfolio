@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -10,13 +10,18 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 
 /* ── Animated blob ─────────────────────────────────── */
-const Blob = ({ style, yRange, duration, delay = 0 }) => (
-  <motion.div
-    style={{ position: "absolute", borderRadius: "50%", ...style }}
-    animate={{ y: yRange }}
-    transition={{ duration, delay, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-  />
-);
+/* The radial gradients already fade to transparent, so no CSS blur() filter is needed.
+   A large animated blur() forces an expensive repaint every frame. */
+const Blob = ({ style, yRange, duration, delay = 0 }) => {
+  const reduce = useReducedMotion();
+  return (
+    <motion.div
+      style={{ position: "absolute", borderRadius: "50%", willChange: "transform", ...style }}
+      animate={reduce ? undefined : { y: yRange }}
+      transition={{ duration, delay, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+    />
+  );
+};
 
 const Background = () => {
   const { isDark } = useTheme();
@@ -38,7 +43,6 @@ const Background = () => {
           background: isDark
             ? "radial-gradient(ellipse at center, rgba(109,40,217,0.18) 0%, transparent 70%)"
             : "radial-gradient(ellipse at center, rgba(99,60,220,0.28) 0%, transparent 65%)",
-          filter: isDark ? "blur(48px)" : "blur(64px)",
         }}
       />
       <Blob
@@ -51,7 +55,6 @@ const Background = () => {
           background: isDark
             ? "radial-gradient(ellipse at center, rgba(20,184,166,0.12) 0%, transparent 70%)"
             : "radial-gradient(ellipse at center, rgba(6,182,212,0.26) 0%, transparent 65%)",
-          filter: isDark ? "blur(52px)" : "blur(70px)",
         }}
       />
       <Blob
@@ -64,7 +67,6 @@ const Background = () => {
           background: isDark
             ? "radial-gradient(ellipse at center, rgba(168,85,247,0.12) 0%, transparent 70%)"
             : "radial-gradient(ellipse at center, rgba(168,85,247,0.24) 0%, transparent 65%)",
-          filter: isDark ? "blur(52px)" : "blur(66px)",
         }}
       />
       {!isDark && (
@@ -76,7 +78,6 @@ const Background = () => {
             top: "10%", right: "5%",
             width: "30vw", height: "30vh",
             background: "radial-gradient(ellipse at center, rgba(251,113,133,0.16) 0%, transparent 65%)",
-            filter: "blur(60px)",
           }}
         />
       )}

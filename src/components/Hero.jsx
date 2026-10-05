@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaDownload, FaEnvelope, FaRocket } from "react-icons/fa";
 import { SiTypescript, SiNextdotjs, SiNodedotjs, SiPostgresql, SiPrisma, SiMongodb } from "react-icons/si";
-import profilePic from "../assets/tejas2.jpg";
+import profilePic from "../assets/tejas2.webp";
 import { useTheme } from "../context/ThemeContext";
 
 const stack = [
@@ -17,7 +17,7 @@ const stack = [
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay },
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: delay * 0.5 },
 });
 
 const Hero = () => {
@@ -31,13 +31,13 @@ const Hero = () => {
 
     {/* Avatar */}
     <motion.div {...fadeUp(0)} className="mb-8 relative">
-      <div className="absolute inset-0 rounded-full blur-2xl opacity-40"
+      <div className="absolute inset-0 rounded-full opacity-40"
         style={{ background: "radial-gradient(circle, rgba(139,92,246,0.6) 0%, transparent 70%)", transform: "scale(1.4)" }}
       />
       <div className="relative w-28 h-28 rounded-full p-[2px]"
         style={{ background: "linear-gradient(135deg, #8b5cf6, #06b6d4)" }}
       >
-        <img src={profilePic} alt="Tejas Kamble"
+        <img src={profilePic} alt="Tejas Kamble" width="112" height="112" fetchpriority="high" decoding="async"
           className="w-full h-full rounded-full object-cover" />
       </div>
 
@@ -92,7 +92,7 @@ const Hero = () => {
     {/* Tech stack pills */}
     <motion.div
       initial="hidden" animate="visible"
-      variants={{ visible: { transition: { staggerChildren: 0.08, delayChildren: 0.5 } } }}
+      variants={{ visible: { transition: { staggerChildren: 0.05, delayChildren: 0.25 } } }}
       className="flex flex-wrap justify-center gap-2 mb-10"
     >
       {stack.map(({ icon, name }) => (

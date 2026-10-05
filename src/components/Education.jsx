@@ -47,7 +47,7 @@ const Education = () => {
           className="rounded-2xl overflow-hidden"
           style={{
             background: "var(--surface)", border: "1px solid var(--border)",
-            boxShadow: "var(--card-shadow)", backdropFilter: "blur(14px)",
+            boxShadow: "var(--card-shadow)",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-h)")}
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}

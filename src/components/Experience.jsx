@@ -102,7 +102,6 @@ const Experience = () => {
                 border: i === 0
                   ? `1px solid ${isDark ? "rgba(139,92,246,0.40)" : "rgba(109,40,217,0.35)"}`
                   : "1px solid var(--border)",
-                backdropFilter: "blur(12px)",
                 boxShadow: i === 0
                   ? isDark
                     ? "0 0 0 1px rgba(139,92,246,0.15), 0 8px 32px rgba(139,92,246,0.15), var(--card-shadow)"

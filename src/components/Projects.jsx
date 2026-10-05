@@ -19,7 +19,6 @@ const FeaturedCard = ({ project, index, accentText }) => (
       background:     "var(--surface)",
       border:         "1px solid var(--border)",
       boxShadow:      "var(--card-shadow)",
-      backdropFilter: "blur(14px)",
       transition:     "border-color 0.25s, box-shadow 0.25s, transform 0.25s",
     }}
     onMouseEnter={(e) => {
@@ -38,6 +37,7 @@ const FeaturedCard = ({ project, index, accentText }) => (
       <img
         src={project.image}
         alt={project.title}
+        loading="lazy" decoding="async"
         className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
       />
       {/* bottom gradient so content blends in */}
@@ -99,7 +99,6 @@ const FlagshipCard = ({ project, accentText }) => {
         boxShadow:      isDark
           ? "0 0 0 1px rgba(139,92,246,0.15), 0 16px 48px rgba(139,92,246,0.18)"
           : "0 0 0 1px rgba(109,40,217,0.12), 0 16px 48px rgba(109,40,217,0.12)",
-        backdropFilter: "blur(14px)",
       }}
     >
       <div className="h-[3px] w-full" style={{ background: "linear-gradient(to right, #7c3aed, #2563eb, #06b6d4)" }} />
@@ -176,7 +175,7 @@ const FlagshipCard = ({ project, accentText }) => {
                   background: "var(--surface-alt)",
                 }}
               >
-                <img src={sc.src} alt="" className={current.kind === "phone" ? "h-full w-auto" : "w-full h-full object-cover object-top"} />
+                <img src={sc.src} alt="" loading="lazy" decoding="async" className={current.kind === "phone" ? "h-full w-auto" : "w-full h-full object-cover object-top"} />
               </button>
             ))}
           </div>
