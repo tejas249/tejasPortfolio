@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -119,6 +120,7 @@ const AppInner = () => (
 const App = () => (
   <ThemeProvider>
     <AppInner />
+    <Analytics />
   </ThemeProvider>
 );
 
