@@ -1,16 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaDownload, FaEnvelope } from "react-icons/fa";
-import { SiReact, SiNextdotjs, SiNodedotjs, SiMongodb, SiTailwindcss } from "react-icons/si";
+import { FaGithub, FaLinkedin, FaDownload, FaEnvelope, FaRocket } from "react-icons/fa";
+import { SiTypescript, SiNextdotjs, SiNodedotjs, SiPostgresql, SiPrisma, SiMongodb } from "react-icons/si";
 import profilePic from "../assets/tejas2.jpg";
 import { useTheme } from "../context/ThemeContext";
 
 const stack = [
-  { icon: <SiReact       style={{ color: "#22d3ee" }} />, name: "React"    },
-  { icon: <SiNextdotjs   style={{ color: "#94a3b8" }} />, name: "Next.js"  },
-  { icon: <SiNodedotjs   style={{ color: "#4ade80" }} />, name: "Node.js"  },
-  { icon: <SiMongodb     style={{ color: "#34d399" }} />, name: "MongoDB"  },
-  { icon: <SiTailwindcss style={{ color: "#2dd4bf" }} />, name: "Tailwind" },
+  { icon: <SiTypescript  style={{ color: "#60a5fa" }} />, name: "TypeScript" },
+  { icon: <SiNextdotjs   style={{ color: "#94a3b8" }} />, name: "Next.js"    },
+  { icon: <SiNodedotjs   style={{ color: "#4ade80" }} />, name: "Node.js"    },
+  { icon: <SiPostgresql  style={{ color: "#38bdf8" }} />, name: "PostgreSQL" },
+  { icon: <SiPrisma      style={{ color: "#a5b4fc" }} />, name: "Prisma"     },
+  { icon: <SiMongodb     style={{ color: "#34d399" }} />, name: "MongoDB"    },
 ];
 
 const fadeUp = (delay = 0) => ({
@@ -77,14 +78,14 @@ const Hero = () => {
 
     {/* Role */}
     <motion.p {...fadeUp(0.3)} style={{ color: "var(--text-2)" }} className="text-xl sm:text-2xl font-medium mb-4">
-      Full Stack Developer
+      Full Stack Engineer
     </motion.p>
 
     {/* Tagline */}
     <motion.p {...fadeUp(0.4)} style={{ color: "var(--text-3)" }}
       className="max-w-xl text-sm sm:text-base leading-relaxed mb-10"
     >
-      Building smooth, production-ready web experiences -from clean frontends
+      Building smooth, production-ready web experiences, from clean frontends
       to solid backends and AI-powered workflows.
     </motion.p>
 
@@ -112,10 +113,17 @@ const Hero = () => {
     {/* CTA */}
     <motion.div {...fadeUp(0.85)} className="flex flex-wrap justify-center gap-3 mb-10">
       <a
-        href="/TejasKamble_Resume.pdf"
-        download="TejasKamble_Resume.pdf"
+        href="#projects"
         className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.03] hover:opacity-90"
         style={{ background: "linear-gradient(135deg,#7c3aed,#2563eb)", boxShadow: "0 0 20px rgba(124,58,237,0.25)" }}
+      >
+        <FaRocket size={12} /> View Projects
+      </a>
+      <a
+        href="/Tejas_Kamble_Resume.pdf"
+        download="Tejas_Kamble_Resume.pdf"
+        className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-[1.03]"
+        style={{ background: "var(--surface)", border: "1px solid var(--border)", color: "var(--text-2)" }}
       >
         <FaDownload size={12} /> Resume / CV
       </a>

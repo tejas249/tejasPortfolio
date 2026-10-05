@@ -1,9 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGitAlt, FaGithub, FaDocker, FaNodeJs } from "react-icons/fa";
+import { FaGitAlt, FaDocker, FaNodeJs } from "react-icons/fa";
 import { RiReactjsLine } from "react-icons/ri";
-import { SiHtml5, SiCss3, SiJavascript, SiMongodb, SiExpress, SiTailwindcss,
-         SiCplusplus, SiMysql, SiSupabase, SiFirebase, SiShadcnui, SiNextdotjs, SiPostman } from "react-icons/si";
+import { SiHtml5, SiCss3, SiJavascript, SiTypescript, SiMongodb, SiExpress, SiTailwindcss,
+         SiCplusplus, SiMysql, SiPostgresql, SiSupabase, SiFirebase, SiNextdotjs, SiPostman,
+         SiPrisma, SiRazorpay, SiAnthropic, SiGithubactions, SiVercel, SiGithubpages,
+         SiVitest, SiGoogleanalytics, SiGoogletagmanager } from "react-icons/si";
+import { FiDatabase, FiBell, FiSmartphone, FiSearch, FiKey, FiServer, FiUsers, FiHeart, FiPlayCircle,
+         FiFileText, FiTrendingUp, FiShield, FiLock, FiCpu } from "react-icons/fi";
 import { useTheme } from "../context/ThemeContext";
 
 const buildGroups = (isDark) => {
@@ -12,26 +16,41 @@ const buildGroups = (isDark) => {
     {
       label: "Languages",
       items: [
-        { Icon: SiCplusplus,   name: "C++",        color: "#60a5fa" },
+        { Icon: SiTypescript,  name: "TypeScript", color: "#60a5fa" },
         { Icon: SiJavascript,  name: "JavaScript", color: "#facc15" },
+        { Icon: SiCplusplus,   name: "C++",        color: "#60a5fa" },
+        { Icon: FiDatabase,    name: "SQL",        color: "#94a3b8" },
         { Icon: SiHtml5,       name: "HTML5",      color: "#f97316" },
         { Icon: SiCss3,        name: "CSS3",       color: "#3b82f6" },
       ],
     },
     {
-      label: "Frameworks & Libraries",
+      label: "Frontend",
       items: [
         { Icon: RiReactjsLine, name: "React.js",   color: "#22d3ee" },
         { Icon: SiNextdotjs,   name: "Next.js",    color: neutral   },
+        { Icon: SiTailwindcss, name: "Tailwind CSS", color: "#2dd4bf" },
+        { Icon: FiSmartphone,  name: "Responsive & cross-browser UI", color: "#a78bfa" },
+        { Icon: FiSearch,      name: "SEO",        color: "#34d399" },
+      ],
+    },
+    {
+      label: "Backend & APIs",
+      items: [
         { Icon: FaNodeJs,      name: "Node.js",    color: "#22c55e" },
         { Icon: SiExpress,     name: "Express.js", color: neutral   },
-        { Icon: SiTailwindcss, name: "Tailwind",   color: "#2dd4bf" },
-        { Icon: SiShadcnui,    name: "Shadcn UI",  color: "#d8b4fe" },
+        { Icon: FiServer,      name: "REST APIs",  color: "#38bdf8" },
+        { Icon: FiKey,         name: "JWT authentication", color: "#fbbf24" },
+        { Icon: SiPrisma,      name: "Prisma",     color: "#a5b4fc" },
+        { Icon: SiRazorpay,    name: "Razorpay",   color: "#60a5fa" },
+        { Icon: FiBell,        name: "Web Push",   color: "#fbbf24" },
+        { Icon: SiAnthropic,   name: "Claude & LLM APIs", color: "#fb923c" },
       ],
     },
     {
       label: "Databases",
       items: [
+        { Icon: SiPostgresql,  name: "PostgreSQL (Neon)", color: "#38bdf8" },
         { Icon: SiMongodb,     name: "MongoDB",    color: "#16a34a" },
         { Icon: SiMysql,       name: "MySQL",      color: "#38bdf8" },
         { Icon: SiSupabase,    name: "Supabase",   color: "#34d399" },
@@ -39,12 +58,35 @@ const buildGroups = (isDark) => {
       ],
     },
     {
-      label: "Tools & DevOps",
+      label: "DevOps & Cloud",
       items: [
-        { Icon: FaGitAlt,      name: "Git",        color: "#f87171" },
-        { Icon: FaGithub,      name: "GitHub",     color: neutral   },
-        { Icon: FaDocker,      name: "Docker",     color: "#38bdf8" },
-        { Icon: SiPostman,     name: "Postman",    color: "#fb923c" },
+        { Icon: FaGitAlt,        name: "Git",            color: "#f87171" },
+        { Icon: SiGithubactions, name: "GitHub Actions (CI/CD)", color: "#60a5fa" },
+        { Icon: FaDocker,        name: "Docker",         color: "#38bdf8" },
+        { Icon: SiVercel,        name: "Vercel",         color: neutral   },
+        { Icon: SiGithubpages,   name: "GitHub Pages",   color: neutral   },
+      ],
+    },
+    {
+      label: "Testing & Analytics",
+      items: [
+        { Icon: SiVitest,           name: "Vitest",       color: "#facc15" },
+        { Icon: SiPostman,          name: "Postman",      color: "#fb923c" },
+        { Icon: SiGoogleanalytics,  name: "Google Analytics (GA4)", color: "#fb923c" },
+        { Icon: SiGoogletagmanager, name: "Google Tag Manager",     color: "#60a5fa" },
+      ],
+    },
+    {
+      label: "Strengths",
+      items: [
+        { Icon: FiUsers,      name: "Client handling",         color: "#a78bfa" },
+        { Icon: FiHeart,      name: "Customer success",        color: "#f472b6" },
+        { Icon: FiPlayCircle, name: "Product demos",           color: "#38bdf8" },
+        { Icon: FiFileText,   name: "Technical documentation", color: "#34d399" },
+        { Icon: FiTrendingUp, name: "Marketing support",       color: "#fb923c" },
+        { Icon: FiShield,     name: "Authentication & RBAC",   color: "#fbbf24" },
+        { Icon: FiLock,       name: "Data encryption",         color: "#60a5fa" },
+        { Icon: FiCpu,        name: "AI-assisted development", color: "#c084fc" },
       ],
     },
   ];

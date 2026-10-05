@@ -8,20 +8,32 @@ const experiences = [
     role: "Full Stack Engineer",
     duration: "Jun 2026 – Present",
     roleHistory: [
-      { role: "Full Stack Engineer", duration: "Jun 2026 – Present" },
-      { role: "Full Stack Engineer Intern", duration: "Dec 2025 – Jun 2026" },
+      {
+        role: "Full Stack Engineer",
+        duration: "Jun 2026 – Present",
+        highlights: [
+          "Lead developer of the katonic.ai and eshal.ai websites: a 90+ page Katonic site and eshal.ai, with client and career forms, email notifications, Google Analytics, Tag Manager and SEO; cross-browser compatible, secure, responsive.",
+          "Full stack engineer on the Docs, Developers and Distributor portals: improved frontend and backend, fixed technical issues, met development standards, and deployed with the DevOps team (GitHub Actions CI/CD, Docker).",
+          "Built the docs and learning experience: full platform docs with screenshots, around 115 demo videos and tutorials, automated product videos, and an Ask AI section answering through the Eshal API plus a chatbot.",
+          "Developed learning.katonic.ai: integrated training videos, role-based access for user groups, and learning paths.",
+          "Delivered work for enterprise partners: worked with the TAS Networks, HPE, Red Hat and NVIDIA teams on product demo videos, documentation and platform content, and answered their queries with technical support.",
+          "Owned delivery end to end across frontend, backend, integrations, analytics, access management and deployments.",
+        ],
+      },
+      {
+        role: "Full Stack Engineer Intern",
+        duration: "Dec 2025 – May 2026",
+        highlights: [
+          "Shipped 6+ production-grade full-stack apps with Next.js, TypeScript, Node.js, MongoDB, REST APIs, JWT.",
+          "Developed the V2 and V3 Katonic websites, leading their development and maintenance.",
+          "Integrated Claude and LLM APIs for AI-powered document generation, presentations and enterprise automation.",
+          "Worked with DevOps on deployments using Docker and GitHub Actions; set up GA4 and GTM for SEO and analytics.",
+        ],
+      },
     ],
     location: "Remote",
     dotColor: "#8b5cf6",
-    highlights: [
-      "Promoted to Full Stack Engineer in June 2026 after delivering production-ready frontend, backend, and AI integration work.",
-      "Owned & maintained the production website serving 2,000+ daily users, built with React.js and Next.js -delivering scalable, responsive, production-ready experiences.",
-      "Integrated Claude & LLM APIs to build AI-powered document generation, presentation creation, and enterprise automation workflows.",
-      "Developed secure backend services with REST APIs and JWT authentication, enabling seamless frontend-to-AI communication.",
-      "Boosted visibility and engagement through SEO optimization, Google Analytics 4 (GA4), and Google Tag Manager (GTM).",
-      "Collaborated with DevOps engineers to deploy full-stack applications using Docker, Claude Code, and GitHub Actions workflows.",
-    ],
-    tech: ["React.js", "Next.js", "REST API", "JWT", "Docker", "GA4", "GTM", "Claude API"],
+    tech: ["Next.js", "TypeScript", "Node.js", "MongoDB", "REST APIs", "JWT", "Docker", "GitHub Actions", "GA4", "GTM", "Claude & LLM APIs"],
   },
   {
     company: "KPIT Technologies",
@@ -30,9 +42,8 @@ const experiences = [
     location: "Remote",
     dotColor: "#06b6d4",
     highlights: [
-      "Completed KPIT's NOVA Skill-1 (C++) and Skill-2 (Java) tracks, solving 150+ problems and clearing multiple internal coding marathons.",
-      "Built OOP-based mini-projects including a Car Functionality System, applying real-world design patterns in C++ and Java.",
-      "Gained hands-on experience with debugging, code reviews, and Git workflows in a professional engineering environment.",
+      "Completed KPIT's NOVA Skill-1 (C++) and Skill-2 (Java), solving 150+ problems and clearing coding marathons.",
+      "Built OOP-based mini-projects such as a Car Functionality System, gaining hands-on OOP, debugging and Git experience.",
     ],
     tech: ["C++", "Java", "OOP", "Git", "Debugging"],
   },
@@ -119,20 +130,7 @@ const Experience = () => {
               <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
                 <div>
                   <h3 className="text-xl font-bold" style={{ color: "var(--text-1)" }}>{exp.company}</h3>
-                  {exp.roleHistory ? (
-                    <div className="relative mt-4 ml-1 border-l pl-4 space-y-3" style={{ borderColor: isDark ? "rgba(167,139,250,0.35)" : "rgba(109,40,217,0.28)" }}>
-                      {exp.roleHistory.map((role, j) => (
-                        <div key={role.role} className="relative">
-                          <span
-                            className="absolute -left-[21px] top-1.5 h-2 w-2 rounded-full border-2"
-                            style={{ background: j === 0 ? accentText : "var(--surface)", borderColor: accentText }}
-                          />
-                          <p className={j === 0 ? "text-base font-semibold" : "text-sm font-medium"} style={{ color: j === 0 ? "var(--text-1)" : accentText }}>{role.role}</p>
-                          <p className="text-xs mt-0.5" style={{ color: "var(--text-3)" }}>{role.duration}</p>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
+                  {!exp.roleHistory && (
                     <p className="text-sm font-medium mt-0.5" style={{ color: accentText }}>{exp.role}</p>
                   )}
                 </div>
@@ -159,14 +157,39 @@ const Experience = () => {
               </div>
 
               {/* Bullets */}
-              <ul className="space-y-2.5 mb-6">
-                {exp.highlights.map((pt, j) => (
-                  <li key={j} className="flex gap-3 text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
-                    <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: exp.dotColor }} />
-                    {pt}
-                  </li>
-                ))}
-              </ul>
+              {exp.roleHistory ? (
+                <div className="space-y-6 mb-6">
+                  {exp.roleHistory.map((r, j) => (
+                    <div key={r.role}>
+                      <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                        <p className="text-base font-semibold" style={{ color: "var(--text-1)" }}>{r.role}</p>
+                        <span className="text-xs font-semibold px-3 py-1 rounded-full"
+                          style={{ background: pillBg, color: pillText, border: `1px solid ${pillBorder}` }}
+                        >
+                          {r.duration}
+                        </span>
+                      </div>
+                      <ul className="space-y-2.5">
+                        {r.highlights.map((pt, k) => (
+                          <li key={k} className="flex gap-3 text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
+                            <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: exp.dotColor }} />
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <ul className="space-y-2.5 mb-6">
+                  {exp.highlights.map((pt, j) => (
+                    <li key={j} className="flex gap-3 text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
+                      <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: exp.dotColor }} />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               {/* Tech badges */}
               <div className="flex flex-wrap gap-2">

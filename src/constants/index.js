@@ -1,4 +1,3 @@
-import { image, title } from "framer-motion/client";
 import project1 from "../assets/projects/project-1.png";
 import project2 from "../assets/projects/project-2.png";
 import project3 from "../assets/projects/project-3.png";
@@ -9,12 +8,21 @@ import project7 from '../assets/projects/project7.png'
 import project8 from '../assets/projects/project8.png'
 import project9 from '../assets/projects/project9.png'
 import launchlens from '../assets/projects/launchlens.png'
+import visitzeeOverview from '../assets/projects/visitzee-owner-overview.webp'
+import visitzeeCalendar from '../assets/projects/visitzee-owner-calendar.webp'
+import visitzeeBooking from '../assets/projects/visitzee-owner-booking.webp'
+import visitzeeServices from '../assets/projects/visitzee-owner-services.webp'
+import visitzeeTeam from '../assets/projects/visitzee-owner-team.webp'
+import visitzeeCustomers from '../assets/projects/visitzee-owner-customers.webp'
+import visitzeeSettings from '../assets/projects/visitzee-owner-settings.webp'
+import visitzeeCustTop from '../assets/projects/visitzee-customer-top.webp'
+import visitzeeCustServices from '../assets/projects/visitzee-customer-services.webp'
+import visitzeeCustTime from '../assets/projects/visitzee-customer-time.webp'
+import visitzeeCustDetails from '../assets/projects/visitzee-customer-details.webp'
+import visitzeeCustDone from '../assets/projects/visitzee-customer-done.webp'
 
 
-export const HERO_CONTENT = `Hi there! I'm a  Full-Stack Developer (MERN), currently interning at KPIT. I love building clean, user-friendly web apps and am now exploring the world of Web3 to push my skills even further.`;
-
-
-export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 5 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.`;
+export const HERO_CONTENT = `Full Stack Engineer at Katonic AI. I build production web apps end to end with Next.js, TypeScript, Node.js and PostgreSQL, from booking platforms to AI-powered workflows.`;
 
 export const EXPERIENCES = [
   // {
@@ -47,13 +55,68 @@ export const EXPERIENCES = [
   // },
 ];
 export const PROJECTS = [
-  // ── Resume-featured projects first ──
+  // Visible on the portfolio, in this order: flagship first, then two supporting projects.
   {
-    title: "LaunchLens",
-    subtitle: "AI Startup Validation Platform",
+    title: "Visitzee",
+    subtitle: "Online Booking Platform for Local Businesses",
+    image: visitzeeOverview,
+    gallery: [
+      {
+        key: "owner",
+        label: "Owner dashboard",
+        kind: "desktop",
+        screens: [
+          { src: visitzeeOverview, title: "Your day, at a glance", body: "Today's bookings, expected revenue and what's coming next, the moment the owner opens the app." },
+          { src: visitzeeCalendar, title: "One calendar for the whole team", body: "Everyone gets their own column. Days off and closed hours are shaded, so nobody is double-booked." },
+          { src: visitzeeBooking, title: "Handle a booking in one tap", body: "Mark it complete, record a no-show or cancel. Send the customer a private link to view or cancel it themselves." },
+          { src: visitzeeServices, title: "Your menu, your prices", body: "Durations, \"from\" prices and short descriptions. Reorder or hide a service any time." },
+          { src: visitzeeTeam, title: "Your team and their hours", body: "Choose who does what, and when. Add time off and the calendar blocks it out." },
+          { src: visitzeeCustomers, title: "Know your regulars", body: "Every customer's visits, spend and private notes in one place, a tap away from a call or WhatsApp." },
+          { src: visitzeeSettings, title: "Make it yours", body: "Logo, colours, address and booking rules, with a live preview of the page customers see." },
+        ],
+      },
+      {
+        key: "customer",
+        label: "Customer booking (mobile)",
+        kind: "phone",
+        screens: [
+          { src: visitzeeCustTop, title: "A booking page that's yours", body: "The business name, address and a Book now button. One link for an Instagram bio or WhatsApp status." },
+          { src: visitzeeCustServices, title: "Pick a service", body: "The menu with prices and durations, so there are no questions before the appointment." },
+          { src: visitzeeCustTime, title: "Choose a time", body: "Only real, open times are shown. Anything already booked simply isn't there." },
+          { src: visitzeeCustDetails, title: "Just a name and a number", body: "No account, no app, no password. A customer can book in under a minute." },
+          { src: visitzeeCustDone, title: "Confirmed in seconds", body: "A private link to view or cancel, directions and a calendar file to save." },
+        ],
+      },
+    ],
+    featured: true,
+    description: "Built and launched end to end, solo: a booking platform for salons, clinics, trainers and similar businesses in India and the US. Each business gets its own web address, photos, team, hours and map.",
+    highlights: [
+      { label: "Effortless for customers", text: "pick a service, person and time, then get an email confirmation with a calendar file, a day-before reminder and a private link to cancel or reschedule. No double bookings, even if two people book at once." },
+      { label: "Powerful for owners", text: "day calendar, walk-in bookings, repeating appointments, holidays, staff logins (each sees only their own bookings), customer notes, CSV import, and revenue and busy-time reports." },
+      { label: "Fills the calendar", text: "a waitlist that alerts people when a slot opens, customer reviews the owner approves, instant phone notifications for new bookings and one-tap WhatsApp reminders." },
+      { label: "Secure by design", text: "customer data is encrypted and exportable or deletable (DPDP Act); bot-protected sign-in; Razorpay payments." },
+      { label: "Production quality", text: "650+ automated tests and automatic deploys via GitHub Actions and Vercel, verified live." },
+    ],
+    stats: [
+      { value: "650+", label: "automated tests" },
+      { value: "2", label: "markets: India & US" },
+      { value: "Solo", label: "built end to end" },
+    ],
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Razorpay", "Web Push", "Vitest", "GitHub Actions", "Vercel"],
+    liveLink: "https://visitzee.in",
+    links: [
+      { label: "Website", href: "https://visitzee.in" },
+      { label: "Owner dashboard (try demo)", href: "https://app.visitzee.in/demo" },
+      { label: "Customer booking page", href: "https://glowstudio.visitzee.in" },
+    ],
+    githubLink: "",
+  },
+  {
+    title: "LaunchLens AI",
+    subtitle: "Startup Idea Validation Platform",
     image: launchlens,
-    description: "An AI-powered platform that validates startup ideas, analyzing market fit, competitors, and growth potential to give founders actionable insights before they build.",
-    technologies: ["Next.js", "React", "Tailwind CSS", "AI/LLM Integration"],
+    description: "Turns an idea into a plan: enter an idea, get market research, competitor analysis and an MVP roadmap. Uses AI APIs to produce structured reports with a revenue model, risk analysis and go-to-market strategy.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "AI APIs"],
     liveLink: "https://launchlensai.vercel.app/",
     githubLink: "https://github.com/tejas249/Launchlens",
   },
@@ -66,7 +129,10 @@ export const PROJECTS = [
     liveLink: "https://insider-jobs-full-stack-client.vercel.app",
     githubLink: "https://github.com/tejas249/InsiderJobs",
   },
-  // ── Other projects ──
+];
+
+// Hidden from the portfolio for now (not rendered anywhere). Move an entry up into PROJECTS to show it again.
+export const HIDDEN_PROJECTS = [
   {
     title: "AI Fusion",
     subtitle: "Multi-Model AI Chat Platform",
