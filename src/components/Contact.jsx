@@ -2,12 +2,11 @@ import React from "react";
 import { CONTACT } from "../constants";
 import { motion } from "framer-motion";
 import { FiMail, FiPhone, FiMapPin, FiArrowRight } from "react-icons/fi";
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const socials = [
   { icon: <FaLinkedin size={16} />, href: "https://www.linkedin.com/in/tejas249/", label: "LinkedIn"  },
   { icon: <FaGithub   size={16} />, href: "https://github.com/tejas249",           label: "GitHub"    },
-  { icon: <FaInstagram size={16}/>, href: "https://www.instagram.com/tejas249/",   label: "Instagram" },
 ];
 
 const details = [

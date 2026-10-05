@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiBars3, HiMoon, HiSun, HiXMark } from "react-icons/hi2";
 import { useTheme } from "../context/ThemeContext";
 
@@ -16,7 +16,6 @@ const NAV_LINKS = [
 const SOCIAL_LINKS = [
   { icon: <FaLinkedin size={14} />, href: "https://www.linkedin.com/in/tejas249/", label: "LinkedIn"  },
   { icon: <FaGithub   size={14} />, href: "https://github.com/tejas249",          label: "GitHub"    },
-  { icon: <FaInstagram size={14}/>, href: "https://www.instagram.com/tejas249/",  label: "Instagram" },
 ];
 
 const Navbar = () => {
