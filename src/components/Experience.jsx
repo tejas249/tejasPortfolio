@@ -42,8 +42,7 @@ const experiences = [
     location: "Remote",
     dotColor: "#06b6d4",
     highlights: [
-      "Completed KPIT's NOVA Skill-1 (C++) and Skill-2 (Java), solving 150+ problems and clearing coding marathons.",
-      "Built OOP-based mini-projects such as a Car Functionality System, gaining hands-on OOP, debugging and Git experience.",
+      "Completed NOVA Skill-1 (C++) and Skill-2 (Java), solving 150+ problems; built an OOP Car Functionality System.",
     ],
     tech: ["C++", "Java", "OOP", "Git", "Debugging"],
   },

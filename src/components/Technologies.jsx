@@ -4,10 +4,10 @@ import { FaGitAlt, FaDocker, FaNodeJs } from "react-icons/fa";
 import { RiReactjsLine } from "react-icons/ri";
 import { SiHtml5, SiCss3, SiJavascript, SiTypescript, SiMongodb, SiExpress, SiTailwindcss,
          SiCplusplus, SiMysql, SiPostgresql, SiSupabase, SiFirebase, SiNextdotjs, SiPostman,
-         SiPrisma, SiRazorpay, SiAnthropic, SiGithubactions, SiVercel, SiGithubpages,
+         SiPython, SiPrisma, SiRazorpay, SiAnthropic, SiGithubactions, SiVercel, SiGithubpages,
          SiVitest, SiGoogleanalytics, SiGoogletagmanager } from "react-icons/si";
-import { FiDatabase, FiBell, FiSmartphone, FiSearch, FiKey, FiServer, FiUsers, FiHeart, FiPlayCircle,
-         FiFileText, FiTrendingUp, FiShield, FiLock, FiCpu } from "react-icons/fi";
+import { FiDatabase, FiBell, FiSmartphone, FiSearch, FiKey, FiServer, FiUsers, FiPlayCircle,
+         FiFileText, FiShield, FiLock, FiCpu, FiShare2, FiLayers, FiMessageCircle, FiMail, FiCheckCircle, FiActivity } from "react-icons/fi";
 import { useTheme } from "../context/ThemeContext";
 
 const buildGroups = (isDark) => {
@@ -18,10 +18,19 @@ const buildGroups = (isDark) => {
       items: [
         { Icon: SiTypescript,  name: "TypeScript", color: "#60a5fa" },
         { Icon: SiJavascript,  name: "JavaScript", color: "#facc15" },
+        { Icon: SiPython,      name: "Python",     color: "#fbbf24" },
         { Icon: SiCplusplus,   name: "C++",        color: "#60a5fa" },
         { Icon: FiDatabase,    name: "SQL",        color: "#94a3b8" },
         { Icon: SiHtml5,       name: "HTML5",      color: "#f97316" },
         { Icon: SiCss3,        name: "CSS3",       color: "#3b82f6" },
+      ],
+    },
+    {
+      label: "AI & Agents",
+      items: [
+        { Icon: FiShare2,      name: "AI agents",  color: "#a78bfa" },
+        { Icon: FiLayers,      name: "RAG (retrieval-augmented generation)", color: "#38bdf8" },
+        { Icon: SiAnthropic,   name: "Claude & LLM APIs", color: "#fb923c" },
       ],
     },
     {
@@ -44,7 +53,8 @@ const buildGroups = (isDark) => {
         { Icon: SiPrisma,      name: "Prisma",     color: "#a5b4fc" },
         { Icon: SiRazorpay,    name: "Razorpay",   color: "#60a5fa" },
         { Icon: FiBell,        name: "Web Push",   color: "#fbbf24" },
-        { Icon: SiAnthropic,   name: "Claude & LLM APIs", color: "#fb923c" },
+        { Icon: FiMessageCircle, name: "WhatsApp Cloud API", color: "#22c55e" },
+        { Icon: FiMail,        name: "Resend (email)", color: "#94a3b8" },
       ],
     },
     {
@@ -71,6 +81,8 @@ const buildGroups = (isDark) => {
       label: "Testing & Analytics",
       items: [
         { Icon: SiVitest,           name: "Vitest",       color: "#facc15" },
+        { Icon: FiCheckCircle,      name: "Playwright",   color: "#22c55e" },
+        { Icon: FiActivity,         name: "Sentry",       color: "#a78bfa" },
         { Icon: SiPostman,          name: "Postman",      color: "#fb923c" },
         { Icon: SiGoogleanalytics,  name: "Google Analytics (GA4)", color: "#fb923c" },
         { Icon: SiGoogletagmanager, name: "Google Tag Manager",     color: "#60a5fa" },
@@ -80,11 +92,9 @@ const buildGroups = (isDark) => {
       label: "Strengths",
       items: [
         { Icon: FiUsers,      name: "Client handling",         color: "#a78bfa" },
-        { Icon: FiHeart,      name: "Customer success",        color: "#f472b6" },
         { Icon: FiPlayCircle, name: "Product demos",           color: "#38bdf8" },
         { Icon: FiFileText,   name: "Technical documentation", color: "#34d399" },
-        { Icon: FiTrendingUp, name: "Marketing support",       color: "#fb923c" },
-        { Icon: FiShield,     name: "Authentication & RBAC",   color: "#fbbf24" },
+        { Icon: FiShield,     name: "RBAC",                    color: "#fbbf24" },
         { Icon: FiLock,       name: "Data encryption",         color: "#60a5fa" },
         { Icon: FiCpu,        name: "AI-assisted development", color: "#c084fc" },
       ],

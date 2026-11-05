@@ -108,10 +108,10 @@ const AppInner = () => (
     <Navbar />
     <div className="container mx-auto px-8 pt-24">
       <Hero />
-      <Experience />
-      <Education />
-      <Technologies />
       <Projects />
+      <Experience />
+      <Technologies />
+      <Education />
       <Contact />
     </div>
   </div>

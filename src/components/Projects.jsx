@@ -1,174 +1,113 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { PROJECTS } from "../constants";
+import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  FiLayers, FiCreditCard, FiMessageCircle, FiMail, FiShield, FiLock,
+  FiCalendar, FiServer, FiGitBranch, FiCheckCircle,
+} from "react-icons/fi";
+import { VISITZEE } from "../constants";
 import { useTheme } from "../context/ThemeContext";
 
-const flagship         = PROJECTS.find((p) => p.featured);
-const supportingProjects = PROJECTS.filter((p) => !p.featured);
+const FEATURE_ICONS = {
+  layers: FiLayers, card: FiCreditCard, message: FiMessageCircle, mail: FiMail, shield: FiShield,
+  lock: FiLock, calendar: FiCalendar, server: FiServer, git: FiGitBranch, check: FiCheckCircle,
+};
 
-/* ── Featured card -image-top stacked layout ────── */
-const FeaturedCard = ({ project, index, accentText }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-60px" }}
-    transition={{ duration: 0.55, delay: index * 0.12, ease: "easeOut" }}
-    className="rounded-2xl overflow-hidden group"
-    style={{
-      background:     "var(--surface)",
-      border:         "1px solid var(--border)",
-      boxShadow:      "var(--card-shadow)",
-      transition:     "border-color 0.25s, box-shadow 0.25s, transform 0.25s",
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.borderColor = "rgba(167,139,250,0.55)";
-      e.currentTarget.style.boxShadow   = "var(--card-shadow), 0 0 0 1px rgba(167,139,250,0.25), 0 12px 32px rgba(109,40,217,0.18)";
-      e.currentTarget.style.transform   = "translateY(-2px)";
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.borderColor = "var(--border)";
-      e.currentTarget.style.boxShadow   = "var(--card-shadow)";
-      e.currentTarget.style.transform   = "translateY(0)";
-    }}
-  >
-    {/* Image -fixed height, no overflow */}
-    <div className="relative h-56 overflow-hidden">
-      <img
-        src={project.image}
-        alt={project.title}
-        loading="lazy" decoding="async"
-        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-      />
-      {/* bottom gradient so content blends in */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+const fade = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-60px" },
+  transition: { duration: 0.5, delay, ease: "easeOut" },
+});
 
-      {/* Title overlaid at bottom of image */}
-      <div className="absolute bottom-0 left-0 right-0 px-6 pb-4">
-        <h3 className="text-xl font-bold text-white leading-tight drop-shadow-md">{project.title}</h3>
-        <p className="text-sm font-medium mt-0.5 drop-shadow-sm" style={{ color: "#d8b4fe" }}>{project.subtitle}</p>
-      </div>
-    </div>
+const card = {
+  background: "var(--surface)",
+  border: "1px solid var(--border)",
+  boxShadow: "var(--card-shadow)",
+};
 
-    {/* Content */}
-    <div className="p-6">
-      <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--text-2)" }}>
-        {project.description}
-      </p>
-
-      {/* Tech badges */}
-      <div className="flex flex-wrap gap-2 mb-5">
-        {project.technologies.map((t) => (
-          <span
-            key={t}
-            className="text-xs px-2.5 py-1 rounded-md font-medium"
-            style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-3)" }}
-          >
-            {t}
-          </span>
-        ))}
-      </div>
-
-      {/* Buttons */}
-      <div className="flex gap-3">
-        <LinkBtn href={project.githubLink} active={!!project.githubLink} icon={<FaGithub size={12} />} label="GitHub" />
-        <LinkBtn href={project.liveLink}   active={!!project.liveLink}   icon={<FaExternalLinkAlt size={10} />} label="Live Demo" primary />
-      </div>
-    </div>
+const SubHeading = ({ eyebrow, title, accentText }) => (
+  <motion.div {...fade()} className="mb-6">
+    <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-2" style={{ color: accentText }}>{eyebrow}</p>
+    <h3 className="text-2xl font-bold tracking-tight" style={{ color: "var(--text-1)" }}>{title}</h3>
   </motion.div>
 );
 
-/* ── Flagship card: Visitzee ───────────────────── */
-const FlagshipCard = ({ project, accentText }) => {
+/* ── Screenshot gallery ──────────────────────────── */
+const Gallery = ({ gallery, accentText }) => {
   const { isDark } = useTheme();
-  const [group, setGroup]   = useState(0);
-  const [active, setActive]  = useState(0);
-  const current = project.gallery[group];
+  const [group, setGroup]  = useState(0);
+  const [active, setActive] = useState(0);
+  const current = gallery[group];
   const screen  = current.screens[active];
+  const many    = current.screens.length > 1;
   const step = (dir) => setActive((a) => (a + dir + current.screens.length) % current.screens.length);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="rounded-3xl overflow-hidden"
-      style={{
-        background:     isDark ? "rgba(139,92,246,0.07)" : "rgba(109,40,217,0.05)",
-        border:         `1px solid ${isDark ? "rgba(139,92,246,0.45)" : "rgba(109,40,217,0.35)"}`,
-        boxShadow:      isDark
-          ? "0 0 0 1px rgba(139,92,246,0.15), 0 16px 48px rgba(139,92,246,0.18)"
-          : "0 0 0 1px rgba(109,40,217,0.12), 0 16px 48px rgba(109,40,217,0.12)",
-      }}
-    >
-      <div className="h-[3px] w-full" style={{ background: "linear-gradient(to right, #7c3aed, #2563eb, #06b6d4)" }} />
+    <motion.div {...fade(0.1)} className="rounded-2xl p-4 sm:p-6" style={card}>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {gallery.map((g, i) => (
+          <button
+            key={g.key}
+            onClick={() => { setGroup(i); setActive(0); }}
+            className="text-xs font-semibold px-3.5 py-1.5 rounded-full"
+            style={{
+              background: i === group ? (isDark ? "rgba(139,92,246,0.25)" : "rgba(109,40,217,0.14)") : "var(--surface)",
+              border: `1px solid ${i === group ? accentText : "var(--border)"}`,
+              color: i === group ? (isDark ? "#ede9fe" : "#3b0764") : "var(--text-2)",
+            }}
+          >
+            {g.label}
+          </button>
+        ))}
+      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-5">
-        {/* Screenshots */}
-        <div className="lg:col-span-3 p-5 sm:p-6 flex flex-col gap-3">
-          {/* Group tabs */}
-          <div className="flex flex-wrap gap-2">
-            {project.gallery.map((g, i) => (
-              <button
-                key={g.key}
-                onClick={() => { setGroup(i); setActive(0); }}
-                className="text-xs font-semibold px-3.5 py-1.5 rounded-full transition-all"
-                style={{
-                  background: i === group ? (isDark ? "rgba(139,92,246,0.25)" : "rgba(109,40,217,0.14)") : "var(--surface)",
-                  border: `1px solid ${i === group ? accentText : "var(--border)"}`,
-                  color: i === group ? (isDark ? "#ede9fe" : "#3b0764") : "var(--text-2)",
-                }}
-              >
-                {g.label}
-              </button>
-            ))}
-          </div>
+      <div className={`relative rounded-xl overflow-hidden flex items-center justify-center ${current.kind === "phone" ? "h-[460px]" : "aspect-[16/10]"}`}
+        style={{ border: "1px solid var(--border)", background: "var(--surface-alt)" }}>
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={`${group}-${active}`}
+            src={screen.src}
+            alt={`Visitzee: ${screen.title}`}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            decoding="async"
+            className={current.kind === "phone" ? "h-full w-auto py-3" : "w-full h-full object-cover object-top"}
+            style={current.kind === "phone" ? { borderRadius: 18 } : undefined}
+          />
+        </AnimatePresence>
+        {many && [
+          { dir: -1, side: "left-2",  icon: <FaChevronLeft size={12} />,  label: "Previous screen" },
+          { dir:  1, side: "right-2", icon: <FaChevronRight size={12} />, label: "Next screen" },
+        ].map(({ dir, side, icon, label }) => (
+          <button key={label} onClick={() => step(dir)} aria-label={label}
+            className={`absolute ${side} top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center`}
+            style={{ background: "rgba(10,10,10,0.7)", color: "#fff", border: "1px solid rgba(255,255,255,0.2)" }}>
+            {icon}
+          </button>
+        ))}
+      </div>
 
-          {/* Viewer */}
-          <div className={`relative rounded-xl overflow-hidden flex items-center justify-center ${current.kind === "phone" ? "h-[440px]" : "aspect-[1800/1125]"}`}
-            style={{ border: "1px solid var(--border)", background: "var(--surface-alt)" }}>
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={`${group}-${active}`}
-                src={screen.src}
-                alt={`${project.title}: ${screen.title}`}
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className={current.kind === "phone" ? "h-full w-auto py-3" : "w-full h-full object-cover"}
-                style={current.kind === "phone" ? { borderRadius: 18 } : undefined}
-              />
-            </AnimatePresence>
-            {[
-              { dir: -1, side: "left-2",  icon: <FaChevronLeft size={12} />,  label: "Previous screen" },
-              { dir:  1, side: "right-2", icon: <FaChevronRight size={12} />, label: "Next screen" },
-            ].map(({ dir, side, icon, label }) => (
-              <button key={label} onClick={() => step(dir)} aria-label={label}
-                className={`absolute ${side} top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center`}
-                style={{ background: "rgba(10,10,10,0.7)", color: "#fff", border: "1px solid rgba(255,255,255,0.2)" }}>
-                {icon}
-              </button>
-            ))}
-          </div>
-
-          {/* Caption */}
-          <div className="min-h-[3.5rem]">
-            <p className="text-sm font-semibold" style={{ color: "var(--text-1)" }}>
-              {screen.title}
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mt-4">
+        <div className="md:max-w-md">
+          <p className="text-sm font-semibold" style={{ color: "var(--text-1)" }}>
+            {screen.title}
+            {many && (
               <span className="ml-2 text-xs font-medium" style={{ color: "var(--text-3)" }}>
                 {active + 1} / {current.screens.length}
               </span>
-            </p>
-            <p className="text-xs leading-relaxed mt-0.5" style={{ color: "var(--text-3)" }}>{screen.body}</p>
-          </div>
-
-          {/* Thumbnails */}
+            )}
+          </p>
+          <p className="text-xs leading-relaxed mt-0.5" style={{ color: "var(--text-3)" }}>{screen.body}</p>
+        </div>
+        {many && (
           <div className="flex gap-2 overflow-x-auto pb-1">
             {current.screens.map((sc, i) => (
               <button
                 key={sc.src}
                 onClick={() => setActive(i)}
                 aria-label={`Show ${sc.title}`}
-                className="shrink-0 w-16 h-11 rounded-lg overflow-hidden transition-all flex items-center justify-center"
+                className="shrink-0 w-14 h-10 rounded-md overflow-hidden flex items-center justify-center"
                 style={{
                   border: `2px solid ${i === active ? accentText : "var(--border)"}`,
                   opacity: i === active ? 1 : 0.6,
@@ -179,62 +118,7 @@ const FlagshipCard = ({ project, accentText }) => {
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Details */}
-        <div className="lg:col-span-2 p-6 sm:p-7 flex flex-col">
-          <span
-            className="self-start text-[11px] font-semibold px-2.5 py-0.5 rounded-full mb-3"
-            style={{
-              background: isDark ? "rgba(139,92,246,0.18)" : "rgba(109,40,217,0.10)",
-              color: isDark ? "#c4b5fd" : "#4c1d95",
-              border: `1px solid ${isDark ? "rgba(139,92,246,0.35)" : "rgba(109,40,217,0.30)"}`,
-            }}
-          >
-            ● Live in production
-          </span>
-          <h3 className="text-3xl font-bold leading-tight" style={{ color: "var(--text-1)" }}>{project.title}</h3>
-          <p className="text-sm font-medium mt-1 mb-4" style={{ color: accentText }}>{project.subtitle}</p>
-
-          <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--text-2)" }}>{project.description}</p>
-
-          <div className="grid grid-cols-3 gap-2 mb-5">
-            {project.stats.map((st) => (
-              <div key={st.label} className="rounded-xl px-2 py-2.5 text-center"
-                style={{ background: "var(--surface-alt)", border: "1px solid var(--border)" }}>
-                <p className="text-lg font-bold" style={{ color: accentText }}>{st.value}</p>
-                <p className="text-[11px] leading-tight" style={{ color: "var(--text-3)" }}>{st.label}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-3 mt-auto">
-            {project.links.map((l, i) => (
-              <LinkBtn key={l.label} href={l.href} active icon={<FaExternalLinkAlt size={10} />} label={l.label} primary={i === 0} />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Highlights */}
-      <div className="px-6 sm:px-8 pb-7 pt-1">
-        <div className="mb-5 h-px" style={{ background: "var(--border)" }} />
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5 mb-6">
-          {project.highlights.map((h) => (
-            <li key={h.label} className="flex gap-3 text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
-              <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: accentText }} />
-              <span><strong style={{ color: "var(--text-1)" }}>{h.label}:</strong> {h.text}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.map((t) => (
-            <span key={t} className="text-xs px-2.5 py-1 rounded-md font-medium"
-              style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-2)" }}>
-              {t}
-            </span>
-          ))}
-        </div>
+        )}
       </div>
     </motion.div>
   );
@@ -299,37 +183,111 @@ const LinkBtn = ({ href, active, icon, label, primary = false, small = false }) 
   );
 };
 
-/* ── Section ─────────────────────────────────────── */
+
+/* ── Section: Visitzee case study ────────────────── */
 const Projects = () => {
   const { isDark } = useTheme();
+  const v = VISITZEE;
   const accentText = isDark ? "#a78bfa" : "#5b21b6";
 
   return (
-    <section id="projects" className="py-24 px-4">
+    <section id="visitzee" className="py-24 px-4">
 
-      <motion.div
-        initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }} transition={{ duration: 0.5 }}
-        className="text-center mb-16"
-      >
-        <p className="text-sm font-semibold tracking-[0.2em] uppercase text-violet-400 mb-3">What I've built</p>
-        <h2 className="text-4xl font-bold tracking-tight" style={{ color: "var(--text-1)" }}>Projects</h2>
-        <div className="mt-4 mx-auto w-12 h-0.5 rounded-full bg-gradient-to-r from-violet-500 to-transparent" />
+      {/* Heading */}
+      <motion.div {...fade()} className="text-center mb-12">
+        <p className="text-sm font-semibold tracking-[0.2em] uppercase mb-3" style={{ color: accentText }}>Featured product</p>
+        <h2 className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ color: "var(--text-1)" }}>{v.title}</h2>
+        <p className="mt-3 text-lg font-medium" style={{ color: "var(--text-2)" }}>{v.tagline}</p>
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
+          <span className="flex items-center gap-1.5 font-semibold px-3 py-1 rounded-full"
+            style={{ background: "rgba(34,197,94,0.12)", color: isDark ? "#86efac" : "#15803d", border: `1px solid ${isDark ? "rgba(34,197,94,0.30)" : "rgba(22,163,74,0.35)"}` }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            Live in production
+          </span>
+          <span className="font-medium px-3 py-1 rounded-full" style={{ ...card, color: "var(--text-2)" }}>{v.role}</span>
+        </div>
       </motion.div>
 
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto flex flex-col gap-16">
 
-        {/* Flagship */}
-        <div className="mb-8">
-          <FlagshipCard project={flagship} accentText={accentText} />
+        {/* Pitch, links and stats */}
+        <div>
+          <motion.p {...fade()} className="max-w-3xl mx-auto text-center text-base leading-relaxed" style={{ color: "var(--text-2)" }}>
+            {v.pitch}
+          </motion.p>
+          <motion.div {...fade(0.05)} className="flex flex-wrap justify-center gap-3 mt-6">
+            {v.links.map((l, i) => (
+              <LinkBtn key={l.label} href={l.href} active icon={<FaExternalLinkAlt size={10} />} label={l.label} primary={i === 0} />
+            ))}
+          </motion.div>
+          <motion.div {...fade(0.1)} className="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-10">
+            {v.stats.map((st) => (
+              <div key={st.label} className="rounded-xl px-3 py-4 text-center last:col-span-2 sm:last:col-span-1" style={card}>
+                <p className="text-2xl font-bold" style={{ color: accentText }}>{st.value}</p>
+                <p className="text-xs mt-0.5" style={{ color: "var(--text-3)" }}>{st.label}</p>
+              </div>
+            ))}
+          </motion.div>
         </div>
 
-        {/* Supporting projects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {supportingProjects.map((p, i) => (
-            <FeaturedCard key={p.title} project={p} index={i} accentText={accentText} />
-          ))}
+        {/* Screenshots */}
+        <Gallery gallery={v.gallery} accentText={accentText} />
+
+        {/* Four apps */}
+        <div>
+          <SubHeading eyebrow="Architecture" title="One product, four apps, one codebase" accentText={accentText} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {v.apps.map((app, i) => (
+              <motion.div key={app.name} {...fade(i * 0.06)} className="rounded-2xl p-5" style={card}>
+                <p className="font-mono text-[11px] mb-2" style={{ color: accentText }}>{app.host}</p>
+                <h4 className="text-base font-bold mb-3" style={{ color: "var(--text-1)" }}>{app.name}</h4>
+                <ul className="space-y-2">
+                  {app.points.map((pt) => (
+                    <li key={pt} className="flex gap-2 text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>
+                      <span className="mt-1.5 shrink-0 w-1 h-1 rounded-full" style={{ background: accentText }} />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
         </div>
+
+        {/* Engineering */}
+        <div>
+          <SubHeading eyebrow="Under the hood" title="Built like a real product, not a demo" accentText={accentText} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {v.features.map((f, i) => {
+              const Icon = FEATURE_ICONS[f.icon];
+              return (
+                <motion.div key={f.title} {...fade((i % 2) * 0.06)} className="flex gap-4 rounded-2xl p-5" style={card}>
+                  <div className="w-10 h-10 shrink-0 rounded-xl flex items-center justify-center"
+                    style={{ background: isDark ? "rgba(139,92,246,0.14)" : "rgba(109,40,217,0.10)", border: `1px solid ${isDark ? "rgba(139,92,246,0.28)" : "rgba(109,40,217,0.25)"}` }}>
+                    <Icon size={18} style={{ color: accentText }} />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold mb-1" style={{ color: "var(--text-1)" }}>{f.title}</h4>
+                    <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{f.body}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Stack */}
+        <motion.div {...fade()} className="text-center">
+          <p className="text-xs font-semibold tracking-widest uppercase mb-4" style={{ color: "var(--text-3)" }}>Built with</p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {v.stack.map((t) => (
+              <span key={t} className="text-xs px-2.5 py-1 rounded-md font-medium"
+                style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-2)" }}>
+                {t}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

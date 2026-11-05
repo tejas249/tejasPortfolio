@@ -113,11 +113,11 @@ const Hero = () => {
     {/* CTA */}
     <motion.div {...fadeUp(0.85)} className="flex flex-wrap justify-center gap-3 mb-10">
       <a
-        href="#projects"
+        href="#visitzee"
         className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.03] hover:opacity-90"
         style={{ background: "linear-gradient(135deg,#7c3aed,#2563eb)", boxShadow: "0 0 20px rgba(124,58,237,0.25)" }}
       >
-        <FaRocket size={12} /> View Projects
+        <FaRocket size={12} /> See my product
       </a>
       <a
         href="/Tejas_Kamble_Resume.pdf"
