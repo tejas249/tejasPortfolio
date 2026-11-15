@@ -175,49 +175,50 @@ const Projects = () => {
             </CornerFrame>
           </div>
 
-          {/* ── Right: scrolling detail ── */}
-          <div className="flex flex-col gap-16">
+          {/* ── Right: gallery (paired with the sticky overview) ── */}
+          <div>
             <Gallery gallery={v.gallery} />
+          </div>
+        </div>
 
-            <div>
-              <SubHeading n="ARCHITECTURE" title="One product, four apps, one codebase" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 border-l border-t" style={{ borderColor: "var(--border)" }}>
-                {v.apps.map((app, i) => (
-                  <motion.div key={app.name} {...fadeUp(i * 0.06)} className="p-6 border-r border-b" style={{ borderColor: "var(--border)" }}>
-                    <p className="font-mono text-[11px] mb-2" style={{ color: "var(--accent-text)" }}>{app.host}</p>
-                    <h4 className="text-base font-bold mb-3" style={{ color: "var(--text-1)" }}>{app.name}</h4>
-                    <ul className="space-y-2">
-                      {app.points.map((pt) => (
-                        <li key={pt} className="flex gap-2 text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>
-                          <span className="mt-1.5 shrink-0 w-1 h-1" style={{ background: "var(--accent)" }} />
-                          {pt}
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+        {/* ── Below: full-width, no longer paired with the sidebar ── */}
+        <div className="mt-16">
+          <SubHeading n="ARCHITECTURE" title="One product, four apps, one codebase" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-l border-t" style={{ borderColor: "var(--border)" }}>
+            {v.apps.map((app, i) => (
+              <motion.div key={app.name} {...fadeUp(i * 0.06)} className="p-6 border-r border-b" style={{ borderColor: "var(--border)" }}>
+                <p className="font-mono text-[11px] mb-2" style={{ color: "var(--accent-text)" }}>{app.host}</p>
+                <h4 className="text-base font-bold mb-3" style={{ color: "var(--text-1)" }}>{app.name}</h4>
+                <ul className="space-y-2">
+                  {app.points.map((pt) => (
+                    <li key={pt} className="flex gap-2 text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>
+                      <span className="mt-1.5 shrink-0 w-1 h-1" style={{ background: "var(--accent)" }} />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
-            <div>
-              <SubHeading n="UNDER THE HOOD" title="Built like a real product, not a demo" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 border-l border-t" style={{ borderColor: "var(--border)" }}>
-                {v.features.map((f, i) => {
-                  const Icon = FEATURE_ICONS[f.icon];
-                  return (
-                    <motion.div key={f.title} {...fadeUp((i % 2) * 0.06)} className="flex gap-4 p-6 border-r border-b" style={{ borderColor: "var(--border)" }}>
-                      <div className="w-9 h-9 shrink-0 flex items-center justify-center" style={{ border: "1px solid var(--accent-soft-br)" }}>
-                        <Icon size={16} style={{ color: "var(--accent-text)" }} />
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-bold mb-1" style={{ color: "var(--text-1)" }}>{f.title}</h4>
-                        <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{f.body}</p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
+        <div className="mt-16">
+          <SubHeading n="UNDER THE HOOD" title="Built like a real product, not a demo" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 border-l border-t" style={{ borderColor: "var(--border)" }}>
+            {v.features.map((f, i) => {
+              const Icon = FEATURE_ICONS[f.icon];
+              return (
+                <motion.div key={f.title} {...fadeUp((i % 2) * 0.06)} className="flex gap-4 p-6 border-r border-b" style={{ borderColor: "var(--border)" }}>
+                  <div className="w-9 h-9 shrink-0 flex items-center justify-center" style={{ border: "1px solid var(--accent-soft-br)" }}>
+                    <Icon size={16} style={{ color: "var(--accent-text)" }} />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold mb-1" style={{ color: "var(--text-1)" }}>{f.title}</h4>
+                    <p className="text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>{f.body}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
