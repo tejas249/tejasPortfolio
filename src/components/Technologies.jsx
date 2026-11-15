@@ -111,10 +111,10 @@ const Technologies = () => {
   const groups = buildGroups(isDark);
   return (
   <section id="skills" className="py-24 px-4">
-
+    <div className="max-w-5xl mx-auto">
     <SectionHeading index="04" title="Tech Stack" eyebrow="What I work with" />
 
-    <div className="-mt-10 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 border-l border-t" style={{ borderColor: "var(--border)" }}>
+    <div className="-mt-10 grid grid-cols-1 sm:grid-cols-2 border-l border-t" style={{ borderColor: "var(--border)" }}>
       {groups.map((group, gi) => (
         <motion.div
           key={group.label}
@@ -138,6 +138,7 @@ const Technologies = () => {
           </div>
         </motion.div>
       ))}
+    </div>
     </div>
   </section>
   );

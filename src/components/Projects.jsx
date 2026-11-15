@@ -20,9 +20,11 @@ const FEATURE_ICONS = {
 const panel = { background: "var(--surface)", border: "1px solid var(--border)" };
 
 const SubHeading = ({ n, title }) => (
-  <motion.div {...fadeUp()} className="flex items-center gap-3 mb-0 pb-5" style={{ borderBottom: "1px solid var(--border)" }}>
-    <span className="font-mono text-[11px] shrink-0" style={{ color: "var(--accent-text)" }}>{n}</span>
-    <h3 className="text-xl sm:text-2xl font-bold tracking-tight" style={{ color: "var(--text-1)" }}>{title}</h3>
+  <motion.div {...fadeUp()} className="pb-5" style={{ borderBottom: "1px solid var(--border)" }}>
+    <div className="pl-6">
+      <span className="block font-mono text-[11px] uppercase tracking-wide mb-2" style={{ color: "var(--accent-text)" }}>{n}</span>
+      <h3 className="text-xl sm:text-2xl font-bold tracking-tight" style={{ color: "var(--text-1)" }}>{title}</h3>
+    </div>
   </motion.div>
 );
 

@@ -21,10 +21,10 @@ const education = {
 
 const Education = () => (
   <section id="education" className="py-24 px-4">
-
+    <div className="max-w-5xl mx-auto">
     <SectionHeading index="05" title="Education" eyebrow="Background" />
 
-    <div className="-mt-10 max-w-5xl mx-auto grid lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-14 items-start">
+    <div className="-mt-10 grid lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-14 items-start">
 
       {/* ── Left: statement ── */}
       <motion.div {...fadeUp(0)} className="flex flex-col gap-4">
@@ -70,6 +70,7 @@ const Education = () => (
           </ul>
         </CornerFrame>
       </motion.div>
+    </div>
     </div>
   </section>
 );

@@ -61,10 +61,10 @@ const Experience = () => {
 
   return (
     <section id="experience" className="py-24 px-4">
-
+      <div className="max-w-4xl mx-auto">
       <SectionHeading index="03" title="Experience" eyebrow="Career" />
 
-      <div className="-mt-10 max-w-4xl mx-auto">
+      <div className="-mt-10">
 
         {/* Company switcher */}
         <div className="flex flex-wrap mb-8 border-b" style={{ borderColor: "var(--border)" }}>
@@ -170,6 +170,7 @@ const Experience = () => {
             </CornerFrame>
           </motion.div>
         </AnimatePresence>
+      </div>
       </div>
     </section>
   );
