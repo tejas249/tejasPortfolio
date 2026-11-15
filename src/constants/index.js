@@ -67,7 +67,7 @@ export const VISITZEE = {
     { label: "Live booking page", href: "https://glowstudio.visitzee.in" },
   ],
   stats: [
-    { value: "4", label: "apps, one codebase" },
+    { value: "4", label: "apps" },
     { value: "900+", label: "automated tests" },
     { value: "33", label: "database models" },
     { value: "149", label: "commits in 5 weeks" },

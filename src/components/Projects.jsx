@@ -183,7 +183,7 @@ const Projects = () => {
 
         {/* ── Below: full-width, no longer paired with the sidebar ── */}
         <div className="mt-16">
-          <SubHeading n="ARCHITECTURE" title="One product, four apps, one codebase" />
+          <SubHeading n="ARCHITECTURE" title="One product, four apps" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-l border-t" style={{ borderColor: "var(--border)" }}>
             {v.apps.map((app, i) => (
               <motion.div key={app.name} {...fadeUp(i * 0.06)} className="p-6 border-r border-b" style={{ borderColor: "var(--border)" }}>
