@@ -9,6 +9,10 @@ import { SiHtml5, SiCss3, SiJavascript, SiTypescript, SiMongodb, SiExpress, SiTa
 import { FiDatabase, FiBell, FiSmartphone, FiSearch, FiKey, FiServer, FiUsers, FiPlayCircle,
          FiFileText, FiShield, FiLock, FiCpu, FiShare2, FiLayers, FiMessageCircle, FiMail, FiCheckCircle, FiActivity } from "react-icons/fi";
 import { useTheme } from "../context/ThemeContext";
+import SectionHeading from "./ui/SectionHeading";
+import { fadeUp } from "../lib/motion";
+
+const WIDE_GROUPS = ["Languages", "Backend & APIs"];
 
 const buildGroups = (isDark) => {
   const neutral = isDark ? "#94a3b8" : "#334155";
@@ -108,45 +112,28 @@ const Technologies = () => {
   return (
   <section id="skills" className="py-24 px-4">
 
-    <motion.div
-      initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.5 }}
-      className="text-center mb-16"
-    >
-      <p className="text-sm font-semibold tracking-[0.2em] uppercase text-violet-400 mb-3">What I work with</p>
-      <h2 className="text-4xl font-bold tracking-tight" style={{ color: "var(--text-1)" }}>Tech Stack</h2>
-      <div className="mt-4 mx-auto w-12 h-0.5 rounded-full bg-gradient-to-r from-violet-500 to-transparent" />
-    </motion.div>
+    <SectionHeading index="04" title="Tech Stack" eyebrow="What I work with" />
 
-    <div className="max-w-4xl mx-auto flex flex-col gap-12">
+    <div className="-mt-10 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 border-l border-t" style={{ borderColor: "var(--border)" }}>
       {groups.map((group, gi) => (
-        <motion.div key={group.label}
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.5, delay: gi * 0.1 }}
+        <motion.div
+          key={group.label}
+          {...fadeUp(gi * 0.05)}
+          className={`p-6 border-r border-b ${WIDE_GROUPS.includes(group.label) ? "sm:col-span-2" : ""}`}
+          style={{ borderColor: "var(--border)" }}
         >
-          <p className="text-xs font-semibold tracking-widest uppercase mb-5" style={{ color: "var(--text-3)" }}>
-            {group.label}
-          </p>
-          <div className="flex flex-wrap gap-3">
-            {group.items.map(({ Icon, name, color }, i) => (
-              <motion.div key={name}
-                initial={{ opacity: 0, scale: 0.85 }} whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: gi * 0.05 + i * 0.05, duration: 0.3 }}
-                whileHover={{ y: -4, scale: 1.05 }}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl cursor-default transition-all duration-200"
-                style={{
-                  background: "var(--surface)",
-                  border:     "1px solid var(--border)",
-                  boxShadow:  "var(--card-shadow)",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-h)")}
-                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
-              >
-                <Icon style={{ color, fontSize: "1.1rem", flexShrink: 0 }} />
-                <span className="text-sm font-medium" style={{ color: "var(--text-2)" }}>{name}</span>
-              </motion.div>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="font-mono text-[11px]" style={{ color: "var(--accent-text)" }}>{String(gi + 1).padStart(2, "0")}</span>
+            <p className="font-mono text-[11px] font-semibold tracking-widest uppercase" style={{ color: "var(--text-2)" }}>
+              {group.label}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-x-5 gap-y-2.5">
+            {group.items.map(({ Icon, name, color }) => (
+              <span key={name} data-cursor-hover className="flex items-center gap-2 text-sm">
+                <Icon style={{ color, fontSize: "1rem", flexShrink: 0 }} />
+                <span style={{ color: "var(--text-2)" }}>{name}</span>
+              </span>
             ))}
           </div>
         </motion.div>

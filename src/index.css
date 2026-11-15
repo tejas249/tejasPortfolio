@@ -7,18 +7,27 @@
   font-family: "Inter", sans-serif;
   background: var(--bg);
 
-  --bg:          #0a0a0a;
-  --surface:     rgba(255, 255, 255, 0.028);
-  --surface-alt: rgba(255, 255, 255, 0.055);
-  --border:      rgba(255, 255, 255, 0.07);
-  --border-h:    rgba(255, 255, 255, 0.14);
-  --text-1:      #f1f5f9;
-  --text-2:      #94a3b8;
-  --text-3:      #64748b;
-  --nav-bg:      rgba(15, 15, 20, 0.75);
-  --nav-border:  rgba(255, 255, 255, 0.07);
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --bg:          #060606;
+  --bg-raised:   #0c0c0c;
+  --surface:     rgba(255, 255, 255, 0.03);
+  --surface-alt: rgba(255, 255, 255, 0.06);
+  --border:      rgba(255, 255, 255, 0.10);
+  --border-h:    rgba(255, 255, 255, 0.24);
+  --text-1:      #f5f4f0;
+  --text-2:      #9a9892;
+  --text-3:      #605e58;
+  --nav-bg:      rgba(10, 10, 10, 0.72);
+  --nav-border:  rgba(255, 255, 255, 0.09);
   --shadow:      rgba(0, 0, 0, 0.0);
   --card-shadow: none;
+
+  --accent:         #ff3b30;
+  --accent-text:    #ff6b5e;
+  --accent-soft-bg: rgba(255, 59, 48, 0.12);
+  --accent-soft-br: rgba(255, 59, 48, 0.32);
+  --accent-rgb:     255, 59, 48;
 }
 
 html,
@@ -28,24 +37,37 @@ body,
   background: var(--bg);
 }
 
-:root.light {
-  --bg:          #c8d3e0;
-  --surface:     rgba(255, 255, 255, 0.82);
-  --surface-alt: rgba(255, 255, 255, 0.96);
-  --border:      rgba(15, 23, 42, 0.10);
-  --border-h:    rgba(15, 23, 42, 0.24);
-  --text-1:      #0f172a;
-  --text-2:      #334155;
-  --text-3:      #64748b;
-  --nav-bg:      rgba(255, 255, 255, 0.80);
-  --nav-border:  rgba(15, 23, 42, 0.13);
-  --shadow:      rgba(15, 23, 42, 0.12);
-  --card-shadow: 0 2px 12px rgba(15,23,42,0.10), 0 8px 32px rgba(15,23,42,0.08);
+body {
+  overscroll-behavior-y: none;
 }
 
+:root.light {
+  --bg:          #f1efe9;
+  --bg-raised:   #ffffff;
+  --surface:     rgba(10, 10, 8, 0.03);
+  --surface-alt: rgba(10, 10, 8, 0.055);
+  --border:      rgba(10, 10, 8, 0.12);
+  --border-h:    rgba(10, 10, 8, 0.28);
+  --text-1:      #0c0c0a;
+  --text-2:      #45443e;
+  --text-3:      #78766e;
+  --nav-bg:      rgba(241, 239, 233, 0.78);
+  --nav-border:  rgba(10, 10, 8, 0.10);
+  --shadow:      rgba(10, 10, 8, 0.10);
+  --card-shadow: 0 1px 2px rgba(10,10,8,0.04);
+
+  --accent:         #d6321f;
+  --accent-text:    #b8291a;
+  --accent-soft-bg: rgba(214, 50, 31, 0.08);
+  --accent-soft-br: rgba(214, 50, 31, 0.30);
+  --accent-rgb:     214, 50, 31;
+}
+
+/* No soft drop shadows anywhere, in either theme -the whole system reads
+   as flat hairline-bordered panels, not floating cards. */
+:root, :root.light { --card-shadow: none; }
+
 /* ── Smooth theme transitions ─────────────────────── */
-/* Only while the theme is being toggled (class set briefly from ThemeContext).
-   A permanent universal transition forced every element to animate on every style change. */
 html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
   transition:
     background-color 0.25s ease,
@@ -60,20 +82,101 @@ a, button {
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
 
+.font-mono { font-family: var(--font-mono); }
+
 /* ── Gradient text clip ───────────────────────────── */
 .gradient-text {
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   display: inline-block;
-  /* Block ALL transitions on this element so nothing fights the clip */
   transition: none !important;
+}
+
+/* ── Selection ────────────────────────────────────── */
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ── Scrollbar (webkit) ───────────────────────────── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-h); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Corner-frame tick marks ──────────────────────── */
+.corner-frame { position: relative; }
+.corner-frame::before, .corner-frame::after,
+.corner-frame > .cf-tr, .corner-frame > .cf-br {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  z-index: 2;
+}
+.corner-frame::before { top: -1px; left: -1px; border-top: 1.5px solid var(--border-h); border-left: 1.5px solid var(--border-h); }
+.corner-frame::after  { bottom: -1px; left: -1px; border-bottom: 1.5px solid var(--border-h); border-left: 1.5px solid var(--border-h); }
+.corner-frame > .cf-tr { top: -1px; right: -1px; border-top: 1.5px solid var(--border-h); border-right: 1.5px solid var(--border-h); }
+.corner-frame > .cf-br { bottom: -1px; right: -1px; border-bottom: 1.5px solid var(--border-h); border-right: 1.5px solid var(--border-h); }
+
+/* ── Blueprint grid backdrop ───────────────────────── */
+.bg-blueprint-grid {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* ── Sharp button: hard edges, invert-fill on hover ── */
+.btn-sharp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--text-1);
+  color: var(--text-1);
+  background: transparent;
+  transition: background-color 0.15s, color 0.15s;
+}
+.btn-sharp:hover { background: var(--text-1); color: var(--bg); }
+
+.btn-sharp.btn-accent {
+  border-color: var(--accent);
+  color: var(--bg);
+  background: var(--accent);
+}
+.btn-sharp.btn-accent:hover { background: transparent; color: var(--accent); }
+
+/* ── Marquee ──────────────────────────────────────── */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+.marquee-row:hover .marquee-track { animation-play-state: paused; }
+
+/* ── Custom cursor (fine-pointer devices only) ────── */
+@media (hover: hover) and (pointer: fine) {
+  html.has-cursor, html.has-cursor * { cursor: none !important; }
+}
+
+/* ── Reduced motion ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
 }
 
 /* ── Light-mode Tailwind text overrides ───────────── */
 html.light .t1  { color: var(--text-1); }
 html.light .t2  { color: var(--text-2); }
 html.light .t3  { color: var(--text-3); }
-
-/* violet-400 (#a78bfa) is unreadable on light bg -remap to violet-700 */
-html.light .text-violet-400 { color: #6d28d9; }

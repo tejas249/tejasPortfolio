@@ -1,6 +1,8 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import SectionHeading from "./ui/SectionHeading";
+import CornerFrame from "./ui/CornerFrame";
+import SpecRow from "./ui/SpecRow";
 
 const experiences = [
   {
@@ -32,7 +34,7 @@ const experiences = [
       },
     ],
     location: "Remote",
-    dotColor: "#8b5cf6",
+    current: true,
     tech: ["Next.js", "TypeScript", "Node.js", "MongoDB", "REST APIs", "JWT", "Docker", "GitHub Actions", "GA4", "GTM", "Claude & LLM APIs"],
   },
   {
@@ -40,7 +42,7 @@ const experiences = [
     role: "Intern",
     duration: "Jan 2025 – Nov 2025",
     location: "Remote",
-    dotColor: "#06b6d4",
+    current: false,
     highlights: [
       "Completed NOVA Skill-1 (C++) and Skill-2 (Java), solving 150+ problems; built an OOP Car Functionality System.",
     ],
@@ -48,164 +50,128 @@ const experiences = [
   },
 ];
 
+const card = {
+  background: "var(--surface)",
+  border: "1px solid var(--border)",
+};
+
 const Experience = () => {
-  const { isDark } = useTheme();
-  const accentText  = isDark ? "#a78bfa" : "#5b21b6";   /* violet-400 dark / violet-800 light */
-  const pillBg      = isDark ? "rgba(139,92,246,0.14)"  : "rgba(109,40,217,0.10)";
-  const pillBorder  = isDark ? "rgba(139,92,246,0.28)"  : "rgba(109,40,217,0.30)";
-  const pillText    = isDark ? "#c4b5fd"                : "#4c1d95"; /* violet-300 dark / violet-900 light */
+  const [active, setActive] = useState(0);
+  const exp = experiences[active];
 
   return (
-  <section id="experience" className="py-24 px-4">
+    <section id="experience" className="py-24 px-4">
 
-    <motion.div
-      initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.5 }}
-      className="text-center mb-16"
-    >
-      <p className="text-sm font-semibold tracking-[0.2em] uppercase mb-3" style={{ color: accentText }}>Career</p>
-      <h2 className="text-4xl font-bold tracking-tight" style={{ color: "var(--text-1)" }}>Experience</h2>
-      <div className="mt-4 mx-auto w-12 h-0.5 rounded-full bg-gradient-to-r from-violet-500 to-transparent" />
-    </motion.div>
+      <SectionHeading index="03" title="Experience" eyebrow="Career" />
 
-    <div className="relative max-w-3xl mx-auto">
-      {/* Vertical line */}
-      <div className="absolute left-6 top-0 bottom-0 w-px"
-        style={{ background: "linear-gradient(to bottom, rgba(139,92,246,0.6), rgba(6,182,212,0.3), transparent)" }}
-      />
+      <div className="-mt-10 max-w-4xl mx-auto">
 
-      <div className="flex flex-col gap-10">
-        {experiences.map((exp, i) => (
-          <motion.div key={i}
-            initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
-            className="relative pl-16"
-          >
-            {/* Timeline dot */}
-            <div className="absolute top-6 w-3.5 h-3.5 rounded-full border-2"
+        {/* Company switcher */}
+        <div className="flex flex-wrap mb-8 border-b" style={{ borderColor: "var(--border)" }}>
+          {experiences.map((e, i) => (
+            <button
+              key={e.company}
+              onClick={() => setActive(i)}
+              data-cursor-hover
+              className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wide px-5 py-3.5 border-b-2 -mb-px transition-colors duration-150"
               style={{
-                left: "18px", transform: "translateX(-50%)",
-                background: exp.dotColor,
-                borderColor: "var(--bg)",
-                boxShadow: `0 0 12px ${exp.dotColor}88`,
-              }}
-            />
-
-            {/* Card */}
-            <div className="rounded-2xl overflow-hidden transition-all duration-300 group"
-              style={{
-                background:   i === 0
-                  ? isDark ? "rgba(139,92,246,0.07)" : "rgba(109,40,217,0.05)"
-                  : "var(--surface)",
-                border: i === 0
-                  ? `1px solid ${isDark ? "rgba(139,92,246,0.40)" : "rgba(109,40,217,0.35)"}`
-                  : "1px solid var(--border)",
-                boxShadow: i === 0
-                  ? isDark
-                    ? "0 0 0 1px rgba(139,92,246,0.15), 0 8px 32px rgba(139,92,246,0.15), var(--card-shadow)"
-                    : "0 0 0 1px rgba(109,40,217,0.12), 0 8px 32px rgba(109,40,217,0.10), var(--card-shadow)"
-                  : "var(--card-shadow)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = i === 0
-                  ? isDark ? "rgba(139,92,246,0.65)" : "rgba(109,40,217,0.55)"
-                  : "var(--border-h)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = i === 0
-                  ? isDark ? "rgba(139,92,246,0.40)" : "rgba(109,40,217,0.35)"
-                  : "var(--border)";
+                borderBottomColor: i === active ? "var(--accent)" : "transparent",
+                color: i === active ? "var(--text-1)" : "var(--text-3)",
               }}
             >
-              {/* Top accent bar - only on Katonic */}
-              {i === 0 && (
-                <div className="h-[3px] w-full" style={{ background: "linear-gradient(to right, #7c3aed, #2563eb, #06b6d4)" }} />
-              )}
+              {e.current && <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />}
+              {e.company}
+            </button>
+          ))}
+        </div>
 
-              <div className="p-6">
-              {/* Top row */}
-              <div className="flex flex-wrap items-start justify-between gap-3 mb-5">
-                <div>
-                  <h3 className="text-xl font-bold" style={{ color: "var(--text-1)" }}>{exp.company}</h3>
-                  {!exp.roleHistory && (
-                    <p className="text-sm font-medium mt-0.5" style={{ color: accentText }}>{exp.role}</p>
-                  )}
-                </div>
-                <div className="flex flex-col gap-1.5 items-end">
-                  <div className="flex items-center gap-2">
-                    {i === 0 && (
-                      <span className="flex items-center gap-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-full"
-                        style={{ background: "rgba(34,197,94,0.12)", color: isDark ? "#86efac" : "#15803d", border: `1px solid ${isDark ? "rgba(34,197,94,0.30)" : "rgba(22,163,74,0.35)"}` }}
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                        Current
-                      </span>
-                    )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={exp.company}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <CornerFrame style={card}>
+              {exp.current && <div className="h-[3px] w-full" style={{ background: "var(--accent)" }} />}
+
+              <div className="p-6 sm:p-8">
+                {/* Header */}
+                <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
+                  <div>
+                    <h3 className="text-2xl font-bold" style={{ color: "var(--text-1)" }}>{exp.company}</h3>
                     {!exp.roleHistory && (
-                      <span className="text-xs font-semibold px-3 py-1 rounded-full"
-                        style={{ background: pillBg, color: pillText, border: `1px solid ${pillBorder}` }}
-                      >
-                        {exp.duration}
-                      </span>
+                      <p className="font-mono text-xs font-medium mt-1 uppercase tracking-wide" style={{ color: "var(--accent-text)" }}>{exp.role}</p>
                     )}
                   </div>
-                  <span className="text-xs" style={{ color: "var(--text-3)" }}>{exp.location}</span>
+                  {exp.current && (
+                    <span className="flex items-center gap-1 font-mono text-[10px] font-semibold uppercase tracking-wide px-2.5 py-1"
+                      style={{ background: "rgba(34,197,94,0.10)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.30)" }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                      Current
+                    </span>
+                  )}
                 </div>
-              </div>
 
-              {/* Bullets */}
-              {exp.roleHistory ? (
-                <div className="space-y-6 mb-6">
-                  {exp.roleHistory.map((r, j) => (
-                    <div key={r.role}>
-                      <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
-                        <p className="text-base font-semibold" style={{ color: "var(--text-1)" }}>{r.role}</p>
-                        <span className="text-xs font-semibold px-3 py-1 rounded-full"
-                          style={{ background: pillBg, color: pillText, border: `1px solid ${pillBorder}` }}
-                        >
-                          {r.duration}
-                        </span>
+                {/* Meta spec rows */}
+                <div className="mb-6">
+                  <SpecRow label="Location" value={exp.location} dense />
+                  <SpecRow label="Duration" value={exp.duration} dense />
+                </div>
+
+                {/* Bullets */}
+                {exp.roleHistory ? (
+                  <div className="space-y-7 mb-6">
+                    {exp.roleHistory.map((r) => (
+                      <div key={r.role}>
+                        <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                          <p className="text-base font-semibold" style={{ color: "var(--text-1)" }}>{r.role}</p>
+                          <span className="font-mono text-[11px] font-semibold px-3 py-1 uppercase tracking-wide"
+                            style={{ background: "var(--surface-alt)", color: "var(--text-2)", border: "1px solid var(--border)" }}
+                          >
+                            {r.duration}
+                          </span>
+                        </div>
+                        <ul className="space-y-2.5">
+                          {r.highlights.map((pt, k) => (
+                            <li key={k} className="flex gap-3 text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
+                              <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: exp.current ? "var(--accent)" : "var(--text-3)" }} />
+                              {pt}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <ul className="space-y-2.5">
-                        {r.highlights.map((pt, k) => (
-                          <li key={k} className="flex gap-3 text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
-                            <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: exp.dotColor }} />
-                            {pt}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    ))}
+                  </div>
+                ) : (
+                  <ul className="space-y-2.5 mb-6">
+                    {exp.highlights.map((pt, j) => (
+                      <li key={j} className="flex gap-3 text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
+                        <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: "var(--text-3)" }} />
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* Tech badges */}
+                <div className="flex flex-wrap gap-2">
+                  {exp.tech.map((t) => (
+                    <span key={t} className="font-mono text-[11px] px-2.5 py-1 font-medium"
+                      style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-2)" }}
+                    >
+                      {t}
+                    </span>
                   ))}
                 </div>
-              ) : (
-                <ul className="space-y-2.5 mb-6">
-                  {exp.highlights.map((pt, j) => (
-                    <li key={j} className="flex gap-3 text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
-                      <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: exp.dotColor }} />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              {/* Tech badges */}
-              <div className="flex flex-wrap gap-2">
-                {exp.tech.map((t) => (
-                  <span key={t} className="text-xs px-2.5 py-1 rounded-md font-medium"
-                    style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-2)" }}
-                  >
-                    {t}
-                  </span>
-                ))}
               </div>
-              </div>{/* end p-6 */}
-            </div>
+            </CornerFrame>
           </motion.div>
-        ))}
+        </AnimatePresence>
       </div>
-    </div>
-  </section>
+    </section>
   );
 };
 

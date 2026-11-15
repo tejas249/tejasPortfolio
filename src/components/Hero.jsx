@@ -3,7 +3,10 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaDownload, FaEnvelope, FaRocket } from "react-icons/fa";
 import { SiTypescript, SiNextdotjs, SiNodedotjs, SiPostgresql, SiPrisma, SiMongodb } from "react-icons/si";
 import profilePic from "../assets/tejas2.webp";
-import { useTheme } from "../context/ThemeContext";
+import SplitText from "./ui/SplitText";
+import CornerFrame from "./ui/CornerFrame";
+import SpecRow from "./ui/SpecRow";
+import Marquee from "./ui/Marquee";
 
 const stack = [
   { icon: <SiTypescript  style={{ color: "#60a5fa" }} />, name: "TypeScript" },
@@ -14,152 +17,140 @@ const stack = [
   { icon: <SiMongodb     style={{ color: "#34d399" }} />, name: "MongoDB"    },
 ];
 
+const TICKER_ITEMS = [
+  "FULL STACK ENGINEER",
+  "AVAILABLE FOR WORK",
+  "BASED IN PUNE, INDIA",
+  "BUILDER OF VISITZEE",
+];
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: delay * 0.5 },
 });
 
-const Hero = () => {
-  const { isDark } = useTheme();
-  const nameGradient = isDark
-    ? "linear-gradient(135deg, #a78bfa 0%, #38bdf8 100%)"
-    : "linear-gradient(135deg, #5b21b6 0%, #0369a1 100%)";
+const Hero = () => (
+  <section id="about" className="min-h-screen flex flex-col justify-center px-6 py-28 relative">
+    <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
 
-  return (
-  <section id="about" className="min-h-screen flex flex-col items-center justify-center px-6 text-center relative">
+      {/* ── Left: statement ── */}
+      <div className="flex flex-col items-start text-left">
+        <motion.p {...fadeUp(0)}
+          className="font-mono text-[11px] mb-6 tracking-[0.2em] uppercase flex items-center gap-2 flex-wrap"
+          style={{ color: "var(--text-3)" }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />
+          Available for work
+          <span style={{ color: "var(--border-h)" }}>/</span>
+          Pune, India
+        </motion.p>
 
-    {/* Avatar */}
-    <motion.div {...fadeUp(0)} className="mb-8 relative">
-      <div className="absolute inset-0 rounded-full opacity-40"
-        style={{ background: "radial-gradient(circle, rgba(139,92,246,0.6) 0%, transparent 70%)", transform: "scale(1.4)" }}
-      />
-      <div className="relative w-28 h-28 rounded-full p-[2px]"
-        style={{ background: "linear-gradient(135deg, #8b5cf6, #06b6d4)" }}
-      >
-        <img src={profilePic} alt="Tejas Kamble" width="112" height="112" fetchpriority="high" decoding="async"
-          className="w-full h-full rounded-full object-cover" />
+        <h1 className="mb-6 text-7xl sm:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9]">
+          <SplitText as="span" text="Hi, I'm" className="block" style={{ color: "var(--text-1)" }} delay={0.1} />
+          <SplitText as="span" text="Tejas" className="block" style={{ color: "var(--accent-text)" }} delay={0.22} />
+        </h1>
+
+        <motion.p {...fadeUp(0.3)}
+          className="font-mono text-sm font-medium mb-5 uppercase tracking-[0.15em]"
+          style={{ color: "var(--text-2)" }}
+        >
+          Full Stack Engineer
+        </motion.p>
+
+        <motion.p {...fadeUp(0.38)} className="max-w-md text-sm sm:text-base leading-relaxed mb-9" style={{ color: "var(--text-3)" }}>
+          Building smooth, production-ready web experiences, from clean frontends
+          to solid backends and AI-powered workflows.
+        </motion.p>
+
+        <motion.div {...fadeUp(0.5)} className="flex flex-wrap gap-0 mb-8 border" style={{ borderColor: "var(--text-1)" }}>
+          <a href="#visitzee" data-cursor-hover className="btn-sharp btn-accent" style={{ border: "none" }}>
+            <FaRocket size={12} /> See my product
+          </a>
+          <a href="/Tejas_Kamble_Resume.pdf" download="Tejas_Kamble_Resume.pdf" data-cursor-hover
+            className="btn-sharp" style={{ border: "none", borderLeft: "1px solid var(--text-1)" }}
+          >
+            <FaDownload size={12} /> Resume / CV
+          </a>
+          <a href="#contact" data-cursor-hover
+            className="btn-sharp" style={{ border: "none", borderLeft: "1px solid var(--text-1)" }}
+          >
+            <FaEnvelope size={12} /> Get in touch
+          </a>
+        </motion.div>
+
+        <motion.div {...fadeUp(0.6)} className="flex items-center gap-5">
+          {[
+            { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/tejas249/", label: "LinkedIn" },
+            { icon: <FaGithub   size={18} />, href: "https://github.com/tejas249",          label: "GitHub"   },
+          ].map(({ icon, href, label }) => (
+            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} data-cursor-hover
+              style={{ color: "var(--text-3)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-1)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-3)")}
+            >
+              {icon}
+            </a>
+          ))}
+        </motion.div>
       </div>
 
-      {/* Available badge */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.7 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.9, duration: 0.4 }}
-        className="absolute -bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap"
-        style={{
-          background: isDark ? "rgba(10,10,10,0.85)" : "rgba(240,253,244,0.95)",
-          border: `1px solid ${isDark ? "rgba(34,197,94,0.35)" : "rgba(22,163,74,0.45)"}`,
-          color: isDark ? "#86efac" : "#15803d",
-        }}
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-        Available for work
+      {/* ── Right: spec panel ── */}
+      <motion.div {...fadeUp(0.25)} className="w-full">
+        <CornerFrame className="p-5 sm:p-6" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
+
+          <div className="flex items-center gap-4 mb-5 pb-5" style={{ borderBottom: "1px solid var(--border)" }}>
+            <div className="w-16 h-16 overflow-hidden shrink-0" style={{ border: "1px solid var(--border-h)" }}>
+              <img src={profilePic} alt="Tejas Kamble" width="64" height="64" fetchpriority="high" decoding="async"
+                className="w-full h-full object-cover grayscale" />
+            </div>
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-1.5" style={{ color: "var(--text-3)" }}>Profile</p>
+              <p className="text-base font-bold" style={{ color: "var(--text-1)" }}>Tejas Kamble</p>
+            </div>
+          </div>
+
+          <div className="mb-5">
+            <SpecRow label="Role"     value="Full Stack Engineer" />
+            <SpecRow label="Location" value="Pune, India" />
+            <SpecRow label="Status"   value="Available for work" valueColor="#4ade80" />
+            <SpecRow label="Focus"    value="Web + AI workflows" />
+          </div>
+
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--text-3)" }}>Core stack</p>
+          <div className="grid grid-cols-3 border" style={{ borderColor: "var(--border)" }}>
+            {stack.map(({ icon, name }, i) => (
+              <div key={name} data-cursor-hover
+                className="flex flex-col items-center justify-center gap-1.5 py-3"
+                style={{
+                  borderRight: (i % 3 !== 2) ? "1px solid var(--border)" : "none",
+                  borderTop: i >= 3 ? "1px solid var(--border)" : "none",
+                }}
+              >
+                <span className="text-base">{icon}</span>
+                <span className="font-mono text-[9px] uppercase tracking-wide text-center" style={{ color: "var(--text-3)" }}>{name}</span>
+              </div>
+            ))}
+          </div>
+        </CornerFrame>
       </motion.div>
-    </motion.div>
+    </div>
 
-    {/* Location */}
-    <motion.p {...fadeUp(0.1)} style={{ color: "var(--text-3)" }} className="text-xs mb-5 tracking-wide">
-      📍 Pune, India
-    </motion.p>
-
-    {/* Headline */}
-    <motion.div {...fadeUp(0.2)}>
-      <h1
-        className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-5"
-        style={{ color: "var(--text-1)" }}
-      >
-        Hi, I'm{" "}
-        <span className="gradient-text" style={{ background: nameGradient }}>
-          Tejas
-        </span>
-      </h1>
-    </motion.div>
-
-    {/* Role */}
-    <motion.p {...fadeUp(0.3)} style={{ color: "var(--text-2)" }} className="text-xl sm:text-2xl font-medium mb-4">
-      Full Stack Engineer
-    </motion.p>
-
-    {/* Tagline */}
-    <motion.p {...fadeUp(0.4)} style={{ color: "var(--text-3)" }}
-      className="max-w-xl text-sm sm:text-base leading-relaxed mb-10"
-    >
-      Building smooth, production-ready web experiences, from clean frontends
-      to solid backends and AI-powered workflows.
-    </motion.p>
-
-    {/* Tech stack pills */}
+    {/* Ticker */}
     <motion.div
-      initial="hidden" animate="visible"
-      variants={{ visible: { transition: { staggerChildren: 0.05, delayChildren: 0.25 } } }}
-      className="flex flex-wrap justify-center gap-2 mb-10"
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.8 }}
+      className="max-w-6xl mx-auto w-full mt-16 py-3"
+      style={{ borderTop: "1px dashed var(--border)", borderBottom: "1px dashed var(--border)" }}
     >
-      {stack.map(({ icon, name }) => (
-        <motion.span key={name}
-          variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
-          className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full cursor-default"
-          style={{
-            background:  "var(--surface)",
-            border:      "1px solid var(--border)",
-            color:       "var(--text-2)",
-          }}
-        >
-          {icon}{name}
-        </motion.span>
-      ))}
-    </motion.div>
-
-    {/* CTA */}
-    <motion.div {...fadeUp(0.85)} className="flex flex-wrap justify-center gap-3 mb-10">
-      <a
-        href="#visitzee"
-        className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.03] hover:opacity-90"
-        style={{ background: "linear-gradient(135deg,#7c3aed,#2563eb)", boxShadow: "0 0 20px rgba(124,58,237,0.25)" }}
-      >
-        <FaRocket size={12} /> See my product
-      </a>
-      <a
-        href="/Tejas_Kamble_Resume.pdf"
-        download="Tejas_Kamble_Resume.pdf"
-        className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-[1.03]"
-        style={{ background: "var(--surface)", border: "1px solid var(--border)", color: "var(--text-2)" }}
-      >
-        <FaDownload size={12} /> Resume / CV
-      </a>
-      <a
-        href="#contact"
-        className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-[1.03]"
-        style={{ background: "var(--surface)", border: "1px solid var(--border)", color: "var(--text-2)" }}
-        onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-1)"; e.currentTarget.style.borderColor = "var(--border-h)"; }}
-        onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-2)"; e.currentTarget.style.borderColor = "var(--border)"; }}
-      >
-        <FaEnvelope size={12} /> Get in touch
-      </a>
-    </motion.div>
-
-    {/* Social */}
-    <motion.div {...fadeUp(1)} className="flex items-center gap-5">
-      {[
-        { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/tejas249/", label: "LinkedIn" },
-        { icon: <FaGithub   size={18} />, href: "https://github.com/tejas249",          label: "GitHub"   },
-      ].map(({ icon, href, label }) => (
-        <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-          style={{ color: "var(--text-3)" }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-1)")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-3)")}
-        >
-          {icon}
-        </a>
-      ))}
+      <Marquee items={TICKER_ITEMS} />
     </motion.div>
 
     {/* Scroll hint */}
     <motion.div
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2, duration: 1 }}
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6, duration: 1 }}
+      className="hidden sm:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5"
     >
-      <span className="text-[10px] tracking-widest uppercase" style={{ color: "var(--text-3)" }}>Scroll</span>
+      <span className="font-mono text-[10px] tracking-[0.3em] uppercase" style={{ color: "var(--text-3)" }}>Scroll</span>
       <motion.div
         animate={{ y: [0, 5, 0] }}
         transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
@@ -168,7 +159,6 @@ const Hero = () => {
       />
     </motion.div>
   </section>
-  );
-};
+);
 
 export default Hero;
