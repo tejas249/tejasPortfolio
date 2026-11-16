@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HiMoon, HiSun } from "react-icons/hi2";
 import { useTheme } from "../context/ThemeContext";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { FiArrowUpRight, FiDownload, FiMail, FiMapPin } from "react-icons/fi";
 import {
   SiTypescript, SiNextdotjs, SiNodedotjs, SiPostgresql, SiPrisma, SiMongodb, SiTailwindcss, SiDocker,
@@ -77,6 +77,10 @@ const Arrow = () => (
   <span className="w-8 h-8 shrink-0 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
     style={{ background: "var(--surface-alt)", color: "var(--text-1)" }}><FiArrowUpRight size={15} /></span>
 );
+
+// wa.me wants digits only, with the country code and no plus sign
+const WA_NUMBER = CONTACT.phoneNo.replace(/\D/g, "");
+const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi Tejas, I came across your portfolio and wanted to get in touch.")}`;
 
 const Hero = () => {
   const { isDark, toggle } = useTheme();
@@ -214,9 +218,15 @@ const Hero = () => {
             <a href="https://www.linkedin.com/in/tejas249/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "var(--surface-alt)", color: "var(--text-2)" }}><FaLinkedin size={13} /></a>
           </span>
         }>Contact</Eyebrow>
-        <a href={`mailto:${CONTACT.email}`} className="btn btn-primary !py-2 !px-3 !text-[12.5px] w-full min-w-0">
-          <FiMail size={14} className="shrink-0" /> <span className="truncate">{CONTACT.email}</span>
-        </a>
+        <div className="flex gap-2">
+          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" aria-label="Message Tejas on WhatsApp"
+            className="btn !py-2 !px-3 !text-[12.5px] flex-1 min-w-0 !border-transparent" style={{ background: "#25d366", color: "#06240f" }}>
+            <FaWhatsapp size={16} className="shrink-0" /> WhatsApp
+          </a>
+          <a href={`mailto:${CONTACT.email}`} aria-label={`Email ${CONTACT.email}`} className="btn btn-primary !py-2 !px-3 !text-[12.5px] flex-1 min-w-0">
+            <FiMail size={14} className="shrink-0" /> Email
+          </a>
+        </div>
       </BentoTile>
     </div>
   </section>
