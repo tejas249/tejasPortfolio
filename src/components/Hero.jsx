@@ -107,7 +107,7 @@ const Hero = () => {
           </motion.p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Link to="/visitzee" className="btn btn-primary">See my product <FiArrowUpRight size={16} /></Link>
+          <Link to="/visitzee" className="btn">See Visitzee <FiArrowUpRight size={16} /></Link>
           <a href="/Tejas_Kamble_Resume.pdf" download="Tejas_Kamble_Resume.pdf" className="btn"><FiDownload size={15} /> Resume</a>
         </div>
       </BentoTile>
