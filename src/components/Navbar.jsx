@@ -146,6 +146,10 @@ const Navbar = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+        <a href="#about" onClick={() => setMenuOpen(false)} className="font-mono text-sm font-bold shrink-0" style={{ color: "var(--text-1)" }}>
+          Tejas<span style={{ color: "var(--accent)" }}>.</span>
+        </a>
+
         {/* Desktop nav */}
         <nav className="hidden xl:flex items-center gap-8">
           {NAV_LINKS.map((link) => <NavLink key={link.label} {...link} />)}
@@ -162,7 +166,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile controls */}
-        <div className="flex xl:hidden items-center gap-2 h-14 ml-auto">
+        <div className="flex xl:hidden items-center gap-2 h-14">
           <ThemeToggle />
           <button
             type="button"
