@@ -145,11 +145,11 @@ const Hero = () => {
       {/* Impact */}
       <BentoTile delay={0.18} className="lg:col-span-3 lg:row-span-3 p-5 flex flex-col justify-between gap-3">
         <Eyebrow>Impact</Eyebrow>
-        <div className="grid grid-cols-2 gap-y-2.5 gap-x-3">
+        <div className="grid grid-cols-2 grid-rows-2 flex-1 content-center items-center gap-x-3">
           {[[368, "", "GitHub contributions, 2026 · personal"], [1100, "", "GitHub contributions · professional"], [10, "+", "full stack apps shipped"], [200, "+", "product videos automated"]].map(([n, s, l]) => (
             <div key={l}>
-              <p className="text-[1.9rem] leading-none font-bold tracking-tight"><CountUp to={n} suffix={s} /></p>
-              <p className="text-[11px] leading-snug mt-1" style={{ color: "var(--text-3)" }}>{l}</p>
+              <p className="text-[clamp(1.9rem,4.4vh,2.7rem)] leading-none font-bold tracking-tight"><CountUp to={n} suffix={s} /></p>
+              <p className="text-[11.5px] leading-snug mt-1.5" style={{ color: "var(--text-3)" }}>{l}</p>
             </div>
           ))}
         </div>
