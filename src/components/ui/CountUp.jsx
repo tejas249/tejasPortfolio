@@ -11,7 +11,7 @@ const CountUp = ({ to, suffix = "", duration = 1.6 }) => {
     const c = animate(0, to, { duration, ease: [0.22, 1, 0.36, 1], onUpdate: (v) => setN(Math.round(v)) });
     return () => c.stop();
   }, [inView, to, duration]);
-  return <span ref={ref} className="tabular-nums">{n}{suffix}</span>;
+  return <span ref={ref} className="tabular-nums">{n.toLocaleString("en-US")}{suffix}</span>;
 };
 
 export default CountUp;

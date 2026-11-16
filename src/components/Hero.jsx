@@ -129,17 +129,20 @@ const Hero = () => (
         </div>
       </BentoTile>
 
-      {/* Stats */}
-      <BentoTile delay={0.18} className="lg:col-span-3 lg:row-span-2 p-6 flex flex-col justify-between">
-        <Eyebrow>Visitzee in numbers</Eyebrow>
-        <div className="grid grid-cols-2 gap-y-4 gap-x-3 mt-3">
-          {[[900, "+", "tests"], [4, "", "apps"], [33, "", "db models"], [149, "", "commits"]].map(([n, s, l]) => (
+      {/* Impact */}
+      <BentoTile delay={0.18} className="lg:col-span-3 lg:row-span-2 p-5 flex flex-col justify-between gap-2">
+        <Eyebrow>Impact</Eyebrow>
+        <div className="grid grid-cols-2 gap-y-2.5 gap-x-3">
+          {[[368, "", "GitHub contributions, 2026 · personal"], [1100, "", "GitHub contributions · professional"], [10, "+", "full stack apps shipped"], [200, "+", "product videos automated"]].map(([n, s, l]) => (
             <div key={l}>
-              <p className="text-3xl font-bold tracking-tight"><CountUp to={n} suffix={s} /></p>
-              <p className="text-xs" style={{ color: "var(--text-3)" }}>{l}</p>
+              <p className="text-[1.6rem] leading-none font-bold tracking-tight"><CountUp to={n} suffix={s} /></p>
+              <p className="text-[11px] leading-snug mt-1" style={{ color: "var(--text-3)" }}>{l}</p>
             </div>
           ))}
         </div>
+        <p className="text-xs leading-snug pt-2" style={{ color: "var(--text-2)", borderTop: "1px solid var(--border)" }}>
+          Worked with <span style={{ color: "var(--text-1)" }}>NVIDIA, HPE and TAS</span> teams on marketing tasks
+        </p>
       </BentoTile>
 
       {/* Experience */}
