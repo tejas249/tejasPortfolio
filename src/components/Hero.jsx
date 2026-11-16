@@ -43,20 +43,20 @@ const IconRow = ({ items, reverse }) => (
   </div>
 );
 
-/* Animated SVG: radar pulse over a dot grid */
+/* Animated SVG: radar pulse over a dot grid, kept to the tile's right side so it never sits under text */
 const Radar = () => (
-  <svg viewBox="0 0 240 150" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
+  <svg viewBox="0 0 120 110" className="absolute right-0 top-0 h-full w-[48%]" preserveAspectRatio="xMaxYMid meet" aria-hidden>
     <defs>
-      <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="var(--text-3)" opacity="0.35" /></pattern>
-      <radialGradient id="fade" cx="70%" cy="50%" r="60%"><stop offset="0%" stopColor="white" /><stop offset="100%" stopColor="black" /></radialGradient>
-      <mask id="m"><rect width="240" height="150" fill="url(#fade)" /></mask>
+      <pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.9" fill="var(--text-3)" opacity="0.4" /></pattern>
+      <radialGradient id="fade" cx="50%" cy="50%" r="55%"><stop offset="0%" stopColor="white" /><stop offset="100%" stopColor="black" /></radialGradient>
+      <mask id="m"><rect width="120" height="110" fill="url(#fade)" /></mask>
     </defs>
-    <rect width="240" height="150" fill="url(#dots)" mask="url(#m)" />
+    <rect width="120" height="110" fill="url(#dots)" mask="url(#m)" />
     {[0, 1.2, 2.4].map((d) => (
-      <circle key={d} cx="175" cy="75" r="60" fill="none" stroke="var(--accent)" strokeWidth="1.2" className="radar-ring" style={{ animationDelay: `${d}s` }} />
+      <circle key={d} cx="60" cy="55" r="44" fill="none" stroke="var(--accent)" strokeWidth="1" className="radar-ring" style={{ animationDelay: `${d}s` }} />
     ))}
-    <circle cx="175" cy="75" r="5" fill="var(--accent)" />
-    <circle cx="175" cy="75" r="10" fill="var(--accent)" opacity="0.2" />
+    <circle cx="60" cy="55" r="4" fill="var(--accent)" />
+    <circle cx="60" cy="55" r="8" fill="var(--accent)" opacity="0.2" />
   </svg>
 );
 
@@ -99,7 +99,7 @@ const Hero = () => {
             <SplitText as="span" text="I ship products end to end." className="block" delay={0.25} style={{ color: "var(--text-3)" }} />
           </h1>
           <motion.p {...fadeUp(0.3)} className="mt-3 text-sm leading-relaxed max-w-lg" style={{ color: "var(--text-2)" }}>
-            Full Stack Engineer at Katonic AI. Next.js, TypeScript, Node.js and PostgreSQL, from booking platforms to AI workflows.
+            Full Stack Engineer building with Next.js, TypeScript, Node.js and PostgreSQL, from booking platforms to AI workflows.
           </motion.p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -135,7 +135,10 @@ const Hero = () => {
         <Radar />
         <div className="relative z-10 p-5 h-full flex flex-col justify-between">
           <Eyebrow>Based in</Eyebrow>
-          <p className="text-xl font-semibold tracking-tight flex items-center gap-2"><FiMapPin size={16} style={{ color: "var(--accent-text)" }} /> Pune, India <span className="text-xs font-normal" style={{ color: "var(--text-3)" }}>· Remote</span></p>
+          <div>
+            <p className="text-xl font-semibold tracking-tight flex items-center gap-2"><FiMapPin size={16} style={{ color: "var(--accent-text)" }} /> Pune, India</p>
+            <p className="text-xs mt-0.5 pl-6" style={{ color: "var(--text-3)" }}>Remote, open to work</p>
+          </div>
         </div>
       </BentoTile>
 
