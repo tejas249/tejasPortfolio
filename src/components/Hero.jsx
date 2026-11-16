@@ -7,12 +7,13 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FiArrowUpRight, FiDownload, FiMail, FiMapPin } from "react-icons/fi";
 import {
   SiTypescript, SiNextdotjs, SiNodedotjs, SiPostgresql, SiPrisma, SiMongodb, SiTailwindcss, SiDocker,
-  SiVercel, SiPython, SiJavascript, SiExpress, SiRazorpay, SiAnthropic, SiGithubactions,
+  SiVercel, SiPython, SiVitest, SiPostman, SiGoogleanalytics, SiGoogletagmanager, SiSupabase, SiFirebase, SiJavascript, SiExpress, SiRazorpay, SiAnthropic, SiGithubactions,
 } from "react-icons/si";
 import { RiReactjsLine } from "react-icons/ri";
 import SplitText from "./ui/SplitText";
 import BentoTile from "./ui/BentoTile";
 import CountUp from "./ui/CountUp";
+import vzIcon from "../assets/brand/visitzee-icon.svg";
 import calendarShot from "../assets/projects/visitzee-owner-overview.webp";
 import { EXPERIENCE } from "../constants/experience";
 import { CONTACT } from "../constants";
@@ -21,6 +22,7 @@ import { fadeUp } from "../lib/motion";
 const ROWS = [
   [[SiTypescript, "TypeScript", "#60a5fa"], [SiNextdotjs, "Next.js", "#94a3b8"], [RiReactjsLine, "React", "#22d3ee"], [SiTailwindcss, "Tailwind", "#2dd4bf"], [SiJavascript, "JavaScript", "#facc15"]],
   [[SiNodedotjs, "Node.js", "#4ade80"], [SiExpress, "Express", "#94a3b8"], [SiPrisma, "Prisma", "#a5b4fc"], [SiPostgresql, "PostgreSQL", "#38bdf8"], [SiMongodb, "MongoDB", "#34d399"]],
+  [[SiVitest, "Vitest", "#facc15"], [SiPostman, "Postman", "#fb923c"], [SiGoogleanalytics, "Analytics", "#fb923c"], [SiGoogletagmanager, "Tag Manager", "#60a5fa"], [SiSupabase, "Supabase", "#34d399"], [SiFirebase, "Firebase", "#fbbf24"]],
   [[SiAnthropic, "Claude & LLM APIs", "#fb923c"], [SiRazorpay, "Razorpay", "#60a5fa"], [SiDocker, "Docker", "#38bdf8"], [SiGithubactions, "GitHub Actions", "#60a5fa"], [SiVercel, "Vercel", "#94a3b8"], [SiPython, "Python", "#fbbf24"]],
 ];
 
@@ -30,7 +32,7 @@ const IconRow = ({ items, reverse }) => (
       {[0, 1].map((rep) => (
         <div key={rep} className="flex shrink-0 gap-2 pr-2">
           {items.map(([Icon, name, color]) => (
-            <span key={`${rep}-${name}`} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[12.5px] whitespace-nowrap"
+            <span key={`${rep}-${name}`} className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[13px] whitespace-nowrap"
               style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-2)" }}>
               <Icon style={{ color }} /> {name}
             </span>
@@ -112,6 +114,7 @@ const Hero = () => {
           <div className="p-6 sm:p-7 relative z-10">
             <Eyebrow right={<Arrow />}>Featured project</Eyebrow>
             <div className="flex items-center gap-3 mt-3 mb-2">
+              <img src={vzIcon} alt="" width="36" height="36" className="w-9 h-9 -mr-0.5" />
               <h2 className="text-3xl font-bold tracking-tight">Visitzee</h2>
               <Live>Live</Live>
             </div>
@@ -183,10 +186,11 @@ const Hero = () => {
       {/* Stack */}
       <BentoTile delay={0.3} className="md:col-span-2 lg:col-span-4 lg:row-span-2 p-6 flex flex-col justify-between gap-3">
         <Eyebrow>Stack</Eyebrow>
-        <div className="space-y-2 -mx-6">
+        <div className="flex flex-1 flex-col justify-evenly -mx-6">
           <IconRow items={ROWS[0]} />
           <IconRow items={ROWS[1]} reverse />
-          <IconRow items={ROWS[2]} />
+          <IconRow items={ROWS[3]} />
+          <div className="hidden [@media(min-height:840px)]:block"><IconRow items={ROWS[2]} reverse /></div>
         </div>
       </BentoTile>
 
