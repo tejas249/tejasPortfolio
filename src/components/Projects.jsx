@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import {
-  FiLayers, FiCreditCard, FiMessageCircle, FiMail, FiShield, FiLock,
-  FiCalendar, FiServer, FiGitBranch, FiCheckCircle,
-} from "react-icons/fi";
+  ExternalLink, ChevronLeft, ChevronRight,
+  Globe, Calendar, Smartphone, Shield,
+  Layers, CreditCard, MessageCircle, Mail, Lock, Server, GitBranch, CheckCircle2,
+} from "lucide-react";
 import { VISITZEE } from "../constants";
 import SectionHeading from "./ui/SectionHeading";
 import CornerFrame from "./ui/CornerFrame";
@@ -13,9 +13,11 @@ import SpecRow from "./ui/SpecRow";
 import { fadeUp } from "../lib/motion";
 
 const FEATURE_ICONS = {
-  layers: FiLayers, card: FiCreditCard, message: FiMessageCircle, mail: FiMail, shield: FiShield,
-  lock: FiLock, calendar: FiCalendar, server: FiServer, git: FiGitBranch, check: FiCheckCircle,
+  layers: Layers, card: CreditCard, message: MessageCircle, mail: Mail, shield: Shield,
+  lock: Lock, calendar: Calendar, server: Server, git: GitBranch, check: CheckCircle2,
 };
+
+const APP_ICONS = { globe: Globe, calendar: Calendar, smartphone: Smartphone, shield: Shield };
 
 const panel = { background: "var(--surface)", border: "1px solid var(--border)" };
 
@@ -46,7 +48,7 @@ const Gallery = ({ gallery }) => {
             key={g.key}
             onClick={() => { setGroup(i); setActive(0); }}
             data-cursor-hover
-            className="font-mono text-[11px] font-semibold uppercase tracking-wide pb-3 border-b-2 -mb-px transition-colors"
+            className="font-mono text-[11px] font-semibold uppercase tracking-wide pb-3 border-b-2 -mb-px transition-colors cursor-pointer"
             style={{
               borderBottomColor: i === group ? "var(--accent)" : "transparent",
               color: i === group ? "var(--text-1)" : "var(--text-3)",
@@ -71,11 +73,11 @@ const Gallery = ({ gallery }) => {
           />
         </AnimatePresence>
         {many && [
-          { dir: -1, side: "left-0",  icon: <FaChevronLeft size={12} />,  label: "Previous screen" },
-          { dir:  1, side: "right-0", icon: <FaChevronRight size={12} />, label: "Next screen" },
+          { dir: -1, side: "left-0",  icon: <ChevronLeft size={16} />,  label: "Previous screen" },
+          { dir:  1, side: "right-0", icon: <ChevronRight size={16} />, label: "Next screen" },
         ].map(({ dir, side, icon, label }) => (
           <button key={label} onClick={() => step(dir)} aria-label={label} data-cursor-hover
-            className={`absolute ${side} top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center`}
+            className={`absolute ${side} top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center cursor-pointer`}
             style={{ background: "rgba(6,6,6,0.7)", color: "#fff", border: "1px solid rgba(255,255,255,0.2)" }}>
             {icon}
           </button>
@@ -102,7 +104,7 @@ const Gallery = ({ gallery }) => {
                 onClick={() => setActive(i)}
                 aria-label={`Show ${sc.title}`}
                 data-cursor-hover
-                className="shrink-0 w-14 h-10 overflow-hidden flex items-center justify-center"
+                className="shrink-0 w-14 h-10 overflow-hidden flex items-center justify-center cursor-pointer"
                 style={{
                   border: `2px solid ${i === active ? "var(--accent)" : "var(--border)"}`,
                   opacity: i === active ? 1 : 0.6,
@@ -135,6 +137,41 @@ const LinkBtn = ({ href, active, icon, label, primary = false }) => (
   </a>
 );
 
+/* ── App card: now a real link out to the product ─── */
+const AppCard = ({ app, delay }) => {
+  const Icon = APP_ICONS[app.icon];
+  return (
+    <motion.a
+      {...fadeUp(delay)}
+      href={app.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cursor-hover
+      className="group p-6 border-r border-b block transition-colors cursor-pointer"
+      style={{ borderColor: "var(--border)" }}
+      onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface-alt)")}
+      onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+    >
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          {Icon && <Icon size={14} style={{ color: "var(--accent-text)" }} />}
+          <p className="font-mono text-[11px]" style={{ color: "var(--accent-text)" }}>{app.host}</p>
+        </div>
+        <ExternalLink size={13} className="opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "var(--text-3)" }} />
+      </div>
+      <h4 className="text-base font-bold mb-3" style={{ color: "var(--text-1)" }}>{app.name}</h4>
+      <ul className="space-y-2">
+        {app.points.map((pt) => (
+          <li key={pt} className="flex gap-2 text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>
+            <span className="mt-1.5 shrink-0 w-1 h-1" style={{ background: "var(--accent)" }} />
+            {pt}
+          </li>
+        ))}
+      </ul>
+    </motion.a>
+  );
+};
+
 
 /* ── Section: Visitzee case study (sticky two-column layout) ── */
 const Projects = () => {
@@ -164,7 +201,7 @@ const Projects = () => {
 
             <div className="flex flex-wrap gap-2.5">
               {v.links.map((l, i) => (
-                <LinkBtn key={l.label} href={l.href} active icon={<FaExternalLinkAlt size={10} />} label={l.label} primary={i === 0} />
+                <LinkBtn key={l.label} href={l.href} active icon={<ExternalLink size={12} />} label={l.label} primary={i === 0} />
               ))}
             </div>
 
@@ -186,18 +223,7 @@ const Projects = () => {
           <SubHeading n="ARCHITECTURE" title="One product, four apps" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-l border-t" style={{ borderColor: "var(--border)" }}>
             {v.apps.map((app, i) => (
-              <motion.div key={app.name} {...fadeUp(i * 0.06)} className="p-6 border-r border-b" style={{ borderColor: "var(--border)" }}>
-                <p className="font-mono text-[11px] mb-2" style={{ color: "var(--accent-text)" }}>{app.host}</p>
-                <h4 className="text-base font-bold mb-3" style={{ color: "var(--text-1)" }}>{app.name}</h4>
-                <ul className="space-y-2">
-                  {app.points.map((pt) => (
-                    <li key={pt} className="flex gap-2 text-xs leading-relaxed" style={{ color: "var(--text-2)" }}>
-                      <span className="mt-1.5 shrink-0 w-1 h-1" style={{ background: "var(--accent)" }} />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+              <AppCard key={app.name} app={app} delay={i * 0.06} />
             ))}
           </div>
         </div>

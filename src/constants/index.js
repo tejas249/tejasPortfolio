@@ -110,10 +110,10 @@ export const VISITZEE = {
     },
   ],
   apps: [
-    { name: "Marketing site", host: "visitzee.in", points: ["Landing pages per business type and country", "Pricing, FAQ, tutorial and live demo", "SEO, Open Graph images, sitemap"] },
-    { name: "Customer booking page", host: "name.visitzee.in", points: ["A website per business on its own subdomain", "Services, team, photos, reviews, hours and map", "Book, reschedule or cancel from a private link"] },
-    { name: "Owner app", host: "app.visitzee.in", points: ["Installable PWA with push notifications", "Team calendar, walk-ins, repeat bookings, waitlist", "Staff logins, customers, revenue reports"] },
-    { name: "Admin console", host: "admin.visitzee.in", points: ["Two-factor sign-in (authenticator app)", "Onboard, suspend and manage every business", "Roles, step-up auth, append-only audit log"] },
+    { name: "Marketing site", host: "visitzee.in", href: "https://visitzee.in", icon: "globe", points: ["Pages by business type & country", "Pricing, FAQ, live demo", "SEO, OG images, sitemap"] },
+    { name: "Customer booking page", host: "name.visitzee.in", href: "https://glowstudio.visitzee.in", icon: "calendar", points: ["Own subdomain per business", "Services, team, hours, map", "Book, reschedule, cancel via link"] },
+    { name: "Owner app", host: "app.visitzee.in", href: "https://app.visitzee.in/demo", icon: "smartphone", points: ["Installable PWA, push alerts", "Calendar, walk-ins, waitlist", "Staff logins, customers, reports"] },
+    { name: "Admin console", host: "admin.visitzee.in", href: "https://admin.visitzee.in", icon: "shield", points: ["Two-factor sign-in", "Onboard & manage businesses", "Roles, step-up auth, audit log"] },
   ],
   features: [
     { icon: "layers", title: "Multi-tenant SaaS", body: "Every business gets its own site the moment it signs up, routed by host name with wildcard DNS. Tenant isolation is enforced in three layers and tested." },

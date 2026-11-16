@@ -166,11 +166,6 @@ a, button {
 }
 .marquee-row:hover .marquee-track { animation-play-state: paused; }
 
-/* ── Custom cursor (fine-pointer devices only) ────── */
-@media (hover: hover) and (pointer: fine) {
-  html.has-cursor, html.has-cursor * { cursor: none !important; }
-}
-
 /* ── Reduced motion ───────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
