@@ -9,7 +9,6 @@ import Education from "./components/Education";
 import Technologies from "./components/Technologies";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import ScrollProgress from "./components/ui/ScrollProgress";
 import SectionDivider from "./components/ui/SectionDivider";
 
 /* ── Fixed registration lines: a quiet, technical frame around the page ── */
@@ -41,7 +40,6 @@ const AppInner = () => {
   useLenis();
   return (
     <div className="overflow-x-hidden antialiased" style={{ color: "var(--text-1)" }}>
-      <ScrollProgress />
       <Background />
       <RegistrationLines />
       <Navbar />
