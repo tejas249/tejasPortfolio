@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { HiMoon, HiSun } from "react-icons/hi2";
+import { useTheme } from "../context/ThemeContext";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FiArrowUpRight, FiDownload, FiMail, FiMapPin } from "react-icons/fi";
 import {
@@ -74,13 +76,21 @@ const Arrow = () => (
     style={{ background: "var(--surface-alt)", color: "var(--text-1)" }}><FiArrowUpRight size={15} /></span>
 );
 
-const Hero = () => (
-  <section className="px-4 sm:px-6 pb-6 lg:pb-5 lg:h-[calc(100svh-6rem)] xl:h-[calc(100svh-7rem)] lg:min-h-[640px]">
+const Hero = () => {
+  const { isDark, toggle } = useTheme();
+  return (
+  <section className="px-4 sm:px-6 pb-6 lg:pb-5 lg:h-[calc(100svh-1.25rem)] lg:min-h-[640px]">
     <div className="max-w-[1400px] mx-auto h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 lg:grid-rows-6 gap-3 sm:gap-4">
 
       {/* Intro */}
       <BentoTile delay={0} className="md:col-span-2 lg:col-span-5 lg:row-span-3 p-6 sm:p-7 flex flex-col justify-between gap-4">
-        <div><Live>Available for work</Live></div>
+        <div className="flex items-center justify-between gap-3">
+          <Live>Available for work</Live>
+          <button onClick={toggle} aria-label="Toggle theme" className="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer"
+            style={{ background: "var(--surface-alt)", color: "var(--text-2)", border: "1px solid var(--border)" }}>
+            {isDark ? <HiSun size={16} /> : <HiMoon size={16} />}
+          </button>
+        </div>
         <div>
           <h1 className="font-bold tracking-[-0.035em] leading-[0.98] text-[2.6rem] sm:text-6xl lg:text-[clamp(2.2rem,5.2vh,3.8rem)]">
             <SplitText as="span" text="Hi, I'm Tejas." className="block" delay={0.1} />
@@ -118,31 +128,34 @@ const Hero = () => (
       </BentoTile>
 
       {/* Location */}
-      <BentoTile delay={0.12} className="lg:col-span-3 lg:row-span-2 min-h-[150px]">
+      <BentoTile delay={0.12} className="lg:col-span-3 lg:row-span-1 min-h-[110px]">
         <Radar />
-        <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+        <div className="relative z-10 p-5 h-full flex flex-col justify-between">
           <Eyebrow>Based in</Eyebrow>
-          <div>
-            <p className="text-2xl font-semibold tracking-tight flex items-center gap-2"><FiMapPin size={18} style={{ color: "var(--accent-text)" }} /> Pune, India</p>
-            <p className="text-sm mt-0.5" style={{ color: "var(--text-3)" }}>Remote, open to work</p>
-          </div>
+          <p className="text-xl font-semibold tracking-tight flex items-center gap-2"><FiMapPin size={16} style={{ color: "var(--accent-text)" }} /> Pune, India <span className="text-xs font-normal" style={{ color: "var(--text-3)" }}>· Remote</span></p>
         </div>
       </BentoTile>
 
       {/* Impact */}
-      <BentoTile delay={0.18} className="lg:col-span-3 lg:row-span-2 p-5 flex flex-col justify-between gap-2">
+      <BentoTile delay={0.18} className="lg:col-span-3 lg:row-span-3 p-5 flex flex-col justify-between gap-3">
         <Eyebrow>Impact</Eyebrow>
         <div className="grid grid-cols-2 gap-y-2.5 gap-x-3">
           {[[368, "", "GitHub contributions, 2026 · personal"], [1100, "", "GitHub contributions · professional"], [10, "+", "full stack apps shipped"], [200, "+", "product videos automated"]].map(([n, s, l]) => (
             <div key={l}>
-              <p className="text-[1.6rem] leading-none font-bold tracking-tight"><CountUp to={n} suffix={s} /></p>
+              <p className="text-[1.9rem] leading-none font-bold tracking-tight"><CountUp to={n} suffix={s} /></p>
               <p className="text-[11px] leading-snug mt-1" style={{ color: "var(--text-3)" }}>{l}</p>
             </div>
           ))}
         </div>
-        <p className="text-xs leading-snug pt-2" style={{ color: "var(--text-2)", borderTop: "1px solid var(--border)" }}>
-          Worked with <span style={{ color: "var(--text-1)" }}>NVIDIA, HPE and TAS</span> teams on marketing tasks
-        </p>
+        <div className="pt-3" style={{ borderTop: "1px solid var(--border)" }}>
+          <p className="text-[11px] mb-2" style={{ color: "var(--text-3)" }}>Worked with teams at</p>
+          <div className="flex flex-wrap gap-1.5">
+            {["NVIDIA", "HPE", "TAS Networks"].map((n) => (
+              <span key={n} className="px-2.5 py-1 rounded-lg text-[11px] font-semibold tracking-wide" style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-1)" }}>{n}</span>
+            ))}
+          </div>
+          <p className="text-[11px] mt-2" style={{ color: "var(--text-3)" }}>on marketing tasks</p>
+        </div>
       </BentoTile>
 
       {/* Experience */}
@@ -200,6 +213,7 @@ const Hero = () => (
       </BentoTile>
     </div>
   </section>
-);
+  );
+};
 
 export default Hero;

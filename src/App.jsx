@@ -39,12 +39,14 @@ const Home = () => <Hero />;
 
 const AppInner = () => {
   useLenis();
+  const isHome = useLocation().pathname === "/";
   return (
     <div className="overflow-x-hidden antialiased" style={{ color: "var(--text-1)" }}>
       <Backdrop />
       <ScrollManager />
-      <Navbar />
-      <main className="pt-24 xl:pt-28">
+      {/* The landing page is a single bento screen with no header; sub-pages keep it */}
+      {!isHome && <Navbar />}
+      <main className={isHome ? "pt-5" : "pt-24 xl:pt-28"}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/visitzee" element={<VisitzeePage />} />
