@@ -34,8 +34,7 @@ const Contact = () => (
         <motion.a
           {...fadeUp(0.2)}
           href={`mailto:${CONTACT.email}`}
-          data-cursor-hover
-          className="group flex flex-wrap items-center gap-3 mb-14 font-mono"
+ className="group flex flex-wrap items-center gap-3 mb-14 font-mono"
         >
           <span
             className="text-lg sm:text-2xl md:text-4xl font-bold tracking-tight transition-colors duration-200 break-all"
@@ -51,8 +50,7 @@ const Contact = () => (
             <FiMapPin size={14} style={{ color: "var(--text-3)" }} />
             {CONTACT.address}
           </span>
-          <a href={`tel:${CONTACT.phoneNo}`} data-cursor-hover
-            className="flex items-center gap-2.5 font-mono text-sm transition-colors duration-200"
+          <a href={`tel:${CONTACT.phoneNo}`} className="flex items-center gap-2.5 font-mono text-sm transition-colors duration-200"
             style={{ color: "var(--text-2)" }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-text)")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-2)")}
@@ -69,8 +67,7 @@ const Contact = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                data-cursor-hover
-                className="w-9 h-9 flex items-center justify-center transition-all duration-200"
+ className="w-9 h-9 flex items-center justify-center transition-all duration-200"
                 style={{ background: "var(--surface-alt)", border: "1px solid var(--border-h)", color: "var(--text-2)" }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text-1)"; e.currentTarget.style.borderColor = "var(--accent)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-2)"; e.currentTarget.style.borderColor = "var(--border-h)"; }}

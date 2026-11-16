@@ -61,6 +61,16 @@ export const VISITZEE = {
   tagline: "A complete SaaS booking platform for local businesses",
   role: "Sep 2026 to present",
   pitch: "Salons, clinics, trainers and studios in India and the US sign up, pick what they do, and get their own booking website, live in about two minutes. Customers book any hour, owners run the day from an installable app, and Visitzee staff manage every business from a secured admin console. Designed, built and shipped end to end.",
+  caseStudy: {
+    problem: {
+      title: "Booking ran on phone calls and WhatsApp",
+      body: "Local salons, clinics, trainers and studios had no real website, just a social bio link. Appointments lived in a phone book or a chat thread, there was no shared calendar, and double-booking was a matter of when, not if.",
+    },
+    approach: {
+      title: "A live booking site, built so it can't double-book",
+      body: "A business signs up and gets its own site on its own subdomain in about two minutes. A Postgres exclusion constraint makes a double-booking structurally impossible, not just unlikely. WhatsApp and email keep customers and owners in sync, and a two-factor admin console keeps every business's data isolated.",
+    },
+  },
   links: [
     { label: "visitzee.in", href: "https://visitzee.in" },
     { label: "Try the owner demo", href: "https://app.visitzee.in/demo" },

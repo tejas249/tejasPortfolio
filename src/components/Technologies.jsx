@@ -130,7 +130,7 @@ const Technologies = () => {
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2.5">
             {group.items.map(({ Icon, name, color }) => (
-              <span key={name} data-cursor-hover className="flex items-center gap-2 text-sm">
+              <span key={name} className="flex items-center gap-2 text-sm">
                 <Icon style={{ color, fontSize: "1rem", flexShrink: 0 }} />
                 <span style={{ color: "var(--text-2)" }}>{name}</span>
               </span>

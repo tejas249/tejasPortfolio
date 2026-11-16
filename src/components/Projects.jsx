@@ -47,8 +47,7 @@ const Gallery = ({ gallery }) => {
           <button
             key={g.key}
             onClick={() => { setGroup(i); setActive(0); }}
-            data-cursor-hover
-            className="font-mono text-[11px] font-semibold uppercase tracking-wide pb-3 border-b-2 -mb-px transition-colors cursor-pointer"
+ className="font-mono text-[11px] font-semibold uppercase tracking-wide pb-3 border-b-2 -mb-px transition-colors cursor-pointer"
             style={{
               borderBottomColor: i === group ? "var(--accent)" : "transparent",
               color: i === group ? "var(--text-1)" : "var(--text-3)",
@@ -76,8 +75,7 @@ const Gallery = ({ gallery }) => {
           { dir: -1, side: "left-0",  icon: <ChevronLeft size={16} />,  label: "Previous screen" },
           { dir:  1, side: "right-0", icon: <ChevronRight size={16} />, label: "Next screen" },
         ].map(({ dir, side, icon, label }) => (
-          <button key={label} onClick={() => step(dir)} aria-label={label} data-cursor-hover
-            className={`absolute ${side} top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center cursor-pointer`}
+          <button key={label} onClick={() => step(dir)} aria-label={label} className={`absolute ${side} top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center cursor-pointer`}
             style={{ background: "rgba(6,6,6,0.7)", color: "#fff", border: "1px solid rgba(255,255,255,0.2)" }}>
             {icon}
           </button>
@@ -103,8 +101,7 @@ const Gallery = ({ gallery }) => {
                 key={sc.src}
                 onClick={() => setActive(i)}
                 aria-label={`Show ${sc.title}`}
-                data-cursor-hover
-                className="shrink-0 w-14 h-10 overflow-hidden flex items-center justify-center cursor-pointer"
+ className="shrink-0 w-14 h-10 overflow-hidden flex items-center justify-center cursor-pointer"
                 style={{
                   border: `2px solid ${i === active ? "var(--accent)" : "var(--border)"}`,
                   opacity: i === active ? 1 : 0.6,
@@ -128,8 +125,7 @@ const LinkBtn = ({ href, active, icon, label, primary = false }) => (
     href={active ? href : "#"}
     target={active ? "_blank" : undefined}
     rel="noopener noreferrer"
-    data-cursor-hover
-    onClick={(e) => !active && e.preventDefault()}
+ onClick={(e) => !active && e.preventDefault()}
     className={`btn-sharp ${primary ? "btn-accent" : ""}`}
     style={{ opacity: active ? 1 : 0.35, cursor: active ? "pointer" : "not-allowed", padding: "9px 16px", fontSize: "11px" }}
   >
@@ -146,8 +142,7 @@ const AppCard = ({ app, delay }) => {
       href={app.href}
       target="_blank"
       rel="noopener noreferrer"
-      data-cursor-hover
-      className="group p-6 border-r border-b block transition-colors cursor-pointer"
+ className="group p-6 border-r border-b block transition-colors cursor-pointer"
       style={{ borderColor: "var(--border)" }}
       onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface-alt)")}
       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
@@ -216,6 +211,20 @@ const Projects = () => {
           <div>
             <Gallery gallery={v.gallery} />
           </div>
+        </div>
+
+        {/* ── Case study: problem -> approach ── */}
+        <div className="mt-16 grid md:grid-cols-2 border-l border-t" style={{ borderColor: "var(--border)" }}>
+          <motion.div {...fadeUp(0)} className="p-6 md:p-8 border-r border-b" style={{ borderColor: "var(--border)" }}>
+            <span className="block font-mono text-[11px] uppercase tracking-wide mb-3" style={{ color: "var(--accent-text)" }}>The problem</span>
+            <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-3" style={{ color: "var(--text-1)" }}>{v.caseStudy.problem.title}</h3>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>{v.caseStudy.problem.body}</p>
+          </motion.div>
+          <motion.div {...fadeUp(0.08)} className="p-6 md:p-8 border-r border-b" style={{ borderColor: "var(--border)" }}>
+            <span className="block font-mono text-[11px] uppercase tracking-wide mb-3" style={{ color: "var(--accent-text)" }}>The approach</span>
+            <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-3" style={{ color: "var(--text-1)" }}>{v.caseStudy.approach.title}</h3>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>{v.caseStudy.approach.body}</p>
+          </motion.div>
         </div>
 
         {/* ── Below: full-width, no longer paired with the sidebar ── */}

@@ -85,8 +85,7 @@ const Navbar = () => {
       <a
         href={href}
         onClick={() => handleNavClick(label)}
-        data-cursor-hover
-        className={`font-mono flex items-center gap-2 transition-all duration-150 border-b ${
+ className={`font-mono flex items-center gap-2 transition-all duration-150 border-b ${
           mobile ? "py-3 text-sm w-full" : "h-16 text-[11px]"
         }`}
         style={{
@@ -111,8 +110,7 @@ const Navbar = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          data-cursor-hover
-          className="w-8 h-8 flex items-center justify-center border transition-all duration-150"
+ className="w-8 h-8 flex items-center justify-center border transition-all duration-150"
           style={{ color: "var(--text-3)", borderColor: "var(--border)" }}
           onMouseEnter={onIconEnter}
           onMouseLeave={onIconLeave}
@@ -127,8 +125,7 @@ const Navbar = () => {
     <button
       onClick={toggle}
       aria-label="Toggle theme"
-      data-cursor-hover
-      className="w-8 h-8 flex items-center justify-center border transition-all duration-150 shrink-0"
+ className="w-8 h-8 flex items-center justify-center border transition-all duration-150 shrink-0"
       style={{ color: "var(--text-3)", borderColor: "var(--border)" }}
       onMouseEnter={onIconEnter}
       onMouseLeave={(e) => onIconLeave(e)}
@@ -176,8 +173,7 @@ const Navbar = () => {
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            data-cursor-hover
-            className="w-8 h-8 flex items-center justify-center border transition-all duration-150"
+ className="w-8 h-8 flex items-center justify-center border transition-all duration-150"
             style={{ color: "var(--text-2)", borderColor: "var(--border)" }}
           >
             {menuOpen ? <HiXMark size={16} /> : <HiBars3 size={16} />}

@@ -38,11 +38,11 @@ const Hero = () => (
       <div className="flex flex-col items-start text-left">
         <motion.p {...fadeUp(0)}
           className="font-mono text-[11px] mb-6 tracking-[0.2em] uppercase flex items-center gap-2 flex-wrap"
-          style={{ color: "var(--text-3)" }}
+          style={{ color: "var(--text-2)" }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />
           Available for work
-          <span style={{ color: "var(--border-h)" }}>/</span>
+          <span style={{ color: "var(--text-3)" }}>/</span>
           Pune, India
         </motion.p>
 
@@ -64,16 +64,14 @@ const Hero = () => (
         </motion.p>
 
         <motion.div {...fadeUp(0.5)} className="flex flex-wrap gap-0 mb-8 border" style={{ borderColor: "var(--text-1)" }}>
-          <a href="#visitzee" data-cursor-hover className="btn-sharp btn-accent" style={{ border: "none" }}>
+          <a href="#visitzee" className="btn-sharp btn-accent" style={{ border: "none" }}>
             <FaRocket size={12} /> See my product
           </a>
-          <a href="/Tejas_Kamble_Resume.pdf" download="Tejas_Kamble_Resume.pdf" data-cursor-hover
-            className="btn-sharp" style={{ border: "none", borderLeft: "1px solid var(--text-1)" }}
+          <a href="/Tejas_Kamble_Resume.pdf" download="Tejas_Kamble_Resume.pdf" className="btn-sharp" style={{ border: "none", borderLeft: "1px solid var(--text-1)" }}
           >
             <FaDownload size={12} /> Resume / CV
           </a>
-          <a href="#contact" data-cursor-hover
-            className="btn-sharp" style={{ border: "none", borderLeft: "1px solid var(--text-1)" }}
+          <a href="#contact" className="btn-sharp" style={{ border: "none", borderLeft: "1px solid var(--text-1)" }}
           >
             <FaEnvelope size={12} /> Get in touch
           </a>
@@ -84,8 +82,7 @@ const Hero = () => (
             { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/tejas249/", label: "LinkedIn" },
             { icon: <FaGithub   size={18} />, href: "https://github.com/tejas249",          label: "GitHub"   },
           ].map(({ icon, href, label }) => (
-            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} data-cursor-hover
-              style={{ color: "var(--text-3)" }}
+            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} style={{ color: "var(--text-3)" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-1)")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-3)")}
             >
@@ -120,8 +117,7 @@ const Hero = () => (
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--text-3)" }}>Core stack</p>
           <div className="grid grid-cols-3 border" style={{ borderColor: "var(--border)" }}>
             {stack.map(({ icon, name }, i) => (
-              <div key={name} data-cursor-hover
-                className="flex flex-col items-center justify-center gap-1.5 py-3"
+              <div key={name} className="flex flex-col items-center justify-center gap-1.5 py-3"
                 style={{
                   borderRight: (i % 3 !== 2) ? "1px solid var(--border)" : "none",
                   borderTop: i >= 3 ? "1px solid var(--border)" : "none",

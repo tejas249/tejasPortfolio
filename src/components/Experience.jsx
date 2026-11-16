@@ -72,8 +72,7 @@ const Experience = () => {
             <button
               key={e.company}
               onClick={() => setActive(i)}
-              data-cursor-hover
-              className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wide px-5 py-3.5 border-b-2 -mb-px transition-colors duration-150"
+ className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wide px-5 py-3.5 border-b-2 -mb-px transition-colors duration-150"
               style={{
                 borderBottomColor: i === active ? "var(--accent)" : "transparent",
                 color: i === active ? "var(--text-1)" : "var(--text-3)",

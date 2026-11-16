@@ -58,8 +58,8 @@ const Education = () => (
             {education.highlights.map((pt, i) => (
               <motion.li
                 key={i}
-                initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.4 }}
+                initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
                 className="flex gap-3 text-sm leading-relaxed"
                 style={{ color: "var(--text-2)" }}
               >
