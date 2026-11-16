@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { VISITZEE } from "../constants";
-import SplitText from "../components/ui/SplitText";
+import { useTheme } from "../context/ThemeContext";
+import logoOnDark from "../assets/brand/visitzee-logo-on-dark.svg";
+import logoOnLight from "../assets/brand/visitzee-logo-on-light.svg";
 import Marquee from "../components/ui/Marquee";
 import ArchitectureDiagram from "../components/ui/ArchitectureDiagram";
 import CountUp from "../components/ui/CountUp";
@@ -26,6 +28,7 @@ const Block = ({ kicker, title, children }) => (
 
 const VisitzeePage = () => {
   const v = VISITZEE;
+  const { isDark } = useTheme();
   const num = (s) => parseInt(s, 10);
   return (
     <article className="px-5 sm:px-6 pt-6 pb-28">
@@ -42,9 +45,9 @@ const VisitzeePage = () => {
             <span className="tag mb-6" style={{ color: "var(--ok)", borderColor: "rgba(74,222,128,0.3)", background: "rgba(74,222,128,0.08)" }}>
               <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--ok)" }} /> Live in production · {v.role}
             </span>
-            <h1 className="text-6xl sm:text-8xl font-bold tracking-[-0.04em] leading-[0.95] mb-6">
-              <SplitText as="span" text={v.title} delay={0.05} />
-            </h1>
+            <motion.h1 {...fadeUp(0.05)} className="mb-7">
+              <img src={isDark ? logoOnDark : logoOnLight} alt="Visitzee" width="941" height="260" className="h-16 sm:h-24 w-auto" />
+            </motion.h1>
             <p className="text-xl sm:text-2xl leading-snug max-w-xl" style={{ color: "var(--text-2)" }}>{v.tagline}</p>
           </div>
           <motion.div {...fadeUp(0.2)} className="flex flex-col gap-6">
