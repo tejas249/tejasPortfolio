@@ -220,10 +220,10 @@ const Hero = () => {
         }>Contact</Eyebrow>
         <div className="flex gap-2">
           <a href={WA_LINK} target="_blank" rel="noopener noreferrer" aria-label="Message Tejas on WhatsApp"
-            className="btn !py-2 !px-3 !text-[12.5px] flex-1 min-w-0 !border-transparent" style={{ background: "#25d366", color: "#06240f" }}>
+            className="btn !py-2 !px-3 !text-[12.5px] flex-1 min-w-0">
             <FaWhatsapp size={16} className="shrink-0" /> WhatsApp
           </a>
-          <a href={`mailto:${CONTACT.email}`} aria-label={`Email ${CONTACT.email}`} className="btn btn-primary !py-2 !px-3 !text-[12.5px] flex-1 min-w-0">
+          <a href={`mailto:${CONTACT.email}`} aria-label={`Email ${CONTACT.email}`} className="btn !py-2 !px-3 !text-[12.5px] flex-1 min-w-0">
             <FiMail size={14} className="shrink-0" /> Email
           </a>
         </div>
