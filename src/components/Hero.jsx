@@ -1,159 +1,160 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaDownload, FaEnvelope, FaRocket } from "react-icons/fa";
-import { SiTypescript, SiNextdotjs, SiNodedotjs, SiPostgresql, SiPrisma, SiMongodb } from "react-icons/si";
-import profilePic from "../assets/tejas2.webp";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FiArrowUpRight, FiDownload, FiMail } from "react-icons/fi";
+import { SiTypescript, SiNextdotjs, SiNodedotjs, SiPostgresql, SiPrisma, SiMongodb, SiTailwindcss, SiDocker, SiVercel, SiPython } from "react-icons/si";
+import { RiReactjsLine } from "react-icons/ri";
 import SplitText from "./ui/SplitText";
-import CornerFrame from "./ui/CornerFrame";
-import SpecRow from "./ui/SpecRow";
-import Marquee from "./ui/Marquee";
+import BentoTile from "./ui/BentoTile";
+import CountUp from "./ui/CountUp";
+import calendarShot from "../assets/projects/visitzee-owner-calendar.webp";
+import { fadeUp } from "../lib/motion";
 
-const stack = [
-  { icon: <SiTypescript  style={{ color: "#60a5fa" }} />, name: "TypeScript" },
-  { icon: <SiNextdotjs   style={{ color: "#94a3b8" }} />, name: "Next.js"    },
-  { icon: <SiNodedotjs   style={{ color: "#4ade80" }} />, name: "Node.js"    },
-  { icon: <SiPostgresql  style={{ color: "#38bdf8" }} />, name: "PostgreSQL" },
-  { icon: <SiPrisma      style={{ color: "#a5b4fc" }} />, name: "Prisma"     },
-  { icon: <SiMongodb     style={{ color: "#34d399" }} />, name: "MongoDB"    },
+const ROW_A = [
+  [SiTypescript, "TypeScript", "#60a5fa"], [SiNextdotjs, "Next.js", "#94a3b8"], [RiReactjsLine, "React", "#22d3ee"],
+  [SiNodedotjs, "Node.js", "#4ade80"], [SiPostgresql, "PostgreSQL", "#38bdf8"],
+];
+const ROW_B = [
+  [SiPrisma, "Prisma", "#a5b4fc"], [SiTailwindcss, "Tailwind", "#2dd4bf"], [SiMongodb, "MongoDB", "#34d399"],
+  [SiDocker, "Docker", "#38bdf8"], [SiVercel, "Vercel", "#94a3b8"], [SiPython, "Python", "#fbbf24"],
 ];
 
-const TICKER_ITEMS = [
-  "FULL STACK ENGINEER",
-  "AVAILABLE FOR WORK",
-  "BASED IN PUNE, INDIA",
-  "BUILDER OF VISITZEE",
-];
+const IconRow = ({ items, reverse }) => (
+  <div className="marquee-row overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)" }}>
+    <div className={`marquee-track ${reverse ? "marquee-reverse" : ""}`} style={{ animationDuration: "26s" }}>
+      {[0, 1].map((rep) => (
+        <div key={rep} className="flex shrink-0 gap-2 pr-2">
+          {items.map(([Icon, name, color]) => (
+            <span key={`${rep}-${name}`} className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[13px] whitespace-nowrap"
+              style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-2)" }}>
+              <Icon style={{ color }} /> {name}
+            </span>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: delay * 0.5 },
-});
+/* Animated SVG: radar pulse around a pin, over a dot grid */
+const Radar = () => (
+  <svg viewBox="0 0 240 150" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
+    <defs>
+      <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse">
+        <circle cx="1" cy="1" r="1" fill="var(--text-3)" opacity="0.35" />
+      </pattern>
+      <radialGradient id="fade" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stopColor="white" /><stop offset="100%" stopColor="black" />
+      </radialGradient>
+      <mask id="m"><rect width="240" height="150" fill="url(#fade)" /></mask>
+    </defs>
+    <rect width="240" height="150" fill="url(#dots)" mask="url(#m)" />
+    {[0, 1.2, 2.4].map((d) => (
+      <circle key={d} cx="170" cy="75" r="60" fill="none" stroke="var(--accent)" strokeWidth="1.2" className="radar-ring" style={{ animationDelay: `${d}s` }} />
+    ))}
+    <circle cx="170" cy="75" r="5" fill="var(--accent)" />
+    <circle cx="170" cy="75" r="10" fill="var(--accent)" opacity="0.2" />
+  </svg>
+);
 
 const Hero = () => (
-  <section id="about" className="min-h-screen flex flex-col justify-center px-6 py-28 relative">
-    <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
-
-      {/* ── Left: statement ── */}
-      <div className="flex flex-col items-start text-left min-w-0">
-        <motion.p {...fadeUp(0)}
-          className="font-mono text-[11px] mb-6 tracking-[0.2em] uppercase flex items-center gap-2 flex-wrap"
-          style={{ color: "var(--text-2)" }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />
-          Available for work
-          <span style={{ color: "var(--text-3)" }}>/</span>
-          Pune, India
-        </motion.p>
-
-        <h1 className="mb-6 text-7xl sm:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9]">
-          <SplitText as="span" text="Hi, I'm" className="block" style={{ color: "var(--text-1)" }} delay={0.1} />
-          <SplitText as="span" text="Tejas" className="block" style={{ color: "var(--accent-text)" }} delay={0.22} />
+  <section id="about" className="relative px-5 sm:px-6 pt-10 sm:pt-14 pb-24">
+    <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mb-12 sm:mb-16">
+        <motion.div {...fadeUp(0)} className="mb-7">
+          <span className="tag">
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--ok)" }} />
+            Available for work
+          </span>
+        </motion.div>
+        <h1 className="text-[3.25rem] leading-[0.98] sm:text-7xl lg:text-[5.75rem] font-bold tracking-[-0.035em]">
+          <SplitText as="span" text="Hi, I'm Tejas." className="block" delay={0.1} />
+          <SplitText as="span" text="I ship products end to end." className="block" delay={0.25} style={{ color: "var(--text-3)" }} />
         </h1>
-
-        <motion.p {...fadeUp(0.3)}
-          className="font-mono text-sm font-medium mb-5 uppercase tracking-[0.15em]"
-          style={{ color: "var(--text-2)" }}
-        >
-          Full Stack Engineer
-        </motion.p>
-
-        <motion.p {...fadeUp(0.38)} className="max-w-md text-sm sm:text-base leading-relaxed mb-9" style={{ color: "var(--text-3)" }}>
-          Building smooth, production-ready web experiences, from clean frontends
-          to solid backends and AI-powered workflows.
-        </motion.p>
-
-        <motion.div {...fadeUp(0.5)} className="flex flex-wrap gap-0 mb-8 border" style={{ borderColor: "var(--text-1)" }}>
-          <a href="#visitzee" className="btn-sharp btn-accent" style={{ border: "none" }}>
-            <FaRocket size={12} /> See my product
-          </a>
-          <a href="/Tejas_Kamble_Resume.pdf" download="Tejas_Kamble_Resume.pdf" className="btn-sharp" style={{ border: "none", borderLeft: "1px solid var(--text-1)" }}
-          >
-            <FaDownload size={12} /> Resume / CV
-          </a>
-          <a href="#contact" className="btn-sharp" style={{ border: "none", borderLeft: "1px solid var(--text-1)" }}
-          >
-            <FaEnvelope size={12} /> Get in touch
-          </a>
-        </motion.div>
-
-        <motion.div {...fadeUp(0.6)} className="flex items-center gap-5">
-          {[
-            { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/tejas249/", label: "LinkedIn" },
-            { icon: <FaGithub   size={18} />, href: "https://github.com/tejas249",          label: "GitHub"   },
-          ].map(({ icon, href, label }) => (
-            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} style={{ color: "var(--text-3)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-1)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-3)")}
-            >
-              {icon}
-            </a>
-          ))}
-        </motion.div>
       </div>
 
-      {/* ── Right: spec panel ── */}
-      <motion.div {...fadeUp(0.25)} className="w-full min-w-0">
-        <CornerFrame className="p-5 sm:p-6" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
+      {/* ── Bento grid ── */}
+      <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 lg:auto-rows-[minmax(150px,auto)]">
 
-          <div className="flex items-center gap-4 mb-5 pb-5" style={{ borderBottom: "1px solid var(--border)" }}>
-            <div className="w-16 h-16 overflow-hidden shrink-0" style={{ border: "1px solid var(--border-h)" }}>
-              <img src={profilePic} alt="Tejas Kamble" width="64" height="64" fetchpriority="high" decoding="async"
-                className="w-full h-full object-cover grayscale" />
+        {/* Product */}
+        <BentoTile delay={0.1} className="md:col-span-6 lg:col-span-7 lg:row-span-2 flex flex-col min-h-[380px]">
+          <div className="p-7 sm:p-9 pb-0 relative z-10">
+            <div className="flex items-center justify-between mb-4">
+              <span className="tag" style={{ color: "var(--ok)", borderColor: "rgba(74,222,128,0.3)", background: "rgba(74,222,128,0.08)" }}>
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--ok)" }} /> Live in production
+              </span>
+              <Link to="/visitzee" aria-label="Read the Visitzee case study" className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: "var(--surface-alt)", color: "var(--text-1)" }}>
+                <FiArrowUpRight size={16} />
+              </Link>
             </div>
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-1.5" style={{ color: "var(--text-3)" }}>Profile</p>
-              <p className="text-base font-bold" style={{ color: "var(--text-1)" }}>Tejas Kamble</p>
-            </div>
+            <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-2">Visitzee</h3>
+            <p className="text-[15px] max-w-md" style={{ color: "var(--text-2)" }}>
+              A complete SaaS booking platform for local businesses. Designed, built and shipped end to end.
+            </p>
           </div>
-
-          <div className="mb-5">
-            <SpecRow label="Role"     value="Full Stack Engineer" />
-            <SpecRow label="Location" value="Pune, India" />
-            <SpecRow label="Status"   value="Available for work" valueColor="#4ade80" />
-            <SpecRow label="Focus"    value="Web + AI workflows" />
+          <div className="relative mt-6 flex-1 min-h-[200px] ml-7 sm:ml-9 float-y">
+            <img src={calendarShot} alt="Visitzee owner calendar" decoding="async"
+              className="absolute top-0 left-0 w-[115%] max-w-none rounded-tl-2xl object-cover object-top"
+              style={{ border: "1px solid var(--border-h)", boxShadow: "0 30px 60px -20px var(--shadow)" }} />
           </div>
+        </BentoTile>
 
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: "var(--text-3)" }}>Core stack</p>
-          <div className="grid grid-cols-3 border" style={{ borderColor: "var(--border)" }}>
-            {stack.map(({ icon, name }, i) => (
-              <div key={name} className="flex flex-col items-center justify-center gap-1.5 py-3"
-                style={{
-                  borderRight: (i % 3 !== 2) ? "1px solid var(--border)" : "none",
-                  borderTop: i >= 3 ? "1px solid var(--border)" : "none",
-                }}
-              >
-                <span className="text-base">{icon}</span>
-                <span className="font-mono text-[9px] uppercase tracking-wide text-center" style={{ color: "var(--text-3)" }}>{name}</span>
+        {/* Stats */}
+        <BentoTile delay={0.18} className="md:col-span-3 lg:col-span-5 p-7 flex flex-col justify-between">
+          <p className="eyebrow">By the numbers</p>
+          <div className="grid grid-cols-3 gap-3 mt-4">
+            {[[900, "+", "tests"], [4, "", "apps"], [149, "", "commits"]].map(([n, s, l]) => (
+              <div key={l}>
+                <p className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ color: "var(--text-1)" }}><CountUp to={n} suffix={s} /></p>
+                <p className="text-xs mt-1" style={{ color: "var(--text-3)" }}>{l}</p>
               </div>
             ))}
           </div>
-        </CornerFrame>
-      </motion.div>
+        </BentoTile>
+
+        {/* Location radar */}
+        <BentoTile delay={0.24} className="md:col-span-3 lg:col-span-5 min-h-[170px]">
+          <Radar />
+          <div className="relative z-10 p-7 h-full flex flex-col justify-between">
+            <p className="eyebrow">Based in</p>
+            <div>
+              <p className="text-2xl font-semibold tracking-tight">Pune, India</p>
+              <p className="text-sm" style={{ color: "var(--text-3)" }}>Remote, open to work</p>
+            </div>
+          </div>
+        </BentoTile>
+
+        {/* Current role */}
+        <BentoTile delay={0.3} className="md:col-span-3 lg:col-span-4 p-7 flex flex-col justify-between">
+          <p className="eyebrow">Currently</p>
+          <div className="mt-6">
+            <p className="text-xl font-semibold tracking-tight">Full Stack Engineer</p>
+            <p className="text-sm mt-1" style={{ color: "var(--accent-text)" }}>Katonic AI</p>
+          </div>
+        </BentoTile>
+
+        {/* Stack */}
+        <BentoTile delay={0.36} className="md:col-span-3 lg:col-span-4 p-7 flex flex-col justify-between gap-5">
+          <p className="eyebrow">Core stack</p>
+          <div className="space-y-2 -mx-7">
+            <IconRow items={ROW_A} />
+            <IconRow items={ROW_B} reverse />
+          </div>
+        </BentoTile>
+
+        {/* Links */}
+        <BentoTile delay={0.42} className="md:col-span-6 lg:col-span-4 p-7 flex flex-col justify-between gap-5">
+          <p className="eyebrow">Let's talk</p>
+          <div className="flex flex-wrap gap-2">
+            <a href="#contact" className="btn btn-primary !px-4"><FiMail size={15} /> Contact</a>
+            <a href="/Tejas_Kamble_Resume.pdf" download="Tejas_Kamble_Resume.pdf" className="btn !px-4"><FiDownload size={15} /> Resume</a>
+            <a href="https://github.com/tejas249" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="btn !px-3"><FaGithub size={16} /></a>
+            <a href="https://www.linkedin.com/in/tejas249/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="btn !px-3"><FaLinkedin size={16} /></a>
+          </div>
+        </BentoTile>
+      </div>
     </div>
-
-    {/* Ticker */}
-    <motion.div
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.8 }}
-      className="max-w-6xl mx-auto w-full mt-16 py-3"
-      style={{ borderTop: "1px dashed var(--border)", borderBottom: "1px dashed var(--border)" }}
-    >
-      <Marquee items={TICKER_ITEMS} />
-    </motion.div>
-
-    {/* Scroll hint */}
-    <motion.div
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6, duration: 1 }}
-      className="hidden sm:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5"
-    >
-      <span className="font-mono text-[10px] tracking-[0.3em] uppercase" style={{ color: "var(--text-3)" }}>Scroll</span>
-      <motion.div
-        animate={{ y: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
-        className="w-px h-6"
-        style={{ background: "linear-gradient(to bottom, var(--text-3), transparent)" }}
-      />
-    </motion.div>
   </section>
 );
 

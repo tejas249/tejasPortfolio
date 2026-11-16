@@ -4,37 +4,23 @@ import SplitText from "./SplitText";
 import { fadeUp } from "../../lib/motion";
 
 /**
- * Consistent numbered section header: 00N / 00T — EYEBROW, then a big split-reveal title.
+ * Section header: a small numbered eyebrow, then a large title.
+ * The title is the only display type on the page, so the section reads at a glance.
  */
-const SectionHeading = ({ index, total = "06", title, eyebrow, align = "left" }) => {
-  const isCenter = align === "center";
-  return (
-    <div className={`mb-14 sm:mb-16 ${isCenter ? "text-center" : ""}`}>
-      <motion.div
-        {...fadeUp(0)}
-        className={`flex items-center gap-3 mb-5 ${isCenter ? "justify-center" : ""}`}
-      >
-        <span className="font-mono text-xs tracking-widest shrink-0" style={{ color: "var(--accent-text)" }}>
-          {index} / {total}
-        </span>
-        {!isCenter && <span className="h-px flex-1" style={{ background: "var(--border)" }} />}
-        {eyebrow && (
-          <span
-            className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] shrink-0"
-            style={{ color: "var(--text-3)" }}
-          >
-            {eyebrow}
-          </span>
-        )}
-      </motion.div>
-      <SplitText
-        as="h2"
-        text={title}
-        className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter"
-        style={{ color: "var(--text-1)" }}
-      />
-    </div>
-  );
-};
+const SectionHeading = ({ index, title, eyebrow, className = "" }) => (
+  <div className={`mb-12 sm:mb-16 max-w-3xl ${className}`}>
+    <motion.p {...fadeUp(0)} className="eyebrow mb-4 flex items-center gap-2.5">
+      <span style={{ color: "var(--accent-text)" }}>{index}</span>
+      <span className="w-6 h-px" style={{ background: "var(--border-h)" }} />
+      <span className="uppercase tracking-[0.12em]">{eyebrow}</span>
+    </motion.p>
+    <SplitText
+      as="h2"
+      text={title}
+      className="text-4xl sm:text-6xl font-bold tracking-[-0.03em] leading-[1.02]"
+      style={{ color: "var(--text-1)" }}
+    />
+  </div>
+);
 
 export default SectionHeading;

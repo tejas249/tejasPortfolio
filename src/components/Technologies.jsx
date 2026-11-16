@@ -110,37 +110,38 @@ const Technologies = () => {
   const { isDark } = useTheme();
   const groups = buildGroups(isDark);
   return (
-  <section id="skills" className="py-24 px-4">
-    <div className="max-w-5xl mx-auto">
-    <SectionHeading index="04" title="Tech Stack" eyebrow="What I work with" />
+    <section id="skills" className="px-5 sm:px-6 py-24 sm:py-28">
+      <div className="max-w-5xl mx-auto">
+        <SectionHeading index="04" title="Tech Stack" eyebrow="What I work with" />
 
-    <div className="-mt-10 grid grid-cols-1 sm:grid-cols-2 border-l border-t" style={{ borderColor: "var(--border)" }}>
-      {groups.map((group, gi) => (
-        <motion.div
-          key={group.label}
-          {...fadeUp(gi * 0.05)}
-          className={`p-6 border-r border-b ${WIDE_GROUPS.includes(group.label) ? "sm:col-span-2" : ""}`}
-          style={{ borderColor: "var(--border)" }}
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <span className="font-mono text-[11px]" style={{ color: "var(--accent-text)" }}>{String(gi + 1).padStart(2, "0")}</span>
-            <p className="font-mono text-[11px] font-semibold tracking-widest uppercase" style={{ color: "var(--text-2)" }}>
-              {group.label}
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-x-5 gap-y-2.5">
-            {group.items.map(({ Icon, name, color }) => (
-              <span key={name} className="flex items-center gap-2 text-sm">
-                <Icon style={{ color, fontSize: "1rem", flexShrink: 0 }} />
-                <span style={{ color: "var(--text-2)" }}>{name}</span>
-              </span>
-            ))}
-          </div>
-        </motion.div>
-      ))}
-    </div>
-    </div>
-  </section>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {groups.map((group, gi) => (
+            <motion.div
+              key={group.label}
+              {...fadeUp((gi % 2) * 0.05)}
+              className={`surface p-6 ${WIDE_GROUPS.includes(group.label) ? "md:col-span-2" : ""}`}
+            >
+              <div className="flex items-center justify-between mb-5">
+                <p className="text-sm font-semibold" style={{ color: "var(--text-1)" }}>{group.label}</p>
+                <span className="font-mono text-xs" style={{ color: "var(--text-3)" }}>{String(group.items.length).padStart(2, "0")}</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map(({ Icon, name, color }) => (
+                  <span
+                    key={name}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[13px]"
+                    style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-2)" }}
+                  >
+                    <Icon style={{ color, fontSize: "0.95rem", flexShrink: 0 }} />
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

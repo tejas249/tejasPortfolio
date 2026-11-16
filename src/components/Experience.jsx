@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "./ui/SectionHeading";
-import CornerFrame from "./ui/CornerFrame";
 import SpecRow from "./ui/SpecRow";
 
 const experiences = [
@@ -50,35 +49,29 @@ const experiences = [
   },
 ];
 
-const card = {
-  background: "var(--surface)",
-  border: "1px solid var(--border)",
-};
-
 const Experience = () => {
   const [active, setActive] = useState(0);
   const exp = experiences[active];
 
   return (
-    <section id="experience" className="py-24 px-4">
+    <section id="experience" className="px-5 sm:px-6 py-24 sm:py-28">
       <div className="max-w-4xl mx-auto">
-      <SectionHeading index="03" title="Experience" eyebrow="Career" />
-
-      <div className="-mt-10">
+        <SectionHeading index="03" title="Experience" eyebrow="Career" />
 
         {/* Company switcher */}
-        <div className="flex flex-wrap mb-8 border-b" style={{ borderColor: "var(--border)" }}>
+        <div className="flex flex-wrap gap-1 p-1 rounded-full mb-6 w-fit max-w-full" style={{ background: "var(--surface-alt)" }}>
           {experiences.map((e, i) => (
             <button
               key={e.company}
               onClick={() => setActive(i)}
- className="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wide px-5 py-3.5 border-b-2 -mb-px transition-colors duration-150"
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200"
               style={{
-                borderBottomColor: i === active ? "var(--accent)" : "transparent",
+                background: i === active ? "var(--bg-raised)" : "transparent",
                 color: i === active ? "var(--text-1)" : "var(--text-3)",
+                boxShadow: i === active ? "0 1px 2px rgba(0,0,0,0.25)" : "none",
               }}
             >
-              {e.current && <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />}
+              {e.current && <span className="w-1.5 h-1.5 rounded-full animate-pulse shrink-0" style={{ background: "var(--ok)" }} />}
               {e.company}
             </button>
           ))}
@@ -89,87 +82,69 @@ const Experience = () => {
             key={exp.company}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
+            exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="surface p-6 sm:p-9"
           >
-            <CornerFrame style={card}>
-              {exp.current && <div className="h-[3px] w-full" style={{ background: "var(--accent)" }} />}
-
-              <div className="p-6 sm:p-8">
-                {/* Header */}
-                <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
-                  <div>
-                    <h3 className="text-2xl font-bold" style={{ color: "var(--text-1)" }}>{exp.company}</h3>
-                    {!exp.roleHistory && (
-                      <p className="font-mono text-xs font-medium mt-1 uppercase tracking-wide" style={{ color: "var(--accent-text)" }}>{exp.role}</p>
-                    )}
-                  </div>
-                  {exp.current && (
-                    <span className="flex items-center gap-1 font-mono text-[10px] font-semibold uppercase tracking-wide px-2.5 py-1"
-                      style={{ background: "rgba(34,197,94,0.10)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.30)" }}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                      Current
-                    </span>
-                  )}
-                </div>
-
-                {/* Meta spec rows */}
-                <div className="mb-6">
-                  <SpecRow label="Location" value={exp.location} dense />
-                  <SpecRow label="Duration" value={exp.duration} dense />
-                </div>
-
-                {/* Bullets */}
-                {exp.roleHistory ? (
-                  <div className="space-y-7 mb-6">
-                    {exp.roleHistory.map((r) => (
-                      <div key={r.role}>
-                        <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
-                          <p className="text-base font-semibold" style={{ color: "var(--text-1)" }}>{r.role}</p>
-                          <span className="font-mono text-[11px] font-semibold px-3 py-1 uppercase tracking-wide"
-                            style={{ background: "var(--surface-alt)", color: "var(--text-2)", border: "1px solid var(--border)" }}
-                          >
-                            {r.duration}
-                          </span>
-                        </div>
-                        <ul className="space-y-2.5">
-                          {r.highlights.map((pt, k) => (
-                            <li key={k} className="flex gap-3 text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
-                              <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: exp.current ? "var(--accent)" : "var(--text-3)" }} />
-                              {pt}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <ul className="space-y-2.5 mb-6">
-                    {exp.highlights.map((pt, j) => (
-                      <li key={j} className="flex gap-3 text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>
-                        <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: "var(--text-3)" }} />
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
+            {/* Header */}
+            <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+              <div>
+                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight" style={{ color: "var(--text-1)" }}>{exp.company}</h3>
+                {!exp.roleHistory && (
+                  <p className="text-sm mt-1" style={{ color: "var(--accent-text)" }}>{exp.role}</p>
                 )}
-
-                {/* Tech badges */}
-                <div className="flex flex-wrap gap-2">
-                  {exp.tech.map((t) => (
-                    <span key={t} className="font-mono text-[11px] px-2.5 py-1 font-medium"
-                      style={{ background: "var(--surface-alt)", border: "1px solid var(--border)", color: "var(--text-2)" }}
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
               </div>
-            </CornerFrame>
+              {exp.current && (
+                <span className="tag" style={{ color: "var(--ok)", borderColor: "rgba(74,222,128,0.3)", background: "rgba(74,222,128,0.08)" }}>
+                  <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--ok)" }} />
+                  Current
+                </span>
+              )}
+            </div>
+
+            <div className="mb-7">
+              <SpecRow label="Location" value={exp.location} dense />
+              <SpecRow label="Duration" value={exp.duration} dense />
+            </div>
+
+            {/* Bullets */}
+            {exp.roleHistory ? (
+              <div className="space-y-9 mb-8">
+                {exp.roleHistory.map((r) => (
+                  <div key={r.role}>
+                    <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+                      <p className="text-base font-semibold" style={{ color: "var(--text-1)" }}>{r.role}</p>
+                      <span className="tag">{r.duration}</span>
+                    </div>
+                    <ul className="space-y-3">
+                      {r.highlights.map((pt, k) => (
+                        <li key={k} className="flex gap-3 text-[15px] leading-relaxed" style={{ color: "var(--text-2)" }}>
+                          <span className="mt-2.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: exp.current ? "var(--accent)" : "var(--text-3)" }} />
+                          {pt}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <ul className="space-y-3 mb-8">
+                {exp.highlights.map((pt, j) => (
+                  <li key={j} className="flex gap-3 text-[15px] leading-relaxed" style={{ color: "var(--text-2)" }}>
+                    <span className="mt-2.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: "var(--text-3)" }} />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <div className="flex flex-wrap gap-2">
+              {exp.tech.map((t) => (
+                <span key={t} className="tag">{t}</span>
+              ))}
+            </div>
           </motion.div>
         </AnimatePresence>
-      </div>
       </div>
     </section>
   );
