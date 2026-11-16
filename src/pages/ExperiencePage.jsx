@@ -10,7 +10,7 @@ import { fadeUp } from "../lib/motion";
 const ExperiencePage = () => {
   const { slug } = useParams();
   const i = EXPERIENCE.findIndex((e) => e.slug === slug);
-  if (i < 0) return <Navigate to="/#experience" replace />;
+  if (i < 0) return <Navigate to="/" replace />;
   const e = EXPERIENCE[i];
   const other = EXPERIENCE[(i + 1) % EXPERIENCE.length];
 
@@ -18,7 +18,7 @@ const ExperiencePage = () => {
     <article className="px-5 sm:px-6 pt-6 pb-28">
       <div className="max-w-4xl mx-auto">
         <motion.div {...fadeUp(0)}>
-          <Link to="/#experience" className="inline-flex items-center gap-2 text-sm mb-10" style={{ color: "var(--text-3)" }}>
+          <Link to="/" className="inline-flex items-center gap-2 text-sm mb-10" style={{ color: "var(--text-3)" }}>
             <ArrowLeft size={15} /> All experience
           </Link>
         </motion.div>

@@ -31,7 +31,7 @@ const VisitzeePage = () => {
     <article className="px-5 sm:px-6 pt-6 pb-28">
       <div className="max-w-6xl mx-auto">
         <motion.div {...fadeUp(0)}>
-          <Link to="/#projects" className="inline-flex items-center gap-2 text-sm mb-10" style={{ color: "var(--text-3)" }}>
+          <Link to="/" className="inline-flex items-center gap-2 text-sm mb-10" style={{ color: "var(--text-3)" }}>
             <ArrowLeft size={15} /> All projects
           </Link>
         </motion.div>
@@ -105,7 +105,7 @@ const VisitzeePage = () => {
         </motion.div>
 
         <div className="mt-16 flex justify-center">
-          <Link to="/#projects" className="btn"><ArrowLeft size={15} /> Back to all projects</Link>
+          <Link to="/" className="btn"><ArrowLeft size={15} /> Back to all projects</Link>
         </div>
       </div>
     </article>

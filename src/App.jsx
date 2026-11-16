@@ -5,11 +5,6 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { useLenis } from "./hooks/useLenis";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Experience from "./components/Experience";
-import Education from "./components/Education";
-import Technologies from "./components/Technologies";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
 import VisitzeePage from "./pages/VisitzeePage";
 import ExperiencePage from "./pages/ExperiencePage";
 
@@ -40,16 +35,7 @@ const ScrollManager = () => {
   return null;
 };
 
-const Home = () => (
-  <>
-    <Hero />
-    <Projects />
-    <Experience />
-    <Technologies />
-    <Education />
-    <Contact />
-  </>
-);
+const Home = () => <Hero />;
 
 const AppInner = () => {
   useLenis();

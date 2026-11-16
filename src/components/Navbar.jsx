@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiBars3, HiMoon, HiSun, HiXMark } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { CONTACT } from "../constants";
 import { useTheme } from "../context/ThemeContext";
 
 const NAV_LINKS = [
-  { label: "About",      href: "/#about"      },
-  { label: "Projects",   href: "/#projects"   },
-  { label: "Experience", href: "/#experience" },
-  { label: "Skills",     href: "/#skills"     },
-  { label: "Education",  href: "/#education"  },
-  { label: "Contact",    href: "/#contact"    },
+  { label: "Home",       href: "/",                            match: (p) => p === "/" },
+  { label: "Visitzee",   href: "/visitzee",                    match: (p) => p.startsWith("/visitzee") },
+  { label: "Experience", href: "/experience/katonic-ai",       match: (p) => p.startsWith("/experience") },
 ];
 
 const SOCIAL_LINKS = [
@@ -28,7 +26,7 @@ const iconBtn =
 const Navbar = () => {
   const { isDark, toggle } = useTheme();
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("");
+  const { pathname } = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -56,8 +54,7 @@ const Navbar = () => {
   }, []);
 
   const go = (label) => {
-    setActive(label);
-    setMenuOpen(false);
+        setMenuOpen(false);
   };
 
   return (
@@ -75,7 +72,7 @@ const Navbar = () => {
         }}
       >
         <div className="flex items-center justify-between h-14 pl-5 pr-2">
-          <NavA href="/#about" onClick={() => go("About")} className="flex items-center gap-2.5 shrink-0" style={{ color: "var(--text-1)" }}>
+          <NavA href="/" onClick={() => go("About")} className="flex items-center gap-2.5 shrink-0" style={{ color: "var(--text-1)" }}>
             <span className="w-7 h-7 rounded-full flex items-center justify-center text-[13px] font-bold text-white" style={{ background: "var(--accent)" }}>
               T
             </span>
@@ -85,7 +82,7 @@ const Navbar = () => {
           {/* Desktop nav */}
           <nav className="hidden xl:flex items-center gap-1">
             {NAV_LINKS.map((l) => {
-              const isActive = active === l.label;
+              const isActive = l.match(pathname);
               return (
                 <NavA
                   key={l.label}
@@ -118,7 +115,7 @@ const Navbar = () => {
             <button onClick={toggle} aria-label="Toggle theme" className={iconBtn} style={{ color: "var(--text-2)", background: "var(--surface-alt)" }}>
               {isDark ? <HiSun size={16} /> : <HiMoon size={16} />}
             </button>
-            <NavA href="/#contact" onClick={() => go("Contact")} className="btn btn-primary ml-1.5 !py-2 !px-4 !text-[13px]">
+            <NavA href={`mailto:${CONTACT.email}`} onClick={() => go("Contact")} className="btn btn-primary ml-1.5 !py-2 !px-4 !text-[13px]">
               Get in touch
             </NavA>
           </div>
@@ -156,7 +153,7 @@ const Navbar = () => {
                 {NAV_LINKS.map((l) => (
                   <NavA key={l.label} href={l.href} onClick={() => go(l.label)}
                     className="px-4 py-3 rounded-2xl text-base"
-                    style={{ color: active === l.label ? "var(--text-1)" : "var(--text-2)" }}
+                    style={{ color: l.match(pathname) ? "var(--text-1)" : "var(--text-2)" }}
                   >
                     {l.label}
                   </NavA>
