@@ -11,6 +11,7 @@ import Technologies from "./components/Technologies";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import VisitzeePage from "./pages/VisitzeePage";
+import ExperiencePage from "./pages/ExperiencePage";
 
 /* Fixed ambient backdrop: a soft light and a grain, nothing that competes with content */
 const Backdrop = () => (
@@ -61,6 +62,7 @@ const AppInner = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/visitzee" element={<VisitzeePage />} />
+          <Route path="/experience/:slug" element={<ExperiencePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
