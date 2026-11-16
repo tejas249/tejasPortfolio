@@ -99,7 +99,10 @@ const Hero = () => {
         </div>
         <div>
           <h1 className="font-bold tracking-[-0.035em] leading-[0.98] text-[2.6rem] sm:text-6xl lg:text-[clamp(2.2rem,5.2vh,3.8rem)]">
-            <SplitText as="span" text="Hi, I'm Tejas." className="block" delay={0.1} />
+            <span className="block">
+              <SplitText as="span" text="Hi, I'm" delay={0.1} />{" "}
+              <SplitText as="span" text="Tejas." delay={0.18} style={{ color: "var(--accent-text)" }} />
+            </span>
             <SplitText as="span" text="I ship products end to end." className="block" delay={0.25} style={{ color: "var(--text-3)" }} />
           </h1>
           <motion.p {...fadeUp(0.3)} className="mt-3 text-sm leading-relaxed max-w-lg" style={{ color: "var(--text-2)" }}>
