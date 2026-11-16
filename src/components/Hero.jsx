@@ -35,7 +35,7 @@ const Hero = () => (
     <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
 
       {/* ── Left: statement ── */}
-      <div className="flex flex-col items-start text-left">
+      <div className="flex flex-col items-start text-left min-w-0">
         <motion.p {...fadeUp(0)}
           className="font-mono text-[11px] mb-6 tracking-[0.2em] uppercase flex items-center gap-2 flex-wrap"
           style={{ color: "var(--text-2)" }}
@@ -93,7 +93,7 @@ const Hero = () => (
       </div>
 
       {/* ── Right: spec panel ── */}
-      <motion.div {...fadeUp(0.25)} className="w-full">
+      <motion.div {...fadeUp(0.25)} className="w-full min-w-0">
         <CornerFrame className="p-5 sm:p-6" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
 
           <div className="flex items-center gap-4 mb-5 pb-5" style={{ borderBottom: "1px solid var(--border)" }}>

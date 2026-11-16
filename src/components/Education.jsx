@@ -27,7 +27,7 @@ const Education = () => (
     <div className="-mt-10 grid lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-14 items-start">
 
       {/* ── Left: statement ── */}
-      <motion.div {...fadeUp(0)} className="flex flex-col gap-4">
+      <motion.div {...fadeUp(0)} className="flex flex-col gap-4 min-w-0">
         <div
           className="w-12 h-12 flex items-center justify-center"
           style={{ background: "var(--accent-soft-bg)", border: "1px solid var(--accent-soft-br)" }}
@@ -43,7 +43,7 @@ const Education = () => (
       </motion.div>
 
       {/* ── Right: spec panel ── */}
-      <motion.div {...fadeUp(0.1)}>
+      <motion.div {...fadeUp(0.1)} className="min-w-0">
         <CornerFrame
           className="p-6"
           style={{ background: "var(--surface)", border: "1px solid var(--border)" }}

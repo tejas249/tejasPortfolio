@@ -181,7 +181,7 @@ const Projects = () => {
         <div className="-mt-10 grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-16">
 
           {/* ── Left: pinned overview panel ── */}
-          <div className="lg:sticky lg:top-28 lg:self-start flex flex-col gap-6 h-fit">
+          <div className="lg:sticky lg:top-28 lg:self-start flex flex-col gap-6 h-fit min-w-0">
             <p className="text-lg sm:text-xl font-medium leading-snug" style={{ color: "var(--text-1)" }}>{v.tagline}</p>
 
             <div className="flex flex-wrap items-center gap-4 font-mono text-xs uppercase tracking-wide">
@@ -208,19 +208,19 @@ const Projects = () => {
           </div>
 
           {/* ── Right: gallery (paired with the sticky overview) ── */}
-          <div>
+          <div className="min-w-0">
             <Gallery gallery={v.gallery} />
           </div>
         </div>
 
         {/* ── Case study: problem -> approach ── */}
         <div className="mt-16 grid md:grid-cols-2 border-l border-t" style={{ borderColor: "var(--border)" }}>
-          <motion.div {...fadeUp(0)} className="p-6 md:p-8 border-r border-b" style={{ borderColor: "var(--border)" }}>
+          <motion.div {...fadeUp(0)} className="p-6 md:p-8 border-r border-b min-w-0" style={{ borderColor: "var(--border)" }}>
             <span className="block font-mono text-[11px] uppercase tracking-wide mb-3" style={{ color: "var(--accent-text)" }}>The problem</span>
             <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-3" style={{ color: "var(--text-1)" }}>{v.caseStudy.problem.title}</h3>
             <p className="text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>{v.caseStudy.problem.body}</p>
           </motion.div>
-          <motion.div {...fadeUp(0.08)} className="p-6 md:p-8 border-r border-b" style={{ borderColor: "var(--border)" }}>
+          <motion.div {...fadeUp(0.08)} className="p-6 md:p-8 border-r border-b min-w-0" style={{ borderColor: "var(--border)" }}>
             <span className="block font-mono text-[11px] uppercase tracking-wide mb-3" style={{ color: "var(--accent-text)" }}>The approach</span>
             <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-3" style={{ color: "var(--text-1)" }}>{v.caseStudy.approach.title}</h3>
             <p className="text-sm leading-relaxed" style={{ color: "var(--text-2)" }}>{v.caseStudy.approach.body}</p>
