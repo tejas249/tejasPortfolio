@@ -60,8 +60,10 @@ html,
 body,
 #root {
   min-height: 100%;
-  background: var(--bg);
 }
+/* Only <html> paints the page colour: an opaque body or #root would hide the fixed ambient backdrop. */
+body,
+#root { background: transparent; }
 
 body {
   overscroll-behavior-y: none;
@@ -265,3 +267,37 @@ section[id] { scroll-margin-top: 80px; }
   .bk-a, .bk-b, .bk-note, .cipher-a, .cipher-b, .grow-bar, .node-pulse { animation: none; }
   .bk-b, .bk-note, .cipher-b { opacity: 0; }
 }
+
+/* ── Light theme: light glass ─────────────────────────
+   Frosted panels over a few soft colour washes. Kept subtle: a hairline
+   white edge, a faint inner highlight and one soft shadow. Dark is untouched. */
+:root.light .page-glow {
+  background:
+    radial-gradient(38% 34% at 12% 14%, rgba(255, 110, 90, 0.42), transparent 70%),
+    radial-gradient(36% 34% at 88% 18%, rgba(120, 150, 255, 0.40), transparent 70%),
+    radial-gradient(42% 40% at 72% 92%, rgba(255, 180, 120, 0.42), transparent 70%),
+    radial-gradient(34% 34% at 8% 88%, rgba(170, 140, 255, 0.28), transparent 70%);
+}
+
+:root.light .bento,
+:root.light .surface,
+:root.light .surface-raised {
+  background: rgba(255, 255, 255, 0.42);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border-color: rgba(255, 255, 255, 0.75);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 0 0 1px rgba(12, 12, 10, 0.05),
+    0 10px 32px -12px rgba(40, 30, 20, 0.14);
+}
+:root.light .bento:hover { border-color: rgba(255, 255, 255, 0.95); }
+
+/* Inner chips and rows read as a slightly denser glass layer */
+:root.light .tag,
+:root.light .btn { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+:root.light .btn:not(.btn-primary) { background: rgba(255, 255, 255, 0.5); border-color: rgba(12, 12, 10, 0.12); }
+:root.light .btn:not(.btn-primary):hover { background: rgba(255, 255, 255, 0.8); }
+
+/* Inner rows and chips: a lighter, whiter glass layer instead of a grey tint */
+:root.light { --surface-alt: rgba(255, 255, 255, 0.6); }
