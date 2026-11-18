@@ -116,7 +116,7 @@ const Hero = () => {
       </BentoTile>
 
       {/* Visitzee */}
-      <BentoTile delay={0.06} className="group md:col-span-2 lg:col-span-4 lg:row-span-4">
+      <BentoTile delay={0.06} className="group md:col-span-2 lg:col-span-4 lg:row-span-3">
         <Link to="/visitzee" aria-label="Open the Visitzee case study" className="flex flex-col h-full min-h-[360px]">
           <div className="p-6 sm:p-7 relative z-10">
             <Eyebrow right={<Arrow />}>Featured project</Eyebrow>
@@ -135,6 +135,26 @@ const Hero = () => {
               style={{ border: "1px solid var(--border-h)", boxShadow: "0 30px 60px -20px var(--shadow)" }} />
           </div>
         </Link>
+      </BentoTile>
+
+      {/* Baroxy */}
+      <BentoTile delay={0.09} className="group md:col-span-2 lg:col-span-4 lg:col-start-6 lg:row-start-4 lg:row-span-1 min-h-[132px]">
+        <a href="https://baroxy-jet.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Open Baroxy, a design identity generator for AI-coded apps"
+          className="flex flex-col justify-center h-full p-5 gap-3">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <span className="flex shrink-0 overflow-hidden rounded-md" aria-hidden style={{ border: "1px solid var(--border-h)" }}>
+                {["#1f2937", "#6366f1", "#f59e0b", "#f8fafc"].map((c) => <span key={c} className="w-3 h-6" style={{ background: c }} />)}
+              </span>
+              <h2 className="text-xl font-bold tracking-tight">Baroxy</h2>
+              <Live>Live</Live>
+            </div>
+            <Arrow />
+          </div>
+          <p className="text-[12.5px] leading-snug" style={{ color: "var(--text-2)" }}>
+            A locked design identity for AI-coded apps. 109 presets, as a web app, CLI and MCP server.
+          </p>
+        </a>
       </BentoTile>
 
       {/* Location */}
