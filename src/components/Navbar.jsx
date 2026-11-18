@@ -9,6 +9,7 @@ import { useTheme } from "../context/ThemeContext";
 const NAV_LINKS = [
   { label: "Home",       href: "/",                            match: (p) => p === "/" },
   { label: "Visitzee",   href: "/visitzee",                    match: (p) => p.startsWith("/visitzee") },
+  { label: "Baroxy",     href: "/baroxy",                      match: (p) => p.startsWith("/baroxy") },
   { label: "Experience", href: "/experience/katonic-ai",       match: (p) => p.startsWith("/experience") },
 ];
 

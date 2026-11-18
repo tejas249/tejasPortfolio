@@ -85,7 +85,7 @@ const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi Tejas,
 const Hero = () => {
   const { isDark, toggle } = useTheme();
   return (
-  <section className="px-4 sm:px-6 pb-6 lg:pb-5 lg:h-[calc(100svh-1.25rem)] lg:min-h-[640px]">
+  <section className="px-4 sm:px-6 pb-6 lg:pb-5 lg:h-[calc(100svh-1.25rem)] lg:min-h-[780px]">
     <div className="max-w-[1400px] mx-auto h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 lg:grid-rows-6 gap-3 sm:gap-4">
 
       {/* Intro */}
@@ -139,7 +139,7 @@ const Hero = () => {
 
       {/* Baroxy */}
       <BentoTile delay={0.09} className="group md:col-span-2 lg:col-span-4 lg:col-start-6 lg:row-start-4 lg:row-span-2 min-h-[220px]">
-        <a href="https://baroxy-jet.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Open Baroxy, a design identity generator for AI-coded apps"
+        <Link to="/baroxy" aria-label="Open the Baroxy project page"
           className="flex flex-col justify-between h-full p-6 gap-3">
           <Eyebrow right={<Arrow />}>Project</Eyebrow>
           <div className="flex gap-1.5 h-12" aria-hidden>
@@ -160,7 +160,7 @@ const Hero = () => {
               {["Web app", "CLI", "MCP server"].map((t) => <span key={t} className="tag">{t}</span>)}
             </div>
           </div>
-        </a>
+        </Link>
       </BentoTile>
 
       {/* Location */}
@@ -220,12 +220,9 @@ const Hero = () => {
       </BentoTile>
 
       {/* Stack */}
-      <BentoTile delay={0.3} className="md:col-span-2 lg:col-span-9 lg:col-start-1 lg:row-start-6 lg:row-span-1 p-5 flex flex-col justify-between gap-2">
+      <BentoTile delay={0.3} className="md:col-span-2 lg:col-span-9 lg:col-start-1 lg:row-start-6 lg:row-span-1 p-5 flex flex-col justify-center gap-3">
         <Eyebrow>Stack</Eyebrow>
-        <div className="flex flex-1 flex-col justify-evenly -mx-5">
-          <IconRow items={ROWS[0]} />
-          <IconRow items={ROWS[3]} reverse />
-        </div>
+        <div className="-mx-5"><IconRow items={ROWS.flat()} /></div>
       </BentoTile>
 
       {/* Education */}

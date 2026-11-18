@@ -6,6 +6,7 @@ import { useLenis } from "./hooks/useLenis";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import VisitzeePage from "./pages/VisitzeePage";
+import BaroxyPage from "./pages/BaroxyPage";
 import ExperiencePage from "./pages/ExperiencePage";
 
 /* Fixed ambient backdrop: a soft light and a grain, nothing that competes with content */
@@ -50,6 +51,7 @@ const AppInner = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/visitzee" element={<VisitzeePage />} />
+          <Route path="/baroxy" element={<BaroxyPage />} />
           <Route path="/experience/:slug" element={<ExperiencePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

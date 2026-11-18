@@ -231,3 +231,46 @@ export const CONTACT = {
   phoneNo: "+91 9022195136 ",
   email: "tejaskamble0208@gmail.com",
 };
+
+// Baroxy: facts mirror the Baroxy repo and the resume. No traffic or user numbers on purpose.
+export const BAROXY = {
+  title: "Baroxy",
+  tagline: "A locked design identity for AI-coded apps, so they stop all looking the same",
+  pitch: "Describe a project (name, industry, audience, mood) and Baroxy matches it to one of 109 curated design presets: a full system of palette, type, radius, spacing and motion. It hands coding agents a style contract to follow and the AI tells to avoid. The same brief always gives the same result.",
+  role: "2026",
+  links: [
+    { label: "Open the app", href: "https://baroxy-jet.vercel.app" },
+    { label: "Generator", href: "https://baroxy-jet.vercel.app/generate" },
+    { label: "GitHub", href: "https://github.com/tejas249/baroxy" },
+  ],
+  npm: [
+    { label: "@baroxy/mcp-server", href: "https://www.npmjs.com/package/@baroxy/mcp-server" },
+    { label: "@baroxy/cli", href: "https://www.npmjs.com/package/@baroxy/cli" },
+    { label: "@baroxy/core", href: "https://www.npmjs.com/package/@baroxy/core" },
+  ],
+  stats: [
+    { value: "109", label: "curated design presets" },
+    { value: "4", label: "workspace packages" },
+    { value: "79", label: "automated tests" },
+    { value: "3", label: "ways to use it" },
+  ],
+  steps: [
+    { title: "Describe", body: "Give it a project name, industry, audience and mood." },
+    { title: "Match", body: "Whole-word matching and synonyms score the presets, then a seeded pick chooses one and explains why." },
+    { title: "Lock", body: "It writes a STYLE_CONTRACT.md, CSS variables, Tailwind tokens and JSON for the agent to follow." },
+  ],
+  surfaces: [
+    { name: "Web app", note: "baroxy-jet.vercel.app", body: "Generate an identity, see it as a live mini product page in the generated fonts, colours and motion, and share it by link or in the public showcase.", href: "https://baroxy-jet.vercel.app/generate" },
+    { name: "CLI", note: "@baroxy/cli", body: "Writes the tokens and the style contract straight into a repo.", code: "npx @baroxy/cli --name Acme --industry fintech --mood trustworthy", href: "https://www.npmjs.com/package/@baroxy/cli" },
+    { name: "MCP server", note: "@baroxy/mcp-server", body: "Lets coding agents such as Claude Code and Cursor pull a locked design contract mid-session.", code: "claude mcp add baroxy -- npx @baroxy/mcp-server", href: "https://www.npmjs.com/package/@baroxy/mcp-server" },
+  ],
+  features: [
+    { icon: "dice", title: "Deterministic by design", body: "A seeded generator (string hash plus the mulberry32 random number generator): the same brief always gives the same output, and different briefs give different ones." },
+    { icon: "palette", title: "A whole system per preset", body: "Light or dark palette with background, surface, text and border roles, a type pairing, a radius and spacing system and a motion feel." },
+    { icon: "eye", title: "Live preview", body: "Each identity renders as a styled mini product page using the generated fonts, colours and motion, so you judge it before you commit." },
+    { icon: "link", title: "Shareable links", body: "Share an identity by link, stored on Vercel Blob with retries, plus a public showcase. A regression that broke old share links was found and fixed." },
+    { icon: "shield", title: "Security and reliability", body: "Content-security-policy and security headers, request validation, input moderation, rate limiting and caching. Dependency vulnerabilities cut from 6 to 2." },
+    { icon: "flask", title: "Tested and shipped", body: "79 Vitest tests (62 in core, 17 in web) and GitHub Actions that build, typecheck and test every push, with continuous deployment to Vercel." },
+  ],
+  stack: ["TypeScript", "npm workspaces", "Next.js 15", "React 19", "Phosphor icons", "Model Context Protocol SDK", "zod", "Vercel", "Vercel Blob", "Vercel Analytics", "Vitest", "GitHub Actions"],
+};
