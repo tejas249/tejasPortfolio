@@ -89,7 +89,7 @@ const Hero = () => {
     <div className="max-w-[1400px] mx-auto h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 lg:grid-rows-6 gap-3 sm:gap-4">
 
       {/* Intro */}
-      <BentoTile delay={0} className="md:col-span-2 lg:col-span-5 lg:row-span-3 p-6 sm:p-7 flex flex-col justify-between gap-4">
+      <BentoTile delay={0} className="md:col-span-2 lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:row-span-3 p-6 sm:p-7 flex flex-col justify-between gap-4">
         <div className="flex items-center justify-between gap-3">
           <Live>Available for work</Live>
           <button onClick={toggle} aria-label="Toggle theme" className="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer"
@@ -116,7 +116,7 @@ const Hero = () => {
       </BentoTile>
 
       {/* Visitzee */}
-      <BentoTile delay={0.06} className="group md:col-span-2 lg:col-span-4 lg:row-span-3">
+      <BentoTile delay={0.06} className="group md:col-span-2 lg:col-span-4 lg:col-start-6 lg:row-start-1 lg:row-span-3">
         <Link to="/visitzee" aria-label="Open the Visitzee case study" className="flex flex-col h-full min-h-[360px]">
           <div className="p-6 sm:p-7 relative z-10">
             <Eyebrow right={<Arrow />}>Featured project</Eyebrow>
@@ -138,27 +138,33 @@ const Hero = () => {
       </BentoTile>
 
       {/* Baroxy */}
-      <BentoTile delay={0.09} className="group md:col-span-2 lg:col-span-4 lg:col-start-6 lg:row-start-4 lg:row-span-1 min-h-[132px]">
+      <BentoTile delay={0.09} className="group md:col-span-2 lg:col-span-4 lg:col-start-6 lg:row-start-4 lg:row-span-2 min-h-[220px]">
         <a href="https://baroxy-jet.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Open Baroxy, a design identity generator for AI-coded apps"
-          className="flex flex-col justify-center h-full p-5 gap-3">
-          <div className="flex items-start justify-between gap-3">
-            <div className="flex items-center gap-2.5 flex-wrap">
-              <span className="flex shrink-0 overflow-hidden rounded-md" aria-hidden style={{ border: "1px solid var(--border-h)" }}>
-                {["#1f2937", "#6366f1", "#f59e0b", "#f8fafc"].map((c) => <span key={c} className="w-3 h-6" style={{ background: c }} />)}
-              </span>
-              <h2 className="text-xl font-bold tracking-tight">Baroxy</h2>
+          className="flex flex-col justify-between h-full p-6 gap-3">
+          <Eyebrow right={<Arrow />}>Project</Eyebrow>
+          <div className="flex gap-1.5 h-12" aria-hidden>
+            {[["#1f2937", "Aa"], ["#6366f1", "Aa"], ["#f59e0b", "Aa"], ["#10b981", "Aa"], ["#f8fafc", "Aa"]].map(([c, t], i) => (
+              <span key={c} className="flex-1 rounded-lg flex items-center justify-center text-sm font-semibold transition-transform duration-300 group-hover:-translate-y-1"
+                style={{ background: c, color: i === 4 ? "#1f2937" : "#fff", border: "1px solid var(--border-h)", transitionDelay: `${i * 30}ms` }}>{t}</span>
+            ))}
+          </div>
+          <div>
+            <div className="flex items-center gap-3">
+              <h2 className="text-2xl font-bold tracking-tight">Baroxy</h2>
               <Live>Live</Live>
             </div>
-            <Arrow />
+            <p className="text-[13px] leading-snug mt-1.5" style={{ color: "var(--text-2)" }}>
+              A locked design identity for AI-coded apps, so they stop all looking the same. 109 curated presets.
+            </p>
+            <div className="flex flex-wrap gap-1.5 mt-2.5">
+              {["Web app", "CLI", "MCP server"].map((t) => <span key={t} className="tag">{t}</span>)}
+            </div>
           </div>
-          <p className="text-[12.5px] leading-snug" style={{ color: "var(--text-2)" }}>
-            A locked design identity for AI-coded apps. 109 presets, as a web app, CLI and MCP server.
-          </p>
         </a>
       </BentoTile>
 
       {/* Location */}
-      <BentoTile delay={0.12} className="lg:col-span-3 lg:row-span-1 min-h-[110px]">
+      <BentoTile delay={0.12} className="lg:col-span-3 lg:col-start-10 lg:row-start-1 lg:row-span-1 min-h-[110px]">
         <Radar />
         <div className="relative z-10 p-5 h-full flex flex-col justify-between">
           <Eyebrow>Based in</Eyebrow>
@@ -170,7 +176,7 @@ const Hero = () => {
       </BentoTile>
 
       {/* Impact */}
-      <BentoTile delay={0.18} className="lg:col-span-3 lg:row-span-3 p-5 flex flex-col justify-between gap-3">
+      <BentoTile delay={0.18} className="lg:col-span-3 lg:col-start-10 lg:row-start-2 lg:row-span-3 p-5 flex flex-col justify-between gap-3">
         <Eyebrow>Impact</Eyebrow>
         <div className="grid grid-cols-2 grid-rows-2 flex-1 content-center items-center gap-x-3">
           {[[368, "", "GitHub contributions, 2026 · personal"], [1100, "", "GitHub contributions · professional"], [10, "+", "full stack apps shipped"], [200, "+", "product videos automated"]].map(([n, s, l]) => (
@@ -192,7 +198,7 @@ const Hero = () => {
       </BentoTile>
 
       {/* Experience */}
-      <BentoTile delay={0.24} className="md:col-span-2 lg:col-span-5 lg:row-span-3 p-6 sm:p-7 flex flex-col gap-3">
+      <BentoTile delay={0.24} className="md:col-span-2 lg:col-span-5 lg:col-start-1 lg:row-start-4 lg:row-span-2 p-6 flex flex-col gap-3">
         <Eyebrow>Experience</Eyebrow>
         <div className="flex flex-col gap-2.5 flex-1 min-h-0">
           {EXPERIENCE.map((e) => (
@@ -214,18 +220,16 @@ const Hero = () => {
       </BentoTile>
 
       {/* Stack */}
-      <BentoTile delay={0.3} className="md:col-span-2 lg:col-span-4 lg:row-span-2 p-6 flex flex-col justify-between gap-3">
+      <BentoTile delay={0.3} className="md:col-span-2 lg:col-span-9 lg:col-start-1 lg:row-start-6 lg:row-span-1 p-5 flex flex-col justify-between gap-2">
         <Eyebrow>Stack</Eyebrow>
-        <div className="flex flex-1 flex-col justify-evenly -mx-6">
+        <div className="flex flex-1 flex-col justify-evenly -mx-5">
           <IconRow items={ROWS[0]} />
-          <IconRow items={ROWS[1]} reverse />
-          <IconRow items={ROWS[3]} />
-          <div className="hidden [@media(min-height:840px)]:block"><IconRow items={ROWS[2]} reverse /></div>
+          <IconRow items={ROWS[3]} reverse />
         </div>
       </BentoTile>
 
       {/* Education */}
-      <BentoTile delay={0.36} className="lg:col-span-3 p-5 flex flex-col justify-between">
+      <BentoTile delay={0.36} className="lg:col-span-3 lg:col-start-10 lg:row-start-5 p-5 flex flex-col justify-between">
         <Eyebrow>Education</Eyebrow>
         <div>
           <p className="text-[15px] font-semibold tracking-tight leading-snug">B.Tech, Computer Science</p>
@@ -234,7 +238,7 @@ const Hero = () => {
       </BentoTile>
 
       {/* Contact */}
-      <BentoTile delay={0.42} className="lg:col-span-3 p-5 flex flex-col justify-between gap-3">
+      <BentoTile delay={0.42} className="lg:col-span-3 lg:col-start-10 lg:row-start-6 p-5 flex flex-col justify-between gap-3">
         <Eyebrow right={
           <span className="flex items-center gap-1.5">
             <a href="https://github.com/tejas249" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "var(--surface-alt)", color: "var(--text-2)" }}><FaGithub size={13} /></a>
