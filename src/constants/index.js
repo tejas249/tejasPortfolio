@@ -121,7 +121,7 @@ export const VISITZEE = {
   ],
   apps: [
     { name: "Marketing site", host: "visitzee.in", href: "https://visitzee.in", icon: "globe", points: ["Pages by business type & country", "Pricing, FAQ, live demo", "SEO, OG images, sitemap"] },
-    { name: "Customer booking page", host: "name.visitzee.in", href: "https://glowstudio.visitzee.in", icon: "calendar", points: ["Own subdomain per business", "Services, team, hours, map", "Book, reschedule, cancel via link"] },
+    { name: "Customer portal", host: "name.visitzee.in", href: "https://glowstudio.visitzee.in", icon: "calendar", points: ["Own subdomain per business", "Services, team, hours, map", "Book, reschedule, cancel via link"] },
     { name: "Owner app", host: "app.visitzee.in", href: "https://app.visitzee.in/demo", icon: "smartphone", points: ["Installable PWA, push alerts", "Calendar, walk-ins, waitlist", "Staff logins, customers, reports"] },
     { name: "Admin console", host: "admin.visitzee.in", href: "https://admin.visitzee.in", icon: "shield", points: ["Two-factor sign-in", "Onboard & manage businesses", "Roles, step-up auth, audit log"] },
   ],
