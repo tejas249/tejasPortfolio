@@ -247,7 +247,7 @@ const Hero = () => {
                   {e.current && <Live>Current</Live>}
                 </div>
                 {e.roles.map((r, i) => (
-                  <p key={r.title} className="text-[13px] mt-0.5 truncate" style={{ color: i === 0 ? "var(--text-2)" : "var(--text-3)" }}>
+                  <p key={r.title} className="text-[13px] mt-0.5 sm:truncate" style={{ color: i === 0 ? "var(--text-2)" : "var(--text-3)" }}>
                     {r.title} <span style={{ color: "var(--text-3)" }}>· {r.duration}</span>
                   </p>
                 ))}
