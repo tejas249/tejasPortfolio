@@ -14,6 +14,7 @@ import SplitText from "./ui/SplitText";
 import BentoTile from "./ui/BentoTile";
 import CountUp from "./ui/CountUp";
 import vzIcon from "../assets/brand/visitzee-icon.svg";
+import bxIcon from "../assets/brand/baroxy-icon.svg";
 import calendarShot from "../assets/projects/visitzee-owner-overview.webp";
 import { EXPERIENCE } from "../constants/experience";
 import { CONTACT } from "../constants";
@@ -126,7 +127,7 @@ const Hero = () => {
               <Live>Live</Live>
             </div>
             <p className="text-sm leading-relaxed max-w-sm" style={{ color: "var(--text-2)" }}>
-              A complete SaaS booking platform for local businesses in India and the US. Designed, built and shipped end to end.
+              Salons, clinics and trainers ran on phone calls and WhatsApp. Visitzee gives each one a live booking site in two minutes, in India and the US.
             </p>
           </div>
           <div className="relative flex-1 min-h-[160px]">
@@ -142,19 +143,19 @@ const Hero = () => {
         <Link to="/baroxy" aria-label="Open the Baroxy project page"
           className="flex flex-col justify-between h-full p-6 gap-3">
           <Eyebrow right={<Arrow />}>Project</Eyebrow>
-          <div className="flex gap-1.5 h-12" aria-hidden>
-            {[["#1f2937", "Aa"], ["#6366f1", "Aa"], ["#f59e0b", "Aa"], ["#10b981", "Aa"], ["#f8fafc", "Aa"]].map(([c, t], i) => (
-              <span key={c} className="flex-1 rounded-lg flex items-center justify-center text-sm font-semibold transition-transform duration-300 group-hover:-translate-y-1"
-                style={{ background: c, color: i === 4 ? "#1f2937" : "#fff", border: "1px solid var(--border-h)", transitionDelay: `${i * 30}ms` }}>{t}</span>
+          <div className="flex gap-1.5 h-9" aria-hidden>
+            {["#6b1d3a", "#e0a085", "#f3ece2", "#1f2937", "#f59e0b"].map((c) => (
+              <span key={c} className="flex-1 rounded-lg transition-transform duration-300 group-hover:-translate-y-1" style={{ background: c, border: "1px solid var(--border-h)" }} />
             ))}
           </div>
           <div>
             <div className="flex items-center gap-3">
+              <img src={bxIcon} alt="" width="32" height="32" className="w-8 h-8" />
               <h2 className="text-2xl font-bold tracking-tight">Baroxy</h2>
               <Live>Live</Live>
             </div>
             <p className="text-[13px] leading-snug mt-1.5" style={{ color: "var(--text-2)" }}>
-              A locked design identity for AI-coded apps, so they stop all looking the same. 109 curated presets.
+              AI coding agents make every app look the same. Baroxy locks a distinct design identity onto each one, from 109 curated presets.
             </p>
             <div className="flex flex-wrap gap-1.5 mt-2.5">
               {["Web app", "CLI", "MCP server"].map((t) => <span key={t} className="tag">{t}</span>)}
@@ -209,9 +210,11 @@ const Hero = () => {
                   <p className="text-lg font-semibold tracking-tight">{e.company}</p>
                   {e.current && <Live>Current</Live>}
                 </div>
-                <p className="text-[13px] mt-0.5 truncate" style={{ color: "var(--text-2)" }}>
-                  {e.roles[0].title} <span style={{ color: "var(--text-3)" }}>· {e.period}</span>
-                </p>
+                {e.roles.map((r, i) => (
+                  <p key={r.title} className="text-[13px] mt-0.5 truncate" style={{ color: i === 0 ? "var(--text-2)" : "var(--text-3)" }}>
+                    {r.title} <span style={{ color: "var(--text-3)" }}>· {r.duration}</span>
+                  </p>
+                ))}
               </div>
               <Arrow />
             </Link>

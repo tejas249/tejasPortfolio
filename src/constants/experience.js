@@ -5,7 +5,7 @@ export const EXPERIENCE = [
     company: "Katonic AI",
     location: "Remote",
     current: true,
-    summary: "Lead developer of the katonic.ai and eshal.ai websites, plus the Docs, Developers, Distributor and learning portals.",
+    summary: "Joined as a Full Stack Engineer Intern in Dec 2025 and became a Full Stack Engineer in Jun 2026. Lead developer of the katonic.ai and eshal.ai websites, plus the Docs, Developers, Distributor and learning portals.",
     roles: [
       {
         title: "Full Stack Engineer",

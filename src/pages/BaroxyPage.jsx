@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Dices, Palette, Eye, Link2, ShieldCheck, FlaskConical } from "lucide-react";
 import { BAROXY } from "../constants";
+import bxIcon from "../assets/brand/baroxy-icon.svg";
 import Marquee from "../components/ui/Marquee";
 import CountUp from "../components/ui/CountUp";
 import BentoTile from "../components/ui/BentoTile";
@@ -10,7 +11,7 @@ import { LinkBtn } from "../components/visitzee/AppCards";
 import { fadeUp } from "../lib/motion";
 
 const ICONS = { dice: Dices, palette: Palette, eye: Eye, link: Link2, shield: ShieldCheck, flask: FlaskConical };
-const SWATCHES = [["Background", "#14161c"], ["Surface", "#1f2937"], ["Text", "#f8fafc"], ["Border", "#374151"], ["Accent", "#6366f1"], ["Highlight", "#f59e0b"]];
+const SWATCHES = [["Background", "#2a0f1a"], ["Surface", "#4a1730"], ["Text", "#f3ece2"], ["Border", "#7a3a52"], ["Accent", "#6b1d3a"], ["Highlight", "#e0a085"]];
 
 const Kicker = ({ children }) => <p className="eyebrow mb-3" style={{ color: "var(--accent-text)" }}>{children}</p>;
 
@@ -67,7 +68,10 @@ const BaroxyPage = () => {
             <span className="tag mb-6" style={{ color: "var(--ok)", borderColor: "rgba(74,222,128,0.3)", background: "rgba(74,222,128,0.08)" }}>
               <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--ok)" }} /> Live · {b.role}
             </span>
-            <motion.h1 {...fadeUp(0.05)} className="text-6xl sm:text-8xl font-bold tracking-[-0.04em] mb-6">{b.title}</motion.h1>
+            <motion.h1 {...fadeUp(0.05)} className="flex items-center gap-4 sm:gap-6 mb-6">
+              <img src={bxIcon} alt="" width="96" height="96" className="w-16 h-16 sm:w-24 sm:h-24" />
+              <span className="text-6xl sm:text-8xl font-bold tracking-[-0.04em]">{b.title}</span>
+            </motion.h1>
             <p className="text-xl sm:text-2xl leading-snug max-w-xl" style={{ color: "var(--text-2)" }}>{b.tagline}</p>
           </div>
           <motion.div {...fadeUp(0.2)} className="flex flex-col gap-6">
@@ -86,6 +90,18 @@ const BaroxyPage = () => {
             </div>
           ))}
         </motion.div>
+
+        <Block kicker="Overview" title="Why every AI-coded app looks the same">
+          <div className="grid md:grid-cols-2 gap-4">
+            {[b.caseStudy.problem, b.caseStudy.approach].map((c, i) => (
+              <motion.div key={c.title} {...fadeUp(i * 0.08)} className="surface p-7 sm:p-9">
+                <Kicker>{i === 0 ? "The problem" : "The approach"}</Kicker>
+                <h3 className="text-xl sm:text-2xl font-semibold tracking-tight mb-3">{c.title}</h3>
+                <p className="text-[15px] leading-relaxed" style={{ color: "var(--text-2)" }}>{c.body}</p>
+              </motion.div>
+            ))}
+          </div>
+        </Block>
 
         <Block kicker="How it works" title="One brief in, one locked identity out">
           <div className="grid lg:grid-cols-[1.2fr_1fr] gap-4">

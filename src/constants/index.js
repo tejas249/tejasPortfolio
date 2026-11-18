@@ -58,7 +58,7 @@ export const EXPERIENCES = [
 // The one product the portfolio is built around. Facts here mirror the Visitzee repo and the resume.
 export const VISITZEE = {
   title: "Visitzee",
-  tagline: "A complete SaaS booking platform for local businesses",
+  tagline: "Local businesses ran on phone calls and WhatsApp. Now each one gets its own live booking site in about two minutes",
   role: "Sep 2026 to present",
   pitch: "Salons, clinics, trainers and studios in India and the US sign up, pick what they do, and get their own booking website, live in about two minutes. Customers book any hour, owners run the day from an installable app, and Visitzee staff manage every business from a secured admin console. Designed, built and shipped end to end.",
   caseStudy: {
@@ -235,8 +235,18 @@ export const CONTACT = {
 // Baroxy: facts mirror the Baroxy repo and the resume. No traffic or user numbers on purpose.
 export const BAROXY = {
   title: "Baroxy",
-  tagline: "A locked design identity for AI-coded apps, so they stop all looking the same",
-  pitch: "Describe a project (name, industry, audience, mood) and Baroxy matches it to one of 109 curated design presets: a full system of palette, type, radius, spacing and motion. It hands coding agents a style contract to follow and the AI tells to avoid. The same brief always gives the same result.",
+  tagline: "AI coding agents make every app look the same. Baroxy locks a distinct design identity onto each one",
+  pitch: "Left alone, coding agents reach for the same look: one font, an indigo gradient hero, rounded cards, a three-card feature grid. Describe your project and Baroxy picks one of 109 curated design presets and hands your agent a style contract to follow, plus the AI tells to avoid. The same brief always gives the same result.",
+  caseStudy: {
+    problem: {
+      title: "Every AI-coded app starts to look alike",
+      body: "When nothing tells a coding agent what the product should feel like, it falls back on its defaults: Inter, an indigo-to-violet gradient hero, rounded shadcn cards and the same three-card feature grid. Different products, same face.",
+    },
+    approach: {
+      title: "Lock the identity before the agent writes a line",
+      body: "Baroxy turns a short brief into a full design system and writes it down as a contract the agent must follow, with the AI tells it must avoid. The generation is seeded, so the same brief always returns the same identity and a team stays consistent.",
+    },
+  },
   role: "2026",
   links: [
     { label: "Open the app", href: "https://baroxy-jet.vercel.app" },
