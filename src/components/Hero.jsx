@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { HiMoon, HiSun } from "react-icons/hi2";
 import { useTheme } from "../context/ThemeContext";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { FiArrowUpRight, FiDownload, FiGlobe, FiMail, FiMapPin, FiServer, FiTerminal } from "react-icons/fi";
+import { FiArrowUpRight, FiCalendar, FiDownload, FiGlobe, FiMail, FiMapPin, FiServer, FiShield, FiSmartphone, FiTerminal } from "react-icons/fi";
 import {
   SiTypescript, SiNextdotjs, SiNodedotjs, SiPostgresql, SiPrisma, SiMongodb, SiTailwindcss, SiDocker,
   SiVercel, SiPython, SiVitest, SiPostman, SiGoogleanalytics, SiGoogletagmanager, SiSupabase, SiFirebase, SiJavascript, SiExpress, SiRazorpay, SiAnthropic, SiGithubactions,
@@ -15,10 +15,11 @@ import BentoTile from "./ui/BentoTile";
 import CountUp from "./ui/CountUp";
 import vzIcon from "../assets/brand/visitzee-icon.svg";
 import bxIcon from "../assets/brand/baroxy-icon.svg";
-import calendarShot from "../assets/projects/visitzee-owner-overview.webp";
 import { EXPERIENCE } from "../constants/experience";
-import { CONTACT } from "../constants";
+import { CONTACT, VISITZEE } from "../constants";
 import { fadeUp } from "../lib/motion";
+
+const PORTAL_ICONS = { globe: FiGlobe, calendar: FiCalendar, smartphone: FiSmartphone, shield: FiShield };
 
 const ROWS = [
   [[SiTypescript, "TypeScript", "#60a5fa"], [SiNextdotjs, "Next.js", "#94a3b8"], [RiReactjsLine, "React", "#22d3ee"], [SiTailwindcss, "Tailwind", "#2dd4bf"], [SiJavascript, "JavaScript", "#facc15"]],
@@ -118,9 +119,12 @@ const Hero = () => {
 
       {/* Visitzee */}
       <BentoTile delay={0.06} className="group md:col-span-2 lg:col-span-4 lg:col-start-6 lg:row-start-1 lg:row-span-3">
-        <Link to="/visitzee" aria-label="Open the Visitzee case study" className="flex flex-col h-full min-h-[360px]">
-          <div className="p-6 sm:p-7 relative z-10">
-            <Eyebrow right={<Arrow />}>Featured project</Eyebrow>
+        <div className="flex flex-col h-full p-6 sm:p-7 gap-4">
+          <Link to="/visitzee" aria-label="Open the Visitzee case study" className="block">
+            <div className="flex items-start justify-between gap-3">
+              <p className="eyebrow uppercase tracking-[0.12em] !text-[11px]">Featured project</p>
+              <Arrow />
+            </div>
             <div className="flex items-center gap-3 mt-3 mb-2">
               <img src={vzIcon} alt="" width="36" height="36" className="w-9 h-9 -mr-0.5" />
               <h2 className="text-3xl font-bold tracking-tight">Visitzee</h2>
@@ -129,13 +133,30 @@ const Hero = () => {
             <p className="text-sm leading-relaxed max-w-sm" style={{ color: "var(--text-2)" }}>
               Salons, clinics and trainers ran on phone calls and WhatsApp. Visitzee gives each one a live booking site in two minutes, in India and the US.
             </p>
+          </Link>
+          <div className="mt-auto">
+            <p className="text-[11px] mb-2" style={{ color: "var(--text-3)" }}>Four live portals, open any</p>
+            <div className="grid grid-cols-2 gap-2.5">
+              {VISITZEE.apps.map((app) => {
+                const Icon = PORTAL_ICONS[app.icon];
+                return (
+                  <a key={app.name} href={app.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${app.name} (${app.host})`}
+                    className="group/p flex items-center gap-2.5 rounded-2xl px-2.5 py-2.5 transition-colors duration-200 hover:!border-[var(--border-h)]"
+                    style={{ background: "var(--surface-alt)", border: "1px solid var(--border)" }}>
+                    <span className="w-7 h-7 shrink-0 rounded-lg flex items-center justify-center" style={{ background: "var(--accent-soft-bg)" }}>
+                      <Icon size={14} style={{ color: "var(--accent-text)" }} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[12.5px] font-semibold tracking-tight leading-tight">{app.name}</span>
+                      <span className="block font-mono text-[9.5px] mt-0.5 whitespace-nowrap" style={{ color: "var(--text-3)" }}>{app.host}</span>
+                    </span>
+                    <FiArrowUpRight size={13} className="shrink-0 transition-transform duration-200 group-hover/p:translate-x-0.5 group-hover/p:-translate-y-0.5" style={{ color: "var(--text-3)" }} />
+                  </a>
+                );
+              })}
+            </div>
           </div>
-          <div className="relative flex-1 min-h-[160px]">
-            <img src={calendarShot} alt="Visitzee owner app" loading="lazy" decoding="async"
-              className="absolute top-0 left-6 w-[130%] max-w-none rounded-tl-2xl object-cover object-top transition-transform duration-500 group-hover:-translate-y-1.5"
-              style={{ border: "1px solid var(--border-h)", boxShadow: "0 30px 60px -20px var(--shadow)" }} />
-          </div>
-        </Link>
+        </div>
       </BentoTile>
 
       {/* Baroxy */}
