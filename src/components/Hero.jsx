@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { HiMoon, HiSun } from "react-icons/hi2";
 import { useTheme } from "../context/ThemeContext";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { FiArrowUpRight, FiDownload, FiMail, FiMapPin } from "react-icons/fi";
+import { FiArrowUpRight, FiDownload, FiGlobe, FiMail, FiMapPin, FiServer, FiTerminal } from "react-icons/fi";
 import {
   SiTypescript, SiNextdotjs, SiNodedotjs, SiPostgresql, SiPrisma, SiMongodb, SiTailwindcss, SiDocker,
   SiVercel, SiPython, SiVitest, SiPostman, SiGoogleanalytics, SiGoogletagmanager, SiSupabase, SiFirebase, SiJavascript, SiExpress, SiRazorpay, SiAnthropic, SiGithubactions,
@@ -139,27 +139,37 @@ const Hero = () => {
       </BentoTile>
 
       {/* Baroxy */}
-      <BentoTile delay={0.09} className="group md:col-span-2 lg:col-span-4 lg:col-start-6 lg:row-start-4 lg:row-span-2 min-h-[220px]">
-        <Link to="/baroxy" aria-label="Open the Baroxy project page"
-          className="flex flex-col justify-between h-full p-6 gap-3">
-          <Eyebrow right={<Arrow />}>Project</Eyebrow>
-          <div className="flex gap-1.5 h-9" aria-hidden>
-            {["#6b1d3a", "#e0a085", "#f3ece2", "#1f2937", "#f59e0b"].map((c) => (
-              <span key={c} className="flex-1 rounded-lg transition-transform duration-300 group-hover:-translate-y-1" style={{ background: c, border: "1px solid var(--border-h)" }} />
+      <BentoTile delay={0.09} className="group md:col-span-2 lg:col-span-4 lg:col-start-6 lg:row-start-4 lg:row-span-2 min-h-[240px]">
+        <div aria-hidden className="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none transition-opacity duration-500 opacity-70 group-hover:opacity-100"
+          style={{ background: "radial-gradient(closest-side, rgba(224,160,133,0.20), rgba(107,29,58,0.16) 55%, transparent)" }} />
+        <Link to="/baroxy" aria-label="Open the Baroxy project page" className="relative flex flex-col justify-between h-full p-5 gap-2.5">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-2.5">
+                <img src={bxIcon} alt="" width="32" height="32" className="w-8 h-8 rounded-lg" />
+                <h2 className="text-2xl font-bold tracking-tight">Baroxy</h2>
+                <Live>Live</Live>
+              </div>
+            </div>
+            <Arrow />
+          </div>
+          <p className="text-[13px] leading-snug max-w-sm" style={{ color: "var(--text-2)" }}>
+            AI agents make every app look the same. Baroxy locks a distinct design identity onto each one.
+          </p>
+          <div className="rounded-xl px-3.5 py-2 font-mono text-[11px] leading-[1.6]" aria-hidden
+            style={{ background: "var(--surface-alt)", border: "1px solid var(--border)" }}>
+            <p style={{ color: "var(--text-3)" }}>STYLE_CONTRACT.md</p>
+            {[["--background", "#2a0f1a", "#2a0f1a"], ["--accent", "#6b1d3a", "#c2456f"], ["--highlight", "#e0a085", "#e0a085"]].map(([k, v, dot]) => (
+              <p key={k} className="flex items-center gap-2" style={{ color: "var(--text-2)" }}>
+                <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: dot, boxShadow: "0 0 0 1px var(--border-h)" }} />
+                <span>{k}</span><span style={{ color: "var(--text-3)" }}>{v}</span>
+              </p>
             ))}
           </div>
-          <div>
-            <div className="flex items-center gap-3">
-              <img src={bxIcon} alt="" width="32" height="32" className="w-8 h-8" />
-              <h2 className="text-2xl font-bold tracking-tight">Baroxy</h2>
-              <Live>Live</Live>
-            </div>
-            <p className="text-[13px] leading-snug mt-1.5" style={{ color: "var(--text-2)" }}>
-              AI coding agents make every app look the same. Baroxy locks a distinct design identity onto each one, from 109 curated presets.
-            </p>
-            <div className="flex flex-wrap gap-1.5 mt-2.5">
-              {["Web app", "CLI", "MCP server"].map((t) => <span key={t} className="tag">{t}</span>)}
-            </div>
+          <div className="flex items-center gap-4 text-[12px]" style={{ color: "var(--text-3)" }}>
+            {[[FiGlobe, "Web app"], [FiTerminal, "CLI"], [FiServer, "MCP server"]].map(([Icon, t]) => (
+              <span key={t} className="inline-flex items-center gap-1.5"><Icon size={13} style={{ color: "var(--accent-text)" }} /> {t}</span>
+            ))}
           </div>
         </Link>
       </BentoTile>
