@@ -156,17 +156,22 @@ const Hero = () => {
           <p className="text-[13px] leading-snug max-w-sm" style={{ color: "var(--text-2)" }}>
             AI agents make every app look the same. Baroxy locks a distinct design identity onto each one.
           </p>
-          <div className="rounded-xl px-3.5 py-2 font-mono text-[11px] leading-[1.6]" aria-hidden
-            style={{ background: "var(--surface-alt)", border: "1px solid var(--border)" }}>
-            <p style={{ color: "var(--text-3)" }}>STYLE_CONTRACT.md</p>
-            {[["--background", "#2a0f1a", "#2a0f1a"], ["--accent", "#6b1d3a", "#c2456f"], ["--highlight", "#e0a085", "#e0a085"]].map(([k, v, dot]) => (
-              <p key={k} className="flex items-center gap-2" style={{ color: "var(--text-2)" }}>
-                <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: dot, boxShadow: "0 0 0 1px var(--border-h)" }} />
-                <span>{k}</span><span style={{ color: "var(--text-3)" }}>{v}</span>
-              </p>
-            ))}
+          {/* A locked identity, drawn in the brand's own colours so it reads the same in light and dark */}
+          <div aria-hidden className="relative overflow-hidden rounded-2xl h-[76px] flex items-center gap-4 px-5"
+            style={{ background: "linear-gradient(120deg, #6b1d3a 0%, #3b1226 100%)", boxShadow: "inset 0 0 0 1px rgba(243,236,226,0.12), 0 14px 30px -18px rgba(107,29,58,0.7)" }}>
+            <span className="text-[40px] leading-none" style={{ fontFamily: "ui-serif, Georgia, 'Times New Roman', serif", color: "#f3ece2" }}>Aa</span>
+            <span className="flex-1 flex flex-col gap-1.5">
+              <span className="h-1.5 w-3/4 rounded-full" style={{ background: "rgba(243,236,226,0.85)" }} />
+              <span className="h-1.5 w-1/2 rounded-full" style={{ background: "rgba(243,236,226,0.3)" }} />
+            </span>
+            <span className="flex flex-col items-end gap-2">
+              <span className="flex gap-1.5">
+                {["#f3ece2", "#e0a085", "#c2456f"].map((c) => <span key={c} className="w-3.5 h-3.5 rounded-full" style={{ background: c, boxShadow: "0 0 0 1px rgba(243,236,226,0.25)" }} />)}
+              </span>
+              <span className="font-mono text-[10px] tracking-wide" style={{ color: "rgba(243,236,226,0.7)" }}>identity locked</span>
+            </span>
           </div>
-          <div className="flex items-center gap-4 text-[12px]" style={{ color: "var(--text-3)" }}>
+          <div className="flex items-center justify-between text-[12px] pt-0.5" style={{ color: "var(--text-2)" }}>
             {[[FiGlobe, "Web app"], [FiTerminal, "CLI"], [FiServer, "MCP server"]].map(([Icon, t]) => (
               <span key={t} className="inline-flex items-center gap-1.5"><Icon size={13} style={{ color: "var(--accent-text)" }} /> {t}</span>
             ))}
