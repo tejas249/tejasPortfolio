@@ -8,6 +8,7 @@ import Hero from "./components/Hero";
 import VisitzeePage from "./pages/VisitzeePage";
 import BaroxyPage from "./pages/BaroxyPage";
 import ExperiencePage from "./pages/ExperiencePage";
+import AssessmentScriptPage, { ASSESSMENT_ROUTE } from "./pages/AssessmentScriptPage";
 
 /* Fixed ambient backdrop: a soft light and a grain, nothing that competes with content */
 const Backdrop = () => (
@@ -40,19 +41,22 @@ const Home = () => <Hero />;
 
 const AppInner = () => {
   useLenis();
-  const isHome = useLocation().pathname === "/";
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
+  const isPrivate = pathname === ASSESSMENT_ROUTE;
   return (
     <div className="overflow-x-hidden antialiased" style={{ color: "var(--text-1)" }}>
       <Backdrop />
       <ScrollManager />
       {/* The landing page is a single bento screen with no header; sub-pages keep it */}
-      {!isHome && <Navbar />}
-      <main className={isHome ? "pt-5" : "pt-24 xl:pt-28"}>
+      {!isHome && !isPrivate && <Navbar />}
+      <main className={isHome || isPrivate ? "pt-5 sm:pt-10" : "pt-24 xl:pt-28"}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/visitzee" element={<VisitzeePage />} />
           <Route path="/baroxy" element={<BaroxyPage />} />
           <Route path="/experience/:slug" element={<ExperiencePage />} />
+          <Route path={ASSESSMENT_ROUTE} element={<AssessmentScriptPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
